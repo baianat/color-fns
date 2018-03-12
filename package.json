@@ -1,0 +1,28 @@
+{
+  "name": "color-fns",
+  "version": "0.0.1",
+  "description": "Modern JavaScript color utility library.",
+  "author": "",
+  "main": "dist/js/color-fns.js",
+  "license": "MIT",
+  "keywords": [
+    "color",
+    "utility",
+    "functions"
+  ],
+  "maintainers": [
+    {
+      "name": "Abdelrahman3D",
+      "email": "abdelrahman3d@gmail.com"
+    }
+  ],
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "rollup": "^0.56.5",
+    "rollup-plugin-babel": "^3.0.3",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "^3.2.0",
+    "rollup-plugin-replace": "^2.0.0"
+  }
+}

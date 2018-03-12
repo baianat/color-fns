@@ -35,7 +35,7 @@ function hexNumFromDec(decNum) {
   return ('0' + decNum.toString(16)).slice(-2);
 }
 
-function rgb2Hex(rgb, output) {
+function rgbToHex(rgb, output) {
   rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
   var red = hexNumFromDec(rgb[1]);
   var green = hexNumFromDec(rgb[2]);
@@ -94,6 +94,30 @@ function rgb2Hsl(rgb, output) {
   return 'hsl(' + Hue + ', ' + Sat + '%, ' + Lum + '%)';
 }
 
+function expandHexShorthand(hex) {
+  if (hex.length === 4) {
+    hex = hex.replace(/^#([a-f\d])([a-f\d])([a-f\d])$/i, function (m, r, g, b) {
+      return "#" + r + r + g + g + b + b;
+    });
+  }
+  return hex;
+}
+
+function hexToRgb(hex, output) {
+  hex = expandHexShorthand(hex);
+  hex = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+  var red = decNumFromHex(hex[1]);
+  var green = decNumFromHex(hex[2]);
+  var blue = decNumFromHex(hex[3]);
+  var rgb = hex && hex.length === 4 ? 'rgb(' + red + ', ' + green + ', ' + blue + ')' : '';
+
+  if (output === 'details') {
+    return [rgb, red, green, blue];
+  }
+
+  return rgb;
+}
+
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -111,8 +135,9 @@ var _index = {
   isAColor: isAColor,
   decNumFromHex: decNumFromHex,
   hexNumFromDec: hexNumFromDec,
-  rgb2Hex: rgb2Hex,
-  rgb2Hsl: rgb2Hsl,
+  rgbToHex: rgbToHex,
+  rgbToHsl: rgb2Hsl,
+  hexToRgb: hexToRgb,
   getRandomColor: getRandomColor,
   normalizeDecNum: normalizeDecNum,
   version: '0.0.1'

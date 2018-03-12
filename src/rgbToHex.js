@@ -1,6 +1,6 @@
 import hexNumFromDec from './hexNumFromDec';
 
-export default function rgb2Hex(rgb, output) {
+export default function rgbToHex(rgb, output) {
   rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
   const red = hexNumFromDec(rgb[1]);
   const green = hexNumFromDec(rgb[2]);

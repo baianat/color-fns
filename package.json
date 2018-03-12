@@ -10,6 +10,9 @@
     "utility",
     "functions"
   ],
+  "scripts": {
+    "build": "rollup -c"
+  },
   "maintainers": [
     {
       "name": "Abdelrahman3D",

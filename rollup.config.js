@@ -7,7 +7,7 @@ const path = require('path');
 const version = require('./package.json').version;
 
 export default {
-  input: 'src/index.js',
+  input: 'src/_index.js',
   output: {
     file: path.join(__dirname, '/dist/color-fns.js'),
     format: 'umd',

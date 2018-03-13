@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/9.4.0/bin/node /usr/local/bin/yarn add babel-external-helpers --dev
+  /usr/local/Cellar/node/9.4.0/bin/node /usr/local/bin/yarn build
 
 PATH: 
   /usr/local/mysql/bin:/Applications/SWI-Prolog.app/Contents/MacOS:/Users/Abdelrahman/.composer/vendor/bin:~/.composer/vendor/bin:/usr/local/git/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
@@ -37,6 +37,7 @@ npm manifest:
     ],
     "devDependencies": {
       "babel-core": "^6.26.0",
+      "babel-plugin-external-helpers": "^6.22.0",
       "babel-preset-env": "^1.6.1",
       "rollup": "^0.56.5",
       "rollup-plugin-babel": "^3.0.3",
@@ -316,6 +317,12 @@ Lockfile:
   babel-plugin-check-es2015-constants@^6.22.0:
     version "6.22.0"
     resolved "https://registry.yarnpkg.com/babel-plugin-check-es2015-constants/-/babel-plugin-check-es2015-constants-6.22.0.tgz#35157b101426fd2ffd3da3f75c7d1e91835bbf8a"
+    dependencies:
+      babel-runtime "^6.22.0"
+  
+  babel-plugin-external-helpers@^6.22.0:
+    version "6.22.0"
+    resolved "https://registry.yarnpkg.com/babel-plugin-external-helpers/-/babel-plugin-external-helpers-6.22.0.tgz#2285f48b02bd5dede85175caf8c62e86adccefa1"
     dependencies:
       babel-runtime "^6.22.0"
   
@@ -2533,11 +2540,16 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yeast/-/yeast-0.1.2.tgz#008e06d8094320c372dbc2f8ed76a0ca6c8ac419"
 
 Trace: 
-  Error: Couldn't find package "babel-external-helpers" on the "npm" registry.
-      at new MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
-      at NpmResolver.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:51625:15)
-      at Generator.next (<anonymous>)
-      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:98:30)
-      at /usr/local/lib/node_modules/yarn/lib/cli.js:109:13
-      at <anonymous>
-      at process._tickCallback (internal/process/next_tick.js:160:7)
+  Error: Command failed.
+  Exit code: 1
+  Command: sh
+  Arguments: -c rollup -c
+  Directory: /Users/Abdelrahman/Projects/color-fns
+  Output:
+  
+      at ProcessTermError.MessageError (/usr/local/lib/node_modules/yarn/lib/cli.js:186:110)
+      at new ProcessTermError (/usr/local/lib/node_modules/yarn/lib/cli.js:226:113)
+      at ChildProcess.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:30281:17)
+      at ChildProcess.emit (events.js:160:13)
+      at maybeClose (internal/child_process.js:943:16)
+      at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)

@@ -8,10 +8,10 @@ function getColorModel(color) {
   if (color.slice(0, 1) === '#' && (color.length === 4 || color.length === 7)) {
     return 'hex';
   }
-  if (color.slice(0, 3).toUpperCase() !== 'RGB') {
+  if (color.slice(0, 3).toUpperCase() === 'RGB') {
     return 'rgb';
   }
-  if (color.slice(0, 3).toUpperCase() !== 'HSL') {
+  if (color.slice(0, 3).toUpperCase() === 'HSL') {
     return 'hsl';
   }
   return false;
@@ -28,7 +28,7 @@ function hexNumToDec(hexNum) {
   return parseInt(hexNum, 16);
 }
 
-function decNumbToHex(decNum) {
+function decNumToHex(decNum) {
   decNum = Number(decNum);
   if (isNaN(decNum)) {
     return '00';
@@ -36,17 +36,13 @@ function decNumbToHex(decNum) {
   return ('0' + decNum.toString(16)).slice(-2);
 }
 
-function rgbToHex(rgb, details) {
-  rgb = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*/i);
-  var red = decNumbToHex(rgb[1]);
-  var green = decNumbToHex(rgb[2]);
-  var blue = decNumbToHex(rgb[3]);
-  var hex = rgb && rgb.length === 4 ? '#' + red + green + blue : '';
-
-  if (details) {
-    return [hex, red, green, blue];
+function getRgbValues(rgb) {
+  var match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
+  if (match && match.length >= 4) {
+    return match;
   }
-  return hex;
+  console.warn('"' + rgb + '" is not valid rgb color');
+  return '';
 }
 
 var slicedToArray = function () {
@@ -87,56 +83,79 @@ var slicedToArray = function () {
   };
 }();
 
+function rgbToHex(rgb, details) {
+  var match = getRgbValues(rgb);
+  if (!match) return;
+
+  var _match = slicedToArray(match, 4),
+      red = _match[1],
+      green = _match[2],
+      blue = _match[3];
+
+  var _ref = [decNumToHex(red), decNumToHex(green), decNumToHex(blue)],
+      rr = _ref[0],
+      gg = _ref[1],
+      bb = _ref[2];
+
+  var hex = '#' + rr + gg + bb;
+
+  if (details) {
+    return [hex, rr, gg, bb];
+  }
+  return hex;
+}
+
 function rgb2Hsl(rgb, details) {
-  var _rgb$match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i),
-      _rgb$match2 = slicedToArray(_rgb$match, 4),
-      red = _rgb$match2[1],
-      green = _rgb$match2[2],
-      blue = _rgb$match2[3];
+  var match = getRgbValues(rgb);
+  if (!match) return;
 
-  if (!red || !green || !blue) return;
   // Convert the RGB values to the range 0-1
-  var _ref = [red / 255, green / 255, blue / 255];
-  red = _ref[0];
-  green = _ref[1];
-  blue = _ref[2];
 
-  var Hue = 0;
-  var Sat = 0;
-  var Lgh = 0;
+  var _match$map = match.map(function (val) {
+    return val / 255;
+  }),
+      _match$map2 = slicedToArray(_match$map, 4),
+      red = _match$map2[1],
+      green = _match$map2[2],
+      blue = _match$map2[3];
+
+  var hue = 0,
+      sat = 0,
+      lum = 0;
 
   // Find the minimum and maximum values of R, G and B.
+
   var min = Math.min(red, green, blue);
   var max = Math.max(red, green, blue);
 
   // Calculate the lightness value
-  Lgh = (min + max) / 2;
+  lum = (min + max) / 2;
 
-  // Calculate the Saturation.
+  // Calculate the saturation.
   if (min !== max) {
-    Sat = Lgh > 0.5 ? (max - min) / (2 - max - min) : (max - min) / (max + min);
+    sat = lum > 0.5 ? (max - min) / (2 - max - min) : (max - min) / (max + min);
   }
 
-  // calculate the Hue
+  // calculate the hue
   if (red >= max && min !== max) {
-    Hue = 60 * ((green - blue) / (max - min));
+    hue = 60 * ((green - blue) / (max - min));
   }
   if (green >= max && min !== max) {
-    Hue = 60 * (2.0 + (blue - red) / (max - min));
+    hue = 60 * (2.0 + (blue - red) / (max - min));
   }
   if (blue >= max && min !== max) {
-    Hue = 60 * (4.0 + (red - green) / (max - min));
+    hue = 60 * (4.0 + (red - green) / (max - min));
   }
 
   // normalize values
-  Hue = Hue < 0 ? Math.floor(Hue + 360) : Math.floor(Hue);
-  Sat = Math.floor(Sat * 100);
-  Lgh = Math.floor(Lgh * 100);
+  hue = hue < 0 ? Math.floor(hue + 360) : Math.floor(hue);
+  sat = Math.floor(sat * 100);
+  lum = Math.floor(lum * 100);
 
   if (details) {
-    return ["hsl(" + Hue + ", " + Sat + "%, " + Lgh + "%)", Hue, Sat, Lgh];
+    return ['hsl(' + hue + ', ' + sat + '%, ' + lum + '%)', hue, sat, lum];
   }
-  return "hsl(" + Hue + ", " + Sat + "%, " + Lgh + "%)";
+  return 'hsl(' + hue + ', ' + sat + '%, ' + lum + '%)';
 }
 
 function expandHexShorthand(hex) {
@@ -148,18 +167,35 @@ function expandHexShorthand(hex) {
   return hex;
 }
 
-function hexToRgb(hex, details) {
+function getHexValues(hex) {
   hex = expandHexShorthand(hex);
-  hex = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
-  var red = hexNumToDec(hex[1]);
-  var green = hexNumToDec(hex[2]);
-  var blue = hexNumToDec(hex[3]);
+  var match = hex.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})/i);
+  if (match && match.length >= 4) {
+    return match;
+  }
+  console.warn('"' + hex + '" is not valid hex color');
+  return '';
+}
+
+function hexToRgb(hex, details) {
+  var match = getHexValues(hex);
+  if (!match) return;
+
+  var _match = slicedToArray(match, 4),
+      rr = _match[1],
+      gg = _match[2],
+      bb = _match[3];
+
+  var _ref = [hexNumToDec(rr), hexNumToDec(gg), hexNumToDec(bb)],
+      red = _ref[0],
+      green = _ref[1],
+      blue = _ref[2];
+
   var rgb = hex && hex.length === 4 ? 'rgb(' + red + ', ' + green + ', ' + blue + ')' : '';
 
   if (details) {
     return [rgb, red, green, blue];
   }
-
   return rgb;
 }
 
@@ -167,25 +203,29 @@ function normalizeDecNum(value) {
   return Math.min(Math.max(parseInt(value), 0), 255);
 }
 
+function getHslValues(hsl) {
+  var match = hsl.match(/^hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i);
+  if (match && match.length >= 4) {
+    return match;
+  }
+  console.warn('"' + hsl + '" is not valid hsl color');
+  return '';
+}
+
 function hslToRgb(hsl, details) {
-  var _hsl$match = hsl.match(/^hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%/i),
-      _hsl$match2 = slicedToArray(_hsl$match, 4),
-      hue = _hsl$match2[1],
-      sat = _hsl$match2[2],
-      lgh = _hsl$match2[3];
+  var match = getHslValues(hsl);
+  if (!match) return;
 
-  if (!hue || !sat || !lgh) return;
-  var _ref = [hue / 360, sat / 100, lgh / 100];
-  hue = _ref[0];
-  sat = _ref[1];
-  lgh = _ref[2];
+  var hue = match[1] / 360,
+      sat = match[2] / 100,
+      lgh = match[3] / 100;
+  var red = 0,
+      green = 0,
+      blue = 0;
 
-  var red = 0;
-  var green = 0;
-  var blue = 0;
 
   if (sat === 0) {
-    red = green = blue = lgh * 255;
+    red = green = blue = normalizeDecNum(lgh * 255);
   }
   if (sat !== 0) {
     var temp1 = lgh >= 50 ? lgh + sat - lgh * sat : lgh * (1 + sat);
@@ -226,8 +266,8 @@ function hexToHsl(hex, details) {
   return Hsl;
 }
 
-function hslToHex(hex, details) {
-  var _rgbToHex = rgbToHex(hslToRgb(hex), true),
+function hslToHex(hsl, details) {
+  var _rgbToHex = rgbToHex(hslToRgb(hsl), true),
       _rgbToHex2 = slicedToArray(_rgbToHex, 4),
       Hex = _rgbToHex2[0],
       Red = _rgbToHex2[1],
@@ -238,6 +278,60 @@ function hslToHex(hex, details) {
     return [Hex, Red, Green, Blue];
   }
   return Hex;
+}
+
+function toRgb(color, details) {
+  var model = getColorModel(color);
+
+  if (model === 'hex') {
+    return hexToRgb.apply(undefined, arguments);
+  }
+  if (model === 'hsl') {
+    return hslToRgb.apply(undefined, arguments);
+  }
+  if (model === 'rgb' && details) {
+    return getRgbValues(color).slice(0, 4);
+  }
+  if (model === 'rgb') {
+    return getRgbValues(color)[0];
+  }
+  return null;
+}
+
+function toHsl(color, details) {
+  var model = getColorModel(color);
+
+  if (model === 'hex') {
+    return hexToHsl.apply(undefined, arguments);
+  }
+  if (model === 'rgb') {
+    return rgb2Hsl.apply(undefined, arguments);
+  }
+  if (model === 'hsl' && details) {
+    return getHslValues(color).slice(0, 4);
+  }
+  if (model === 'hsl') {
+    return getHslValues(color)[0];
+  }
+  return null;
+}
+
+function toHex(color, details) {
+  var model = getColorModel(color);
+
+  if (model === 'rgb') {
+    return rgbToHex.apply(undefined, arguments);
+  }
+  if (model === 'hsl') {
+    return hslToHex.apply(undefined, arguments);
+  }
+  if (model === 'hex' && details) {
+    return getHexValues(color).slice(0, 4);
+  }
+  if (model === 'hex') {
+    return getHexValues(color)[0];
+  }
+  return null;
 }
 
 function getRandomInt(min, max) {
@@ -252,13 +346,19 @@ var _index = {
   getColorModel: getColorModel,
   isAColor: isAColor,
   hexNumToDec: hexNumToDec,
-  decNumbToHex: decNumbToHex,
+  decNumToHex: decNumToHex,
   rgbToHex: rgbToHex,
   rgbToHsl: rgb2Hsl,
   hexToRgb: hexToRgb,
   hslToRgb: hslToRgb,
   hexToHsl: hexToHsl,
   hslToHex: hslToHex,
+  toRgb: toRgb,
+  toHex: toHex,
+  toHsl: toHsl,
+  getRgbValues: getRgbValues,
+  getHexValues: getHexValues,
+  getHslValues: getHslValues,
   getRandomColor: getRandomColor,
   normalizeDecNum: normalizeDecNum,
   expandHexShorthand: expandHexShorthand,

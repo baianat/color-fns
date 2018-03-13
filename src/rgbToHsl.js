@@ -1,9 +1,9 @@
+import getRgbValues from './getRgbValues';
+
 export default function rgb2Hsl(rgb, details) {
-  let match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
-  if (!match || match.length !== 4) {
-    console.warn(`"${rgb}" is not valid rgb color`);
-    return;
-  }
+  const match = getRgbValues(rgb);
+  if (!match) return;
+
   // Convert the RGB values to the range 0-1
   const [, red, green, blue] = match.map(val => val / 255);
   let [hue, sat, lum] = [0, 0, 0];

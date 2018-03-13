@@ -1,17 +1,15 @@
 import normalizeDecNum from './normalizeDecNum';
+import getHslValues from './getHslValues';
 
-export default function hslToRgb(hsl, details) {
-  const match = hsl.match(/^hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i);
-  if (!match || match.length !== 4) {
-    console.warn(`"${hsl}" is not valid hsl color`);
-    return;
-  }
+export default function hslToRgb (hsl, details) {
+  const match = getHslValues(hsl);
+  if (!match) return;
 
   const [hue, sat, lgh] = [match[1] / 360, match[2] / 100, match[3] / 100];
   let [red, green, blue] = [0, 0, 0];
 
   if (sat === 0) {
-    red = green = blue = lgh * 255;
+    red = green = blue = normalizeDecNum(lgh * 255);
   }
   if (sat !== 0) {
     let temp1 = lgh >= 50 ? lgh + sat - lgh * sat : lgh * (1 + sat);

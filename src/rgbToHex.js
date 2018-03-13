@@ -1,13 +1,12 @@
-import decNumbToHex from './decNumbToHex';
+import decNumToHex from './decNumToHex';
+import getRgbValues from './getRgbValues';
 
 export default function rgbToHex(rgb, details) {
-  const match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
-  if (!match || match.length !== 4) {
-    console.warn(`"${rgb}" is not valid rgb color`);
-    return;
-  }
+  const match = getRgbValues(rgb);
+  if (!match) return;
+
   const [, red, green, blue] = match;
-  const [rr, gg, bb] = [decNumbToHex(red), decNumbToHex(green), decNumbToHex(blue)]
+  const [rr, gg, bb] = [decNumToHex(red), decNumToHex(green), decNumToHex(blue)]
   const hex = `#${rr}${gg}${bb}`;
 
   if (details) {

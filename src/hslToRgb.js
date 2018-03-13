@@ -1,7 +1,8 @@
 import normalizeDecNum from './normalizeDecNum';
 
-export default function hslToRgb(hsl, output) {
-  let [match, hue, sat, lgh] = hsl.match(/^hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%/i);
+export default function hslToRgb(hsl, details) {
+  let [, hue, sat, lgh] = hsl.match(/^hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%/i);
+  if (!hue || !sat || !lgh) return;
   [hue, sat, lgh] = [hue / 360, sat / 100, lgh / 100]
   let red = 0;
   let green = 0;
@@ -29,7 +30,7 @@ export default function hslToRgb(hsl, output) {
   }
 
   let rgb = `rgb(${red}, ${green}, ${blue})`
-  if (output === 'details') {
+  if (details) {
     return [rgb, red, green, blue];
   }
   return rgb;

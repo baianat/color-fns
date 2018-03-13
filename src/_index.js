@@ -6,6 +6,8 @@ import rgbToHex from './rgbToHex';
 import rgbToHsl from './rgbToHsl';
 import hexToRgb from './hexToRgb';
 import hslToRgb from './hslToRgb';
+import hexToHsl from './hexToHsl';
+import hslToHex from './hslToHex';
 import getRandomColor from './getRandomColor';
 import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
@@ -19,6 +21,8 @@ export default {
   rgbToHsl,
   hexToRgb,
   hslToRgb,
+  hexToHsl,
+  hslToHex,
   getRandomColor,
   normalizeDecNum,
   expandHexShorthand,

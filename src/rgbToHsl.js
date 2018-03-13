@@ -1,11 +1,8 @@
-export default function rgb2Hsl(rgb, output) {
-  rgb = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*/i);
-  if (!rgb || rgb.length !== 4) return;
-
+export default function rgb2Hsl(rgb, details) {
+  let [, red, green, blue] = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i);
+  if (!red || !green || !blue) return;
   // Convert the RGB values to the range 0-1
-  let red = rgb[1] / 255;
-  let green = rgb[2] / 255;
-  let blue = rgb[3] / 255;
+  [red, green, blue] = [red / 255, green / 255, blue / 255];
   let Hue = 0;
   let Sat = 0;
   let Lgh = 0;
@@ -34,11 +31,11 @@ export default function rgb2Hsl(rgb, output) {
   }
 
   // normalize values
-  Hue = Hue < 0 ? parseInt(Hue + 360) : parseInt(Hue);
-  Sat = parseInt(Sat * 100);
-  Lgh = parseInt(Lgh * 100);
+  Hue = Hue < 0 ? Math.floor(Hue + 360) : Math.floor(Hue);
+  Sat = Math.floor(Sat * 100);
+  Lgh = Math.floor(Lgh * 100);
 
-  if (output === 'details') {
+  if (details) {
     return [`hsl(${Hue}, ${Sat}%, ${Lgh}%)`, Hue, Sat, Lgh];
   }
   return `hsl(${Hue}, ${Sat}%, ${Lgh}%)`;

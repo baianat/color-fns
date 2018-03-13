@@ -1,0 +1,6 @@
+.*
+Icon/r
+node_modules
+gulpfile
+yarn.lock
+test

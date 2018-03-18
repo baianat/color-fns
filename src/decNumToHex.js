@@ -1,4 +1,4 @@
-export default function decNumToHex(decNum) {
+export default function decNumToHex (decNum) {
   decNum = Number(decNum);
   if (isNaN(decNum)) {
     return '00';

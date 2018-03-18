@@ -1,4 +1,4 @@
-export default function hexNumToDec(hexNum) {
+export default function hexNumToDec (hexNum) {
   if (isNaN(parseInt(hexNum, 16))) {
     return 0;
   }

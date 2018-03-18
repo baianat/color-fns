@@ -3,7 +3,7 @@ import getHslValues from './getHslValues';
 import hexToHsl from './hexToHsl';
 import rgbToHsl from './rgbToHsl';
 
-export default function toHsl(color, details) {
+export default function toHsl (color, details) {
   let model = getColorModel(color);
 
   if (model === 'hex') {

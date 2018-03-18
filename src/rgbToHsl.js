@@ -1,6 +1,6 @@
 import getRgbValues from './getRgbValues';
 
-export default function rgb2Hsl(rgb, details) {
+export default function rgb2Hsl (rgb, details) {
   const match = getRgbValues(rgb);
   if (!match) return;
 

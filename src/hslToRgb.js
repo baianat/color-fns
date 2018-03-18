@@ -22,14 +22,14 @@ export default function hslToRgb (hsl, details) {
       if (test < 1 / 2) return temp1;
       if (test < 2 / 3) return temp2 + (temp1 - temp2) * (2 / 3 - test) * 6;
       return temp2;
-    }
+    };
 
     red = normalizeDecNum(255 * testHue(hue + 1 / 3));
     green = normalizeDecNum(255 * testHue(hue));
     blue = normalizeDecNum(255 * testHue(hue - 1 / 3));
   }
 
-  let rgb = `rgb(${red}, ${green}, ${blue})`
+  let rgb = `rgb(${red}, ${green}, ${blue})`;
   if (details) {
     return [rgb, red, green, blue];
   }

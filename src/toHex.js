@@ -3,7 +3,7 @@ import getHexValues from './getHexValues';
 import rgbToHex from './rgbToHex';
 import hslToHex from './hslToHex';
 
-export default function toHex(color, details) {
+export default function toHex (color, details) {
   let model = getColorModel(color);
 
   if (model === 'rgb') {

@@ -11,7 +11,9 @@
     "functions"
   ],
   "scripts": {
-    "build": "rollup -c"
+    "build:esm": "node build/esm",
+    "build:umd": "node build/umd",
+    "build": "npm run build:esm && npm run build:umd"
   },
   "maintainers": [
     {
@@ -19,15 +21,32 @@
       "email": "abdelrahman3d@gmail.com"
     }
   ],
+  "eslintIgnore": [
+    "tests",
+    "dist"
+  ],
+  "files": [
+    "dist/*.js"
+  ],
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.1",
+    "chalk": "^2.3.2",
+    "eslint": "^4.19.0",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "filesize": "^3.6.0",
+    "gzip-size": "^4.1.0",
     "rollup": "^0.56.5",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-browsersync": "^0.2.6",
     "rollup-plugin-json": "^2.3.0",
     "rollup-plugin-node-resolve": "^3.2.0",
-    "rollup-plugin-replace": "^2.0.0"
+    "rollup-plugin-replace": "^2.0.0",
+    "uglify-js": "^3.3.15"
   }
 }

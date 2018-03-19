@@ -3,7 +3,9 @@
   "version": "0.0.1",
   "description": "Modern JavaScript color utility library.",
   "author": "",
-  "main": "dist/js/color-fns.js",
+  "main": "dist/color-fns.js",
+  "module": "dist/color-fns.esm.js",
+  "unpkg": "dist/color-fns.js",
   "license": "MIT",
   "keywords": [
     "color",

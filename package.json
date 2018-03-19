@@ -11,9 +11,10 @@
     "functions"
   ],
   "scripts": {
+    "lint": "eslint ./src --fix",
     "build:esm": "node build/esm",
     "build:umd": "node build/umd",
-    "build": "npm run build:esm && npm run build:umd"
+    "build": "npm run lint && npm run build:esm && npm run build:umd"
   },
   "maintainers": [
     {
@@ -41,6 +42,7 @@
     "eslint-plugin-standard": "^3.0.1",
     "filesize": "^3.6.0",
     "gzip-size": "^4.1.0",
+    "jest": "^22.4.2",
     "rollup": "^0.56.5",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-browsersync": "^0.2.6",

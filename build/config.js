@@ -19,7 +19,7 @@ module.exports = {
   },
   uglifyOptions: {
     compress: true,
-    mangle: true,
+    mangle: true
   },
   utils: {
     stats ({ path, code }) {

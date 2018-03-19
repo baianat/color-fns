@@ -14,7 +14,9 @@ const inputOptions = {
   plugins: [
     replace({ __VERSION__: version }),
     resolve(),
-    babel()
+    babel({
+      plugins: ['external-helpers']
+    })
   ]
 };
 

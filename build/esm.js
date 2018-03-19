@@ -4,7 +4,6 @@ const { rollup } = require('rollup');
 const babel = require('rollup-plugin-babel');
 const resolve = require('rollup-plugin-node-resolve');
 const replace = require('rollup-plugin-replace');
-const uglify = require('uglify-js');
 const chalk = require('chalk');
 const config = require('./config');
 const { version } = require('../package.json');
@@ -14,7 +13,9 @@ const inputOptions = {
   plugins: [
     replace({ __VERSION__: version }),
     resolve(),
-    babel()
+    babel({
+      plugins: ['external-helpers']
+    })
   ]
 };
 

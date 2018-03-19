@@ -1,10 +1,6 @@
 import decNumToHex from './decNumToHex';
-import parseRgb from './parseRgb';
 
-export default function rgbToHex (color) {
-  const rgb = parseRgb(color);
-  if (!rgb) return;
-
+export default function rgbToHex (rgb) {
   const [rr, gg, bb] = [decNumToHex(rgb.red), decNumToHex(rgb.green), decNumToHex(rgb.blue)];
 
   return {

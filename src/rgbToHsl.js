@@ -1,11 +1,11 @@
-import parseRgb from './parseRgb';
 
 export default function rgb2Hsl (rgb) {
-  const parsed = parseRgb(rgb);
-  if (!parsed) return;
+  if (!rgb) {
+    return null;
+  }
 
   // Convert the RGB values to the range 0-1
-  const [red, green, blue] = [parsed.red / 255, parsed.green / 255, parsed.blue / 255];
+  const [red, green, blue] = [rgb.red / 255, rgb.green / 255, rgb.blue / 255];
   let [hue, sat, lum] = [0, 0, 0];
 
   // Find the minimum and maximum values of R, G and B.

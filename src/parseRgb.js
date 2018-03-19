@@ -7,8 +7,8 @@ export default function parseRgb (rgb) {
   }
 
   return {
-    red: match[1],
-    green: match[2],
-    blue: match[3]
+    red: Number(match[1]),
+    green: Number(match[2]),
+    blue: Number(match[3])
   };
 }

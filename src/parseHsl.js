@@ -7,8 +7,8 @@ export default function parseHsl (hsl) {
   }
 
   return {
-    hue: match[1],
-    sat: match[2],
-    lum: match[3]
+    hue: Number(match[1]),
+    sat: Number(match[2]),
+    lum: Number(match[3])
   };
 }

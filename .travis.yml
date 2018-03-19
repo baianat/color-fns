@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- '9'
+install:
+  - npm install -g codecov
+  - npm install
+after_success:
+  - npm run cover
+  - bash <(curl -s https://codecov.io/bash)

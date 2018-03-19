@@ -1,5 +1,8 @@
 # 🎨 Color-fns 🎨
 
+[![Build Status](https://travis-ci.org/baianat/color-fns.svg?branch=master)](https://travis-ci.org/baianat/color-fns)
+[![codecov](https://codecov.io/gh/baianat/color-fns/branch/master/graph/badge.svg)](https://codecov.io/gh/baianat/color-fns)
+
 Modern and Modular JavaScript color utility library.
 
 ### Installation

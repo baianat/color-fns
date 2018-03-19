@@ -1,8 +1,8 @@
 import normalizeDecNum from './normalizeDecNum';
-import getHslValues from './getHslValues';
+import parseHsl from './parseHsl';
 
-export default function hslToRgb (hsl, details) {
-  const match = getHslValues(hsl);
+export default function hslToRgb (hsl) {
+  const match = parseHsl(hsl);
   if (!match) return;
 
   const [hue, sat, lgh] = [match[1] / 360, match[2] / 100, match[3] / 100];
@@ -11,11 +11,12 @@ export default function hslToRgb (hsl, details) {
   if (sat === 0) {
     red = green = blue = normalizeDecNum(lgh * 255);
   }
+
   if (sat !== 0) {
     let temp1 = lgh >= 50 ? lgh + sat - lgh * sat : lgh * (1 + sat);
     let temp2 = 2 * lgh - temp1;
 
-    let testHue = function (test) {
+    const testHue = function (test) {
       if (test < 0) test += 1;
       if (test > 1) test -= 1;
       if (test < 1 / 6) return temp2 + (temp1 - temp2) * 6 * test;
@@ -29,9 +30,9 @@ export default function hslToRgb (hsl, details) {
     blue = normalizeDecNum(255 * testHue(hue - 1 / 3));
   }
 
-  let rgb = `rgb(${red}, ${green}, ${blue})`;
-  if (details) {
-    return [rgb, red, green, blue];
-  }
-  return rgb;
+  return {
+    red,
+    green,
+    blue
+  };
 }

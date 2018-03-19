@@ -1,22 +1,27 @@
 import getColorModel from './getColorModel';
-import getRgbValues from './getRgbValues';
+import parseRgb from './parseRgb';
 import hexToRgb from './hexToRgb';
 import hslToRgb from './hslToRgb';
 
-export default function toRgb (color, details) {
-  let model = getColorModel(color);
+/**
+ * Parses the given color string into a RGB color object.
+ *
+ * @param {String} color The color to be parsed and converted.
+ */
+export default function toRgb (color) {
+  const model = getColorModel(color);
 
   if (model === 'hex') {
-    return hexToRgb(...arguments);
+    return hexToRgb(color);
   }
+
   if (model === 'hsl') {
-    return hslToRgb(...arguments);
+    return hslToRgb(color);
   }
-  if (model === 'rgb' && details) {
-    return getRgbValues(color).slice(0, 4);
-  }
+
   if (model === 'rgb') {
-    return getRgbValues(color)[0];
+    return parseRgb(color);
   }
+
   return null;
 }

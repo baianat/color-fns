@@ -1,7 +1,7 @@
-import getRgbValues from './getRgbValues';
+import parseRgb from './getRgbValues';
 
-export default function rgb2Hsl (rgb, details) {
-  const match = getRgbValues(rgb);
+export default function rgb2Hsl (rgb) {
+  const match = parseRgb(rgb);
   if (!match) return;
 
   // Convert the RGB values to the range 0-1
@@ -36,8 +36,9 @@ export default function rgb2Hsl (rgb, details) {
   sat = Math.floor(sat * 100);
   lum = Math.floor(lum * 100);
 
-  if (details) {
-    return [`hsl(${hue}, ${sat}%, ${lum}%)`, hue, sat, lum];
-  }
-  return `hsl(${hue}, ${sat}%, ${lum}%)`;
+  return {
+    hue,
+    sat,
+    lum
+  };
 }

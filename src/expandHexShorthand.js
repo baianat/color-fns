@@ -4,5 +4,6 @@ export default function expandHexShorthand (hex) {
       return `#${r}${r}${g}${g}${b}${b}`;
     });
   }
+
   return hex;
 }

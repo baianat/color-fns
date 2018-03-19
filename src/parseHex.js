@@ -10,8 +10,8 @@ export default function parseHex (hex) {
   }
 
   return {
-    hex: `#${match[1]}${match[2]}${match[3]}`,
-    red: match[0],
+    hex: expanded,
+    red: match[1],
     green: match[2],
     blue: match[3]
   };

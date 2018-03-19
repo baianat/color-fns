@@ -2,10 +2,10 @@ import normalizeDecNum from './normalizeDecNum';
 import parseHsl from './parseHsl';
 
 export default function hslToRgb (hsl) {
-  const match = parseHsl(hsl);
-  if (!match) return;
+  const parsed = parseHsl(hsl);
+  if (!parsed) return;
 
-  const [hue, sat, lgh] = [match[1] / 360, match[2] / 100, match[3] / 100];
+  const [hue, sat, lgh] = [parsed.hue / 360, parsed.sat / 100, parsed.lum / 100];
   let [red, green, blue] = [0, 0, 0];
 
   if (sat === 0) {

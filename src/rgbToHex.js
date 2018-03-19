@@ -1,12 +1,11 @@
 import decNumToHex from './decNumToHex';
 import parseRgb from './parseRgb';
 
-export default function rgbToHex (rgb) {
-  const match = parseRgb(rgb);
-  if (!match) return;
+export default function rgbToHex (color) {
+  const rgb = parseRgb(color);
+  if (!rgb) return;
 
-  const [, red, green, blue] = match;
-  const [rr, gg, bb] = [decNumToHex(red), decNumToHex(green), decNumToHex(blue)];
+  const [rr, gg, bb] = [decNumToHex(rgb.red), decNumToHex(rgb.green), decNumToHex(rgb.blue)];
 
   return {
     hex: `#${rr}${gg}${bb}`,

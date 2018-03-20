@@ -7,5 +7,7 @@ test('parses RGB strings', () => {
     red: 31,
     green: 234,
     blue: 12
-  })
+  });
+
+  expect(parseRgb('welp')).toBeNull();
 });

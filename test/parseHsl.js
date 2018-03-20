@@ -8,4 +8,6 @@ test('parses HSL strings', () => {
     sat: 30,
     lum: 14
   });
+
+  expect(parseHsl('welp')).toBeNull();
 });

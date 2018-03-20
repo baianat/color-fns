@@ -21,4 +21,6 @@ test('parses shorthand HEX strings', () => {
     green: 'ff',
     blue: '00'
   });
+
+  expect(parseHex('welp')).toBeNull();
 });

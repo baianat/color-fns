@@ -1,6 +1,6 @@
 import hexToRgb from '../src/hexToRgb';
 
-test('converts rgb color objects to hsl objects', () => {
+test('converts hex color objects to rgb objects', () => {
   const hex = {
     red: 'a1',
     green: '16',

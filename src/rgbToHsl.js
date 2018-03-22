@@ -1,7 +1,8 @@
+import { HslColor } from './types';
 
 export default function rgb2Hsl (rgb) {
   if (!rgb) {
-    return null;
+    return new HslColor();
   }
 
   // Convert the RGB values to the range 0-1
@@ -36,9 +37,9 @@ export default function rgb2Hsl (rgb) {
   sat = Math.floor(sat * 100);
   lum = Math.floor(lum * 100);
 
-  return {
+  return new HslColor({
     hue,
     sat,
     lum
-  };
+  });
 }

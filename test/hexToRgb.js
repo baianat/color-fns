@@ -7,7 +7,8 @@ test('converts hex color objects to rgb objects', () => {
     blue: '12'
   };
 
-  expect(hexToRgb(hex)).toEqual({
+  expect(hexToRgb(hex)).toMatchObject({
+    invalid: false,
     red: 161,
     green: 22,
     blue: 18

@@ -7,7 +7,8 @@ test('converts rgb color objects to hex objects', () => {
     blue: 230
   };
 
-  expect(rgbToHex(rgb)).toEqual({
+  expect(rgbToHex(rgb)).toMatchObject({
+    invalid: false,
     hex: '#0dc8e6',
     red: '0d',
     green: 'c8',

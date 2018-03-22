@@ -7,7 +7,8 @@ test('converts hsl color objects to rgb objects', () => {
     lum: 35
   };
 
-  expect(hslToRgb(hsl)).toEqual({
+  expect(hslToRgb(hsl)).toMatchObject({
+    invalid: false,
     red: 161,
     green: 22,
     blue: 18

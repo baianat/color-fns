@@ -8,7 +8,8 @@ test('converts hex color objects to hsl objects', () => {
   };
 
   // hue should be 2 not 1
-  expect(hexToHsl(hex)).toEqual({
+  expect(hexToHsl(hex)).toMatchObject({
+    invalid: false,
     hue: 2,
     sat: 79,
     lum: 35

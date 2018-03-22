@@ -1,8 +1,9 @@
 import normalizeDecNum from './normalizeDecNum';
+import { RgbColor } from './types';
 
 export default function hslToRgb (hsl) {
   if (!hsl) {
-    return null;
+    return new RgbColor();
   };
 
   const [hue, sat, lgh] = [hsl.hue / 360, hsl.sat / 100, hsl.lum / 100];
@@ -30,9 +31,9 @@ export default function hslToRgb (hsl) {
     blue = normalizeDecNum(255 * testHue(hue - 1 / 3));
   }
 
-  return {
+  return new RgbColor({
     red,
     green,
     blue
-  };
+  });
 }

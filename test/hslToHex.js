@@ -7,7 +7,8 @@ test('converts hsl color objects to hex objects', () => {
     lum: 35
   };
 
-  expect(hslToHex(hsl)).toEqual({
+  expect(hslToHex(hsl)).toMatchObject({
+    invalid: false,
     hex: '#a11612',
     red: 'a1',
     green: '16',

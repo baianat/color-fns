@@ -1,13 +1,29 @@
-export class RgbColor {
+import { isBetween } from './utils';
+
+export class Color {
   constructor (components) {
-    if (!components) {
-      this.invalid = true;
-      return;
+    this.invalid = !this.validate(components);
+    if (!this.invalid) {
+      Object.keys(components).forEach(c => {
+        this[c] = components[c];
+      });
+    }
+  }
+
+  validate (components) {
+    return !!components && typeof components === 'object';
+  }
+}
+
+export class RgbColor extends Color {
+  validate (components) {
+    if (!super.validate(components)) {
+      return false;
     }
 
-    this.red = components.red;
-    this.green = components.green;
-    this.blue = components.blue;
+    const isInRange = isBetween(0, 255);
+
+    return isInRange(components.red) && isInRange(components.green) && isInRange(components.blue);
   }
 
   toString () {
@@ -19,16 +35,15 @@ export class RgbColor {
   }
 }
 
-export class HslColor {
-  constructor (components) {
-    if (!components) {
-      this.invalid = true;
-      return;
+export class HslColor extends Color {
+  validate (components) {
+    if (!super.validate(components)) {
+      return false;
     }
 
-    this.hue = components.hue;
-    this.sat = components.sat;
-    this.lum = components.lum;
+    const isPercentage = isBetween(0, 100);
+
+    return isBetween(0, 360)(components.hue) && isPercentage(components.lum) && isPercentage(components.sat);
   }
 
   toString () {
@@ -40,16 +55,13 @@ export class HslColor {
   }
 }
 
-export class HexColor {
-  constructor (components) {
-    if (!components) {
-      this.invalid = true;
-      return;
+export class HexColor extends Color {
+  validate (components) {
+    if (!super.validate(components)) {
+      return false;
     }
 
-    this.red = components.red;
-    this.green = components.green;
-    this.blue = components.blue;
+    return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(`#${components.red}${components.green}${components.blue}`);
   }
 
   toString () {

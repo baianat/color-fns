@@ -4,3 +4,9 @@ export function getCartesianCoords (r, theta) {
     y: r * Math.sin(theta * Math.PI * 2)
   };
 }
+
+export function isBetween (lb, ub) {
+  return (value) => {
+    return value >= lb && value <= ub;
+  };
+};

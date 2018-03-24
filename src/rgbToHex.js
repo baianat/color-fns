@@ -1,16 +1,13 @@
 import decNumToHex from './decNumToHex';
-import getRgbValues from './getRgbValues';
+import { HexColor } from './types';
 
-export default function rgbToHex(rgb, details) {
-  const match = getRgbValues(rgb);
-  if (!match) return;
+export default function rgbToHex (rgb) {
+  const [rr, gg, bb] = [decNumToHex(rgb.red), decNumToHex(rgb.green), decNumToHex(rgb.blue)];
 
-  const [, red, green, blue] = match;
-  const [rr, gg, bb] = [decNumToHex(red), decNumToHex(green), decNumToHex(blue)]
-  const hex = `#${rr}${gg}${bb}`;
-
-  if (details) {
-    return [hex, rr, gg, bb];
-  }
-  return hex
+  return new HexColor({
+    hex: `#${rr}${gg}${bb}`,
+    red: rr,
+    green: gg,
+    blue: bb
+  });
 }

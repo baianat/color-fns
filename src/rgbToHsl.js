@@ -1,11 +1,12 @@
-import getRgbValues from './getRgbValues';
+import { HslColor } from './types';
 
-export default function rgb2Hsl(rgb, details) {
-  const match = getRgbValues(rgb);
-  if (!match) return;
+export default function rgb2Hsl (rgb) {
+  if (!rgb) {
+    return new HslColor();
+  }
 
   // Convert the RGB values to the range 0-1
-  const [, red, green, blue] = match.map(val => val / 255);
+  const [red, green, blue] = [rgb.red / 255, rgb.green / 255, rgb.blue / 255];
   let [hue, sat, lum] = [0, 0, 0];
 
   // Find the minimum and maximum values of R, G and B.
@@ -36,8 +37,9 @@ export default function rgb2Hsl(rgb, details) {
   sat = Math.floor(sat * 100);
   lum = Math.floor(lum * 100);
 
-  if (details) {
-    return [`hsl(${hue}, ${sat}%, ${lum}%)`, hue, sat, lum];
-  }
-  return `hsl(${hue}, ${sat}%, ${lum}%)`;
+  return new HslColor({
+    hue,
+    sat,
+    lum
+  });
 }

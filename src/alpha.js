@@ -1,13 +1,8 @@
 import getColorModel from './getColorModel';
-import parseRgb from './parseRgb';
-import parseHex from './parseHex';
-import parseHsl from './parseHsl';
 import decNumToHex from './decNumToHex';
+import { RgbColor, HexColor, HslColor } from './types';
 
 export default function alpha (color, alpha) {
-  if (alpha.slice(-1) === '%') {
-    alpha = alpha.slice(0, -1) / 100;
-  }
   alpha = Number(alpha);
   if (isNaN(alpha) || alpha > 1 || alpha < 0) {
     return 'Invalid alpha';
@@ -16,19 +11,16 @@ export default function alpha (color, alpha) {
   const model = getColorModel(color);
 
   if (model === 'rgb') {
-    const val = parseRgb(color);
-    if (val.invalid) return 'Invalid color';
-    return `rgba(${val.red},${val.green},${val.blue},${alpha})`;
+    const { red, green, blue } = color;
+    return new RgbColor({red, green, blue, alpha});
   }
   if (model === 'hex') {
-    const val = parseHex(color);
-    if (val.invalid) return 'Invalid color';
-    return `#${val.red}${val.green}${val.blue}${decNumToHex(alpha * 255)}`;
+    const { red, green, blue } = color;
+    return new HexColor({ red, green, blue, alpha: decNumToHex(alpha * 255) });
   }
   if (model === 'hsl') {
-    const val = parseHsl(color);
-    if (val.invalid) return 'Invalid color';
-    return `hsla(${val.hue},${val.sat},${val.lum},${alpha})`;
+    const { hue, sat, lum } = color;
+    return new HslColor({ hue, sat, lum, alpha });
   }
   return 'Invalid color';
 }

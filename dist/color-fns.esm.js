@@ -3,57 +3,6 @@
   * (c) 2018 Baianat
   * @license MIT
   */
-function getColorModel(color) {
-  if (color.slice(0, 1) === '#' && (color.length === 4 || color.length === 7)) {
-    return 'hex';
-  }
-
-  if (color.slice(0, 3).toUpperCase() === 'RGB') {
-    return 'rgb';
-  }
-
-  if (color.slice(0, 3).toUpperCase() === 'HSL') {
-    return 'hsl';
-  }
-
-  return false;
-}
-
-/**
- * Checks if the given color string is valid (parsable).
- *
- * @param {String} color The color string to be checked.
- */
-function isAColor(color) {
-  return !!getColorModel(color);
-}
-
-function hexNumToDec(hexNum) {
-  if (isNaN(parseInt(hexNum, 16))) {
-    return 0;
-  }
-
-  return parseInt(hexNum, 16);
-}
-
-function decNumToHex(decNum) {
-  decNum = Number(decNum);
-  if (isNaN(decNum)) {
-    return '00';
-  }
-
-  return ('0' + decNum.toString(16)).slice(-2);
-}
-
-function isBetween(lb, ub) {
-  return function (value) {
-    return value >= lb && value <= ub;
-  };
-}
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
   return typeof obj;
 } : function (obj) {
@@ -133,6 +82,73 @@ var possibleConstructorReturn = function (self, call) {
   return call && (typeof call === "object" || typeof call === "function") ? call : self;
 };
 
+function getColorModel(color) {
+  if ((typeof color === 'undefined' ? 'undefined' : _typeof(color)) === 'object' && color.model) {
+    return color.model;
+  }
+
+  if (color.slice(0, 1) === '#' && (color.length === 4 || color.length === 7)) {
+    return 'hex';
+  }
+
+  if (color.slice(0, 1) === '#' && (color.length === 5 || color.length === 8)) {
+    return 'hex';
+  }
+
+  if (color.slice(0, 4).toUpperCase() === 'RGBA') {
+    return 'rgb';
+  }
+
+  if (color.slice(0, 3).toUpperCase() === 'RGB') {
+    return 'rgb';
+  }
+
+  if (color.slice(0, 4).toUpperCase() === 'HSL') {
+    return 'hsl';
+  }
+
+  if (color.slice(0, 3).toUpperCase() === 'HSL') {
+    return 'hsl';
+  }
+
+  return false;
+}
+
+/**
+ * Checks if the given color string is valid (parsable).
+ *
+ * @param {String} color The color string to be checked.
+ */
+function isAColor(color) {
+  return !!getColorModel(color);
+}
+
+function hexNumToDec(hexNum) {
+  if (isNaN(parseInt(hexNum, 16))) {
+    return 0;
+  }
+
+  return parseInt(hexNum, 16);
+}
+
+function decNumToHex(decNum) {
+  decNum = Math.floor(decNum);
+  if (isNaN(decNum)) {
+    return '00';
+  }
+
+  return ('0' + decNum.toString(16)).slice(-2);
+}
+
+function isBetween(lb, ub) {
+  return function (value) {
+    return value >= lb && value <= ub;
+  };
+}
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 var Color = function () {
   function Color(components) {
     var _this = this;
@@ -145,6 +161,7 @@ var Color = function () {
         _this[c] = components[c];
       });
     }
+    this.init();
   }
 
   createClass(Color, [{
@@ -176,12 +193,20 @@ var RgbColor = function (_Color) {
       return isInRange(components.red) && isInRange(components.green) && isInRange(components.blue);
     }
   }, {
+    key: 'init',
+    value: function init() {
+      this.model = 'rgb';
+      this.alpha = this.alpha || 1;
+    }
+  }, {
     key: 'toString',
     value: function toString() {
       if (this.invalid) {
         return 'Invalid Color';
       }
-
+      if (isBetween(0, 0.999)(this.alpha)) {
+        return 'rgba(' + this.red + ',' + this.green + ',' + this.blue + ',' + this.alpha + ')';
+      }
       return 'rgb(' + this.red + ',' + this.green + ',' + this.blue + ')';
     }
   }]);
@@ -208,12 +233,20 @@ var HslColor = function (_Color2) {
       return isBetween(0, 360)(components.hue) && isPercentage(components.lum) && isPercentage(components.sat);
     }
   }, {
+    key: 'init',
+    value: function init() {
+      this.model = 'hsl';
+      this.alpha = this.alpha || 1;
+    }
+  }, {
     key: 'toString',
     value: function toString() {
       if (this.invalid) {
         return 'Invalid Color';
       }
-
+      if (isBetween(0, 0.999)(this.alpha)) {
+        return 'hsla(' + this.hue + ',' + this.sat + '%,' + this.lum + '%,' + this.alpha + ')';
+      }
       return 'hsl(' + this.hue + ',' + this.sat + '%,' + this.lum + '%)';
     }
   }]);
@@ -239,12 +272,20 @@ var HexColor = function (_Color3) {
       );
     }
   }, {
+    key: 'init',
+    value: function init() {
+      this.model = 'hex';
+      this.alpha = this.alpha || 'ff';
+    }
+  }, {
     key: 'toString',
     value: function toString() {
       if (this.invalid) {
         return 'Invalid Color';
       }
-
+      if (isBetween(0, 0.999)(hexNumToDec(this.alpha) / 255)) {
+        return '#' + this.red + this.green + this.blue + this.alpha;
+      }
       return '#' + this.red + this.green + this.blue;
     }
   }]);
@@ -252,17 +293,18 @@ var HexColor = function (_Color3) {
 }(Color);
 
 function rgbToHex(rgb) {
-  var _ref = [decNumToHex(rgb.red), decNumToHex(rgb.green), decNumToHex(rgb.blue)],
+  var _ref = [decNumToHex(rgb.red), decNumToHex(rgb.green), decNumToHex(rgb.blue), rgb.alpha ? decNumToHex(rgb.alpha * 255) : null],
       rr = _ref[0],
       gg = _ref[1],
-      bb = _ref[2];
+      bb = _ref[2],
+      aa = _ref[3];
 
 
   return new HexColor({
-    hex: '#' + rr + gg + bb,
     red: rr,
     green: gg,
-    blue: bb
+    blue: bb,
+    alpha: aa || 1
   });
 }
 
@@ -272,9 +314,11 @@ function rgb2Hsl(rgb) {
   }
 
   // Convert the RGB values to the range 0-1
-  var red = rgb.red / 255,
-      green = rgb.green / 255,
-      blue = rgb.blue / 255;
+  var _ref = [rgb.red / 255, rgb.green / 255, rgb.blue / 255, rgb.alpha],
+      red = _ref[0],
+      green = _ref[1],
+      blue = _ref[2],
+      alpha = _ref[3];
   var hue = 0,
       sat = 0,
       lum = 0;
@@ -311,20 +355,23 @@ function rgb2Hsl(rgb) {
   return new HslColor({
     hue: hue,
     sat: sat,
-    lum: lum
+    lum: lum,
+    alpha: alpha
   });
 }
 
 function hexToRgb(hex) {
   var red = hex.red,
       green = hex.green,
-      blue = hex.blue;
+      blue = hex.blue,
+      alpha = hex.alpha;
 
 
   return new RgbColor({
     red: hexNumToDec(red),
     green: hexNumToDec(green),
-    blue: hexNumToDec(blue)
+    blue: hexNumToDec(blue),
+    alpha: alpha ? Number((hexNumToDec(alpha) / 255).toFixed(2)) : 1
   });
 }
 
@@ -336,9 +383,11 @@ function hslToRgb(hsl) {
   if (!hsl) {
     return new RgbColor();
   }
-  var hue = hsl.hue / 360,
-      sat = hsl.sat / 100,
-      lgh = hsl.lum / 100;
+  var _ref = [hsl.hue / 360, hsl.sat / 100, hsl.lum / 100, hsl.alpha],
+      hue = _ref[0],
+      sat = _ref[1],
+      lgh = _ref[2],
+      alpha = _ref[3];
   var red = 0,
       green = 0,
       blue = 0;
@@ -369,7 +418,8 @@ function hslToRgb(hsl) {
   return new RgbColor({
     red: red,
     green: green,
-    blue: blue
+    blue: blue,
+    alpha: alpha
   });
 }
 
@@ -382,7 +432,11 @@ function hslToHex(hsl) {
 }
 
 function parseRgb(rgb) {
-  var match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*\)/i);
+  // will consider rgb/rgba color prefix as a valid input color
+  // while the output will be a valid web colors
+  // valid input colors examples 'rgb(100, 0, 0, 0.5)', 'rgba(0, 0, 0)'
+  // the output for the inputted examples 'rgba(100, 0, 0, 0.5)', 'rgb(0, 0, 0)'
+  var match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
   if (!match || match.length < 4) {
     return new RgbColor();
   }
@@ -390,7 +444,8 @@ function parseRgb(rgb) {
   return new RgbColor({
     red: Number(match[1]),
     green: Number(match[2]),
-    blue: Number(match[3])
+    blue: Number(match[3]),
+    alpha: Number(match[4])
   });
 }
 
@@ -418,7 +473,11 @@ function toRgb(color) {
 }
 
 function parseHsl(hsl) {
-  var match = hsl.match(/^hsl\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*\)/i);
+  // will consider hsl/hsla color prefix as a valid input color
+  // while the output will be a valid web colors
+  // valid input colors examples 'hsl(255, 100%, 50%, 0.5)', 'hsla(100, 100%, 50%)'
+  // the output for the inputted examples 'hsla(255, 100%, 50%, 0.5)', 'hsl(100, 100%, 50%)'
+  var match = hsl.match(/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
   if (!match || match.length < 4) {
     return new HslColor();
   }
@@ -426,7 +485,8 @@ function parseHsl(hsl) {
   return new HslColor({
     hue: Number(match[1]),
     sat: Number(match[2]),
-    lum: Number(match[3])
+    lum: Number(match[3]),
+    alpha: Number(match[4])
   });
 }
 
@@ -454,10 +514,10 @@ function toHsl(color) {
 }
 
 function expandHexShorthand(hex) {
-  var regex = /^#([a-f\d])([a-f\d])([a-f\d])$/i;
-  if (hex.length === 4 && regex.test(hex)) {
-    hex = hex.replace(regex, function (m, r, g, b) {
-      return "#" + r + r + g + g + b + b;
+  var regex = /^#([a-f\d])([a-f\d])([a-f\d])([a-f\d])*$/i;
+  if ((hex.length === 5 || hex.length === 4) && regex.test(hex)) {
+    hex = hex.replace(regex, function (m, r, g, b, a) {
+      return '#' + r + r + g + g + b + b + (a ? '' + a + a : '');
     });
   }
 
@@ -466,7 +526,7 @@ function expandHexShorthand(hex) {
 
 function parseHex(hex) {
   var expanded = expandHexShorthand(hex);
-  var match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})/i);
+  var match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
   if (!match || match.length < 4) {
     return new HexColor();
   }
@@ -475,7 +535,8 @@ function parseHex(hex) {
     hex: expanded,
     red: match[1],
     green: match[2],
-    blue: match[3]
+    blue: match[3],
+    alpha: match[4]
   });
 }
 
@@ -507,14 +568,35 @@ function getRandomColor() {
 }
 
 function alpha(color, alpha) {
+  alpha = Number(alpha);
+  if (isNaN(alpha) || alpha > 1 || alpha < 0) {
+    return 'Invalid alpha';
+  }
+
   var model = getColorModel(color);
 
-  switch (model) {
-    case 'hex':
-      return color;
-    default:
-      break;
+  if (model === 'rgb') {
+    var red = color.red,
+        green = color.green,
+        blue = color.blue;
+
+    return new RgbColor({ red: red, green: green, blue: blue, alpha: alpha });
   }
+  if (model === 'hex') {
+    var _red = color.red,
+        _green = color.green,
+        _blue = color.blue;
+
+    return new HexColor({ red: _red, green: _green, blue: _blue, alpha: decNumToHex(alpha * 255) });
+  }
+  if (model === 'hsl') {
+    var hue = color.hue,
+        sat = color.sat,
+        lum = color.lum;
+
+    return new HslColor({ hue: hue, sat: sat, lum: lum, alpha: alpha });
+  }
+  return 'Invalid color';
 }
 
 var index = {

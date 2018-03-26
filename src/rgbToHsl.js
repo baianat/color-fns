@@ -6,7 +6,7 @@ export default function rgb2Hsl (rgb) {
   }
 
   // Convert the RGB values to the range 0-1
-  const [red, green, blue] = [rgb.red / 255, rgb.green / 255, rgb.blue / 255];
+  const [red, green, blue, alpha] = [rgb.red / 255, rgb.green / 255, rgb.blue / 255, rgb.alpha];
   let [hue, sat, lum] = [0, 0, 0];
 
   // Find the minimum and maximum values of R, G and B.
@@ -40,6 +40,7 @@ export default function rgb2Hsl (rgb) {
   return new HslColor({
     hue,
     sat,
-    lum
+    lum,
+    alpha
   });
 }

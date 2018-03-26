@@ -1,5 +1,5 @@
 export default function decNumToHex (decNum) {
-  decNum = Number(decNum);
+  decNum = Math.floor(decNum);
   if (isNaN(decNum)) {
     return '00';
   }

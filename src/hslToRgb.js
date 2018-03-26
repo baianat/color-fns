@@ -6,7 +6,7 @@ export default function hslToRgb (hsl) {
     return new RgbColor();
   };
 
-  const [hue, sat, lgh] = [hsl.hue / 360, hsl.sat / 100, hsl.lum / 100];
+  const [hue, sat, lgh, alpha] = [hsl.hue / 360, hsl.sat / 100, hsl.lum / 100, hsl.alpha];
   let [red, green, blue] = [0, 0, 0];
 
   if (sat === 0) {
@@ -34,6 +34,7 @@ export default function hslToRgb (hsl) {
   return new RgbColor({
     red,
     green,
-    blue
+    blue,
+    alpha
   });
 }

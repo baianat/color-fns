@@ -17,6 +17,7 @@ import parseHex from './parseHex';
 import getRandomColor from './getRandomColor';
 import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
+import alpha from './alpha';
 
 export default {
   getColorModel,
@@ -38,5 +39,6 @@ export default {
   getRandomColor,
   normalizeDecNum,
   expandHexShorthand,
+  alpha,
   version: '__VERSION__'
 };

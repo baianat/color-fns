@@ -17,6 +17,7 @@ import getHexValues from './getHexValues';
 import getRandomColor from './getRandomColor';
 import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
+import alpha from './alpha';
 
 const version = '__VERSION__';
 
@@ -40,6 +41,7 @@ export {
   getRandomColor,
   normalizeDecNum,
   expandHexShorthand,
+  alpha,
   version
 };
 

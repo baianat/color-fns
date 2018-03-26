@@ -416,6 +416,7 @@ function hslToRgb(hsl) {
       return temp2;
     };
 
+    console.log();
     red = normalizeDecNum(255 * testHue(hue + 1 / 3));
     green = normalizeDecNum(255 * testHue(hue));
     blue = normalizeDecNum(255 * testHue(hue - 1 / 3));

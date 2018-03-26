@@ -410,6 +410,7 @@ function hslToRgb(hsl) {
       return temp2;
     };
 
+    console.log();
     red = normalizeDecNum(255 * testHue(hue + 1 / 3));
     green = normalizeDecNum(255 * testHue(hue));
     blue = normalizeDecNum(255 * testHue(hue - 1 / 3));
@@ -478,6 +479,7 @@ function parseHsl(hsl) {
   // valid input colors examples 'hsl(255, 100%, 50%, 0.5)', 'hsla(100, 100%, 50%)'
   // the output for the inputted examples 'hsla(255, 100%, 50%, 0.5)', 'hsl(100, 100%, 50%)'
   var match = hsl.match(/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
+  console.log(match);
   if (!match || match.length < 4) {
     return new HslColor();
   }

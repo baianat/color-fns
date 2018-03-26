@@ -4,14 +4,16 @@ test('converts rgb color objects to hex objects', () => {
   const rgb = {
     red: 13,
     green: 200,
-    blue: 230
+    blue: 230,
+    alpha: 0.5
   };
 
   expect(rgbToHex(rgb)).toMatchObject({
     invalid: false,
-    hex: '#0dc8e6',
     red: '0d',
     green: 'c8',
-    blue: 'e6'
+    blue: 'e6',
+    alpha: '7f',
+    model: 'hex'
   });
 });

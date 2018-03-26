@@ -11,6 +11,8 @@ test('converts hex color objects to rgb objects', () => {
     invalid: false,
     red: 161,
     green: 22,
-    blue: 18
+    blue: 18,
+    alpha: 1,
+    model: 'rgb'
   });
 });

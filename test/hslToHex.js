@@ -2,16 +2,17 @@ import hslToHex from '../src/hslToHex';
 
 test('converts hsl color objects to hex objects', () => {
   const hsl = {
-    hue: 2,
-    sat: 80,
-    lum: 35
+    hue: 200,
+    sat: 100,
+    lum: 50
   };
 
   expect(hslToHex(hsl)).toMatchObject({
     invalid: false,
-    hex: '#a11612',
-    red: 'a1',
-    green: '16',
-    blue: '12'
+    red: '00',
+    green: 'a9',
+    blue: 'ff',
+    alpha: 'ff',
+    model: 'hex'
   });
 });

@@ -1,6 +1,6 @@
 import alpha from '../src/alpha';
 
-test('converts hex color objects to hsl objects', () => {
+test('adds alpha value to color object', () => {
   const hex = {
     red: 'a1',
     green: '16',

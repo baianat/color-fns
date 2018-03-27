@@ -5,7 +5,6 @@ test('parses HEX strings', () => {
 
   expect(parsed).toMatchObject({
     invalid: false,
-    hex: '#c97f6a',
     red: 'c9',
     green: '7f',
     blue: '6a'
@@ -18,7 +17,6 @@ test('parses shorthand HEX strings', () => {
 
   expect(parsed).toMatchObject({
     invalid: false,
-    hex: '#00ff00',
     red: '00',
     green: 'ff',
     blue: '00'

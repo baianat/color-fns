@@ -19,7 +19,7 @@ export default function getColorModel (color) {
     return 'rgb';
   }
 
-  if (color.slice(0, 4).toUpperCase() === 'HSL') {
+  if (color.slice(0, 4).toUpperCase() === 'HSLA') {
     return 'hsl';
   }
 

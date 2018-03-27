@@ -109,7 +109,7 @@ function getColorModel(color) {
     return 'rgb';
   }
 
-  if (color.slice(0, 4).toUpperCase() === 'HSL') {
+  if (color.slice(0, 4).toUpperCase() === 'HSLA') {
     return 'hsl';
   }
 
@@ -171,6 +171,9 @@ var Color = function () {
   }
 
   createClass(Color, [{
+    key: 'init',
+    value: function init() {}
+  }, {
     key: 'validate',
     value: function validate(components) {
       return !!components && (typeof components === 'undefined' ? 'undefined' : _typeof(components)) === 'object';
@@ -416,7 +419,6 @@ function hslToRgb(hsl) {
       return temp2;
     };
 
-    console.log();
     red = normalizeDecNum(255 * testHue(hue + 1 / 3));
     green = normalizeDecNum(255 * testHue(hue));
     blue = normalizeDecNum(255 * testHue(hue - 1 / 3));
@@ -476,7 +478,7 @@ function toRgb(color) {
     return parseRgb(color);
   }
 
-  return null;
+  return new Color();
 }
 
 function parseHsl(hsl) {
@@ -517,7 +519,7 @@ function toHsl(color) {
     return parseHsl(color);
   }
 
-  return null;
+  return new Color();
 }
 
 function expandHexShorthand(hex) {
@@ -567,7 +569,25 @@ function toHex(color) {
     return parseHex(color);
   }
 
-  return null;
+  return new Color();
+}
+
+function parseColor(color) {
+  var model = getColorModel(color);
+
+  if (model === 'rgb') {
+    return parseRgb(color);
+  }
+
+  if (model === 'hex') {
+    return parseHex(color);
+  }
+
+  if (model === 'hsl') {
+    return parseHsl(color);
+  }
+
+  return new Color();
 }
 
 function getRandomColor() {
@@ -623,6 +643,7 @@ var index = {
   parseRgb: parseRgb,
   parseHex: parseHex,
   parseHsl: parseHsl,
+  parseColor: parseColor,
   getRandomColor: getRandomColor,
   normalizeDecNum: normalizeDecNum,
   expandHexShorthand: expandHexShorthand,

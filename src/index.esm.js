@@ -65,5 +65,6 @@ export default {
   getRandomColor,
   normalizeDecNum,
   expandHexShorthand,
+  alpha,
   version
 };

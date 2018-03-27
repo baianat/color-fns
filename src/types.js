@@ -12,6 +12,8 @@ export class Color {
     this.init();
   }
 
+  init () {}
+
   validate (components) {
     return !!components && typeof components === 'object';
   }

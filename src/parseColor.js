@@ -2,6 +2,7 @@ import getColorModel from './getColorModel';
 import parseHex from './parseHex';
 import parseHsl from './parseHsl';
 import parseRgb from './parseRgb';
+import { Color } from './types';
 
 export default function parseColor (color) {
   const model = getColorModel(color);
@@ -18,5 +19,5 @@ export default function parseColor (color) {
     return parseHsl(color);
   }
 
-  return 'Invalid color';
+  return new Color();
 }

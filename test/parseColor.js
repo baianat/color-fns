@@ -33,3 +33,10 @@ test('parses RGB strings', () => {
     blue: 12
   });
 });
+
+
+test('parses invalid color strings', () => {
+  expect(parseColor('welp')).toMatchObject({
+    invalid: true
+  });
+});

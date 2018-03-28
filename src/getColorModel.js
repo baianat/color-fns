@@ -7,7 +7,7 @@ export default function getColorModel (color) {
     return 'hex';
   }
 
-  if (color.slice(0, 1) === '#' && (color.length === 5 || color.length === 8)) {
+  if (color.slice(0, 1) === '#' && (color.length === 6 || color.length === 9)) {
     return 'hex';
   }
 

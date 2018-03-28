@@ -19,6 +19,7 @@ import getRandomColor from './getRandomColor';
 import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
 import alpha from './alpha';
+import mixColors from './mixColors';
 
 export default {
   getColorModel,
@@ -42,5 +43,6 @@ export default {
   normalizeDecNum,
   expandHexShorthand,
   alpha,
+  mixColors,
   version: '__VERSION__'
 };

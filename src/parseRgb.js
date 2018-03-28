@@ -9,7 +9,6 @@ export default function parseRgb (rgb) {
   if (!match || match.length < 4) {
     return new RgbColor();
   }
-
   return new RgbColor({
     red: Number(match[1]),
     green: Number(match[2]),

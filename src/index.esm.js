@@ -18,6 +18,7 @@ import getRandomColor from './getRandomColor';
 import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
 import alpha from './alpha';
+import mixColors from './mixColors';
 
 const version = '__VERSION__';
 
@@ -42,6 +43,7 @@ export {
   normalizeDecNum,
   expandHexShorthand,
   alpha,
+  mixColors,
   version
 };
 

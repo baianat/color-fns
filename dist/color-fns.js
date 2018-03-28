@@ -1,5 +1,5 @@
 /**
-  * color-fns v0.0.1
+  * color-fns v0.0.2
   * (c) 2018 Baianat
   * @license MIT
   */
@@ -155,6 +155,12 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+function mixValue(color1, color2) {
+  var ratio = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0.5;
+
+  return Number((color1 * (1 - ratio) + color2 * ratio).toFixed(2));
+}
+
 var Color = function () {
   function Color(components) {
     var _this = this;
@@ -205,7 +211,7 @@ var RgbColor = function (_Color) {
     key: 'init',
     value: function init() {
       this.model = 'rgb';
-      this.alpha = this.alpha || 1;
+      this.alpha = this.alpha === undefined ? 1 : this.alpha;
     }
   }, {
     key: 'toString',
@@ -380,7 +386,7 @@ function hexToRgb(hex) {
     red: hexNumToDec(red),
     green: hexNumToDec(green),
     blue: hexNumToDec(blue),
-    alpha: alpha ? Number((hexNumToDec(alpha) / 255).toFixed(2)) : 1
+    alpha: alpha === undefined ? 1 : Number((hexNumToDec(alpha) / 255).toFixed(2))
   });
 }
 
@@ -449,7 +455,6 @@ function parseRgb(rgb) {
   if (!match || match.length < 4) {
     return new RgbColor();
   }
-
   return new RgbColor({
     red: Number(match[1]),
     green: Number(match[2]),
@@ -626,6 +631,21 @@ function alpha(color, alpha) {
   return 'Invalid color';
 }
 
+function mixColors(color1, color2, ratio) {
+  color1 = toRgb(color1);
+  color2 = toRgb(color2);
+  var red = mixValue(color1.red, color2.red, ratio);
+  var green = mixValue(color1.green, color2.green, ratio);
+  var blue = mixValue(color1.blue, color2.blue, ratio);
+  var alpha = mixValue(color1.alpha, color2.alpha, ratio);
+  return new RgbColor({
+    red: red,
+    green: green,
+    blue: blue,
+    alpha: alpha
+  });
+}
+
 var index = {
   getColorModel: getColorModel,
   isAColor: isAColor,
@@ -648,7 +668,8 @@ var index = {
   normalizeDecNum: normalizeDecNum,
   expandHexShorthand: expandHexShorthand,
   alpha: alpha,
-  version: '0.0.1'
+  mixColors: mixColors,
+  version: '0.0.2'
 };
 
 return index;

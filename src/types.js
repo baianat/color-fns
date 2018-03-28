@@ -32,7 +32,7 @@ export class RgbColor extends Color {
 
   init () {
     this.model = 'rgb';
-    this.alpha = this.alpha || 1;
+    this.alpha = this.alpha === undefined ? 1 : this.alpha;
   }
 
   toString () {

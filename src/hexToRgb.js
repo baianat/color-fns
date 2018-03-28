@@ -8,6 +8,6 @@ export default function hexToRgb (hex) {
     red: hexNumToDec(red),
     green: hexNumToDec(green),
     blue: hexNumToDec(blue),
-    alpha: alpha ? Number((hexNumToDec(alpha) / 255).toFixed(2)) : 1
+    alpha: alpha === undefined ? 1 : Number((hexNumToDec(alpha) / 255).toFixed(2))
   });
 }

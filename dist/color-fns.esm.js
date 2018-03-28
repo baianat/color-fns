@@ -91,7 +91,7 @@ function getColorModel(color) {
     return 'hex';
   }
 
-  if (color.slice(0, 1) === '#' && (color.length === 5 || color.length === 8)) {
+  if (color.slice(0, 1) === '#' && (color.length === 6 || color.length === 9)) {
     return 'hex';
   }
 
@@ -473,8 +473,12 @@ function toRgb(color) {
     return hslToRgb(color);
   }
 
-  if (model === 'rgb') {
+  if (model === 'rgb' && typeof color === 'string') {
     return parseRgb(color);
+  }
+
+  if (model === 'rgb' && (typeof color === 'undefined' ? 'undefined' : _typeof(color)) === 'object') {
+    return color;
   }
 
   return new Color();
@@ -514,8 +518,12 @@ function toHsl(color) {
     return rgb2Hsl(color);
   }
 
-  if (model === 'hsl') {
+  if (model === 'hsl' && typeof color === 'string') {
     return parseHsl(color);
+  }
+
+  if (model === 'hsl' && (typeof color === 'undefined' ? 'undefined' : _typeof(color)) === 'object') {
+    return color;
   }
 
   return new Color();
@@ -564,8 +572,12 @@ function toHex(color) {
     return hslToHex(color);
   }
 
-  if (model === 'hex') {
+  if (model === 'hex' && typeof color === 'string') {
     return parseHex(color);
+  }
+
+  if (model === 'hex' && (typeof color === 'undefined' ? 'undefined' : _typeof(color)) === 'object') {
+    return color;
   }
 
   return new Color();

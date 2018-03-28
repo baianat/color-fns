@@ -20,8 +20,12 @@ export default function toHsl (color) {
     return rgbToHsl(color);
   }
 
-  if (model === 'hsl') {
+  if (model === 'hsl' && typeof color === 'string') {
     return parseHsl(color);
+  }
+
+  if (model === 'hsl' && typeof color === 'object') {
+    return color;
   }
 
   return new Color();

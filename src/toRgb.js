@@ -20,8 +20,12 @@ export default function toRgb (color) {
     return hslToRgb(color);
   }
 
-  if (model === 'rgb') {
+  if (model === 'rgb' && typeof color === 'string') {
     return parseRgb(color);
+  }
+
+  if (model === 'rgb' && typeof color === 'object') {
+    return color;
   }
 
   return new Color();

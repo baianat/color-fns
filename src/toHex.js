@@ -20,8 +20,12 @@ export default function toHex (color) {
     return hslToHex(color);
   }
 
-  if (model === 'hex') {
+  if (model === 'hex' && typeof color === 'string') {
     return parseHex(color);
+  }
+
+  if (model === 'hex' && typeof color === 'object') {
+    return color;
   }
 
   return new Color();

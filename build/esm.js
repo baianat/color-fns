@@ -9,7 +9,7 @@ const config = require('./config');
 const { version } = require('../package.json');
 
 const inputOptions = {
-  input: config.paths.umd,
+  input: config.paths.esm,
   plugins: [
     replace({ __VERSION__: version }),
     resolve(),

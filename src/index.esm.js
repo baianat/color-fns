@@ -11,9 +11,10 @@ import hslToHex from './hslToHex';
 import toRgb from './toRgb';
 import toHsl from './toHsl';
 import toHex from './toHex';
-import getRgbValues from './getRgbValues';
-import getHslValues from './getHslValues';
-import getHexValues from './getHexValues';
+import parseRgb from './parseRgb';
+import parseHsl from './parseHsl';
+import parseHex from './parseHex';
+import parseColor from './parseColor';
 import getRandomColor from './getRandomColor';
 import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
@@ -36,9 +37,10 @@ export {
   toRgb,
   toHex,
   toHsl,
-  getRgbValues,
-  getHexValues,
-  getHslValues,
+  parseRgb,
+  parseHsl,
+  parseHex,
+  parseColor,
   getRandomColor,
   normalizeDecNum,
   expandHexShorthand,
@@ -61,9 +63,10 @@ export default {
   toRgb,
   toHex,
   toHsl,
-  getRgbValues,
-  getHexValues,
-  getHslValues,
+  parseRgb,
+  parseHsl,
+  parseHex,
+  parseColor,
   getRandomColor,
   normalizeDecNum,
   expandHexShorthand,

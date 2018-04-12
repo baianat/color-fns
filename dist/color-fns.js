@@ -646,9 +646,9 @@ function alpha(color, alpha) {
 function mixColors(color1, color2, ratio) {
   color1 = toRgb(color1);
   color2 = toRgb(color2);
-  var red = mixValue(color1.red, color2.red, ratio);
-  var green = mixValue(color1.green, color2.green, ratio);
-  var blue = mixValue(color1.blue, color2.blue, ratio);
+  var red = Math.floor(mixValue(color1.red, color2.red, ratio));
+  var green = Math.floor(mixValue(color1.green, color2.green, ratio));
+  var blue = Math.floor(mixValue(color1.blue, color2.blue, ratio));
   var alpha = mixValue(color1.alpha, color2.alpha, ratio);
   return new RgbColor({
     red: red,

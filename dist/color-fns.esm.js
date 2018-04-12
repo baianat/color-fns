@@ -640,9 +640,9 @@ function alpha(color, alpha) {
 function mixColors(color1, color2, ratio) {
   color1 = toRgb(color1);
   color2 = toRgb(color2);
-  var red = mixValue(color1.red, color2.red, ratio);
-  var green = mixValue(color1.green, color2.green, ratio);
-  var blue = mixValue(color1.blue, color2.blue, ratio);
+  var red = Math.floor(mixValue(color1.red, color2.red, ratio));
+  var green = Math.floor(mixValue(color1.green, color2.green, ratio));
+  var blue = Math.floor(mixValue(color1.blue, color2.blue, ratio));
   var alpha = mixValue(color1.alpha, color2.alpha, ratio);
   return new RgbColor({
     red: red,
@@ -652,7 +652,9 @@ function mixColors(color1, color2, ratio) {
   });
 }
 
-var index = {
+var version = '0.0.2';
+
+var index_esm = {
   getColorModel: getColorModel,
   isAColor: isAColor,
   hexNumToDec: hexNumToDec,
@@ -667,15 +669,15 @@ var index = {
   toHex: toHex,
   toHsl: toHsl,
   parseRgb: parseRgb,
-  parseHex: parseHex,
   parseHsl: parseHsl,
+  parseHex: parseHex,
   parseColor: parseColor,
   getRandomColor: getRandomColor,
   normalizeDecNum: normalizeDecNum,
   expandHexShorthand: expandHexShorthand,
   alpha: alpha,
-  mixColors: mixColors,
-  version: '0.0.2'
+  version: version
 };
 
-export default index;
+export default index_esm;
+export { getColorModel, isAColor, hexNumToDec, decNumToHex, rgbToHex, rgb2Hsl as rgbToHsl, hexToRgb, hslToRgb, hexToHsl, hslToHex, toRgb, toHex, toHsl, parseRgb, parseHsl, parseHex, parseColor, getRandomColor, normalizeDecNum, expandHexShorthand, alpha, mixColors, version };

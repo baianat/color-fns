@@ -1,6 +1,6 @@
 {
   "name": "color-fns",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Modern JavaScript color utility library.",
   "author": "",
   "main": "dist/color-fns.js",

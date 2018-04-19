@@ -1,5 +1,5 @@
 /**
-  * color-fns v0.0.2
+  * color-fns v0.0.3
   * (c) 2018 Baianat
   * @license MIT
   */
@@ -155,10 +155,10 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function mixValue(color1, color2) {
+function mixValue(val1, val2) {
   var ratio = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0.5;
 
-  return Number((color1 * (1 - ratio) + color2 * ratio).toFixed(2));
+  return Number((val1 * (1 - ratio) + val2 * ratio).toFixed(2));
 }
 
 var Color = function () {
@@ -307,7 +307,32 @@ var HexColor = function (_Color3) {
   return HexColor;
 }(Color);
 
+function parseRgb(rgb) {
+  if ((typeof rgb === 'undefined' ? 'undefined' : _typeof(rgb)) === 'object') {
+    return rgb;
+  }
+
+  // will consider rgb/rgba color prefix as a valid input color
+  // while the output will be a valid web colors
+  // valid input colors examples 'rgb(100, 0, 0, 0.5)', 'rgba(0, 0, 0)'
+  // the output for the inputted examples 'rgba(100, 0, 0, 0.5)', 'rgb(0, 0, 0)'
+  var match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
+  if (!match || match.length < 4) {
+    return new RgbColor();
+  }
+  return new RgbColor({
+    red: Number(match[1]),
+    green: Number(match[2]),
+    blue: Number(match[3]),
+    alpha: Number(match[4])
+  });
+}
+
 function rgbToHex(rgb) {
+  if (!rgb) {
+    return new HexColor();
+  }
+  rgb = parseRgb(rgb);
   var _ref = [decNumToHex(rgb.red), decNumToHex(rgb.green), decNumToHex(rgb.blue), rgb.alpha ? decNumToHex(rgb.alpha * 255) : null],
       rr = _ref[0],
       gg = _ref[1],
@@ -327,6 +352,8 @@ function rgb2Hsl(rgb) {
   if (!rgb) {
     return new HslColor();
   }
+
+  rgb = parseRgb(rgb);
 
   // Convert the RGB values to the range 0-1
   var _ref = [rgb.red / 255, rgb.green / 255, rgb.blue / 255, rgb.alpha],
@@ -375,12 +402,47 @@ function rgb2Hsl(rgb) {
   });
 }
 
-function hexToRgb(hex) {
-  var red = hex.red,
-      green = hex.green,
-      blue = hex.blue,
-      alpha = hex.alpha;
+function expandHexShorthand(hex) {
+  var regex = /^#([a-f\d])([a-f\d])([a-f\d])([a-f\d])*$/i;
+  if ((hex.length === 5 || hex.length === 4) && regex.test(hex)) {
+    hex = hex.replace(regex, function (m, r, g, b, a) {
+      return '#' + r + r + g + g + b + b + (a ? '' + a + a : '');
+    });
+  }
 
+  return hex;
+}
+
+function parseHex(hex) {
+  if ((typeof hex === 'undefined' ? 'undefined' : _typeof(hex)) === 'object') {
+    return hex;
+  }
+
+  var expanded = expandHexShorthand(hex);
+  var match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
+  if (!match || match.length < 4) {
+    return new HexColor();
+  }
+
+  return new HexColor({
+    hex: expanded,
+    red: match[1],
+    green: match[2],
+    blue: match[3],
+    alpha: match[4]
+  });
+}
+
+function hexToRgb(hex) {
+  if (!hex) {
+    return new RgbColor();
+  }
+
+  var _parseHex = parseHex(hex),
+      red = _parseHex.red,
+      green = _parseHex.green,
+      blue = _parseHex.blue,
+      alpha = _parseHex.alpha;
 
   return new RgbColor({
     red: hexNumToDec(red),
@@ -394,10 +456,34 @@ function normalizeDecNum(value) {
   return Math.min(Math.max(parseInt(value), 0), 255);
 }
 
+function parseHsl(hsl) {
+  if ((typeof hsl === 'undefined' ? 'undefined' : _typeof(hsl)) === 'object') {
+    return hsl;
+  }
+
+  // will consider hsl/hsla color prefix as a valid input color
+  // while the output will be a valid web colors
+  // valid input colors examples 'hsl(255, 100%, 50%, 0.5)', 'hsla(100, 100%, 50%)'
+  // the output for the inputted examples 'hsla(255, 100%, 50%, 0.5)', 'hsl(100, 100%, 50%)'
+  var match = hsl.match(/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
+  if (!match || match.length < 4) {
+    return new HslColor();
+  }
+
+  return new HslColor({
+    hue: Number(match[1]),
+    sat: Number(match[2]),
+    lum: Number(match[3]),
+    alpha: Number(match[4])
+  });
+}
+
 function hslToRgb(hsl) {
   if (!hsl) {
     return new RgbColor();
   }
+  hsl = parseHsl(hsl);
+
   var _ref = [hsl.hue / 360, hsl.sat / 100, hsl.lum / 100, hsl.alpha],
       hue = _ref[0],
       sat = _ref[1],
@@ -439,28 +525,17 @@ function hslToRgb(hsl) {
 }
 
 function hexToHsl(hex) {
+  if (!hex) {
+    return new HslColor();
+  }
   return rgb2Hsl(hexToRgb(hex));
 }
 
 function hslToHex(hsl) {
-  return rgbToHex(hslToRgb(hsl));
-}
-
-function parseRgb(rgb) {
-  // will consider rgb/rgba color prefix as a valid input color
-  // while the output will be a valid web colors
-  // valid input colors examples 'rgb(100, 0, 0, 0.5)', 'rgba(0, 0, 0)'
-  // the output for the inputted examples 'rgba(100, 0, 0, 0.5)', 'rgb(0, 0, 0)'
-  var match = rgb.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
-  if (!match || match.length < 4) {
-    return new RgbColor();
+  if (!hsl) {
+    return new HexColor();
   }
-  return new RgbColor({
-    red: Number(match[1]),
-    green: Number(match[2]),
-    blue: Number(match[3]),
-    alpha: Number(match[4])
-  });
+  return rgbToHex(hslToRgb(hsl));
 }
 
 /**
@@ -487,25 +562,7 @@ function toRgb(color) {
     return color;
   }
 
-  return new Color();
-}
-
-function parseHsl(hsl) {
-  // will consider hsl/hsla color prefix as a valid input color
-  // while the output will be a valid web colors
-  // valid input colors examples 'hsl(255, 100%, 50%, 0.5)', 'hsla(100, 100%, 50%)'
-  // the output for the inputted examples 'hsla(255, 100%, 50%, 0.5)', 'hsl(100, 100%, 50%)'
-  var match = hsl.match(/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
-  if (!match || match.length < 4) {
-    return new HslColor();
-  }
-
-  return new HslColor({
-    hue: Number(match[1]),
-    sat: Number(match[2]),
-    lum: Number(match[3]),
-    alpha: Number(match[4])
-  });
+  return new RgbColor();
 }
 
 /**
@@ -532,34 +589,7 @@ function toHsl(color) {
     return color;
   }
 
-  return new Color();
-}
-
-function expandHexShorthand(hex) {
-  var regex = /^#([a-f\d])([a-f\d])([a-f\d])([a-f\d])*$/i;
-  if ((hex.length === 5 || hex.length === 4) && regex.test(hex)) {
-    hex = hex.replace(regex, function (m, r, g, b, a) {
-      return '#' + r + r + g + g + b + b + (a ? '' + a + a : '');
-    });
-  }
-
-  return hex;
-}
-
-function parseHex(hex) {
-  var expanded = expandHexShorthand(hex);
-  var match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
-  if (!match || match.length < 4) {
-    return new HexColor();
-  }
-
-  return new HexColor({
-    hex: expanded,
-    red: match[1],
-    green: match[2],
-    blue: match[3],
-    alpha: match[4]
-  });
+  return new HslColor();
 }
 
 /**
@@ -586,25 +616,7 @@ function toHex(color) {
     return color;
   }
 
-  return new Color();
-}
-
-function parseColor(color) {
-  var model = getColorModel(color);
-
-  if (model === 'rgb') {
-    return parseRgb(color);
-  }
-
-  if (model === 'hex') {
-    return parseHex(color);
-  }
-
-  if (model === 'hsl') {
-    return parseHsl(color);
-  }
-
-  return new Color();
+  return new HexColor();
 }
 
 function getRandomColor() {
@@ -675,13 +687,12 @@ var index = {
   parseRgb: parseRgb,
   parseHex: parseHex,
   parseHsl: parseHsl,
-  parseColor: parseColor,
   getRandomColor: getRandomColor,
   normalizeDecNum: normalizeDecNum,
   expandHexShorthand: expandHexShorthand,
   alpha: alpha,
   mixColors: mixColors,
-  version: '0.0.2'
+  version: '0.0.3'
 };
 
 return index;

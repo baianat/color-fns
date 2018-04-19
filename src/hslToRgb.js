@@ -1,10 +1,13 @@
 import normalizeDecNum from './normalizeDecNum';
+import parseHsl from './parseHsl';
 import { RgbColor } from './types';
 
 export default function hslToRgb (hsl) {
   if (!hsl) {
     return new RgbColor();
   };
+
+  hsl = parseHsl(hsl);
 
   const [hue, sat, lgh, alpha] = [hsl.hue / 360, hsl.sat / 100, hsl.lum / 100, hsl.alpha];
   let [red, green, blue] = [0, 0, 0];

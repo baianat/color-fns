@@ -1,9 +1,12 @@
+import parseRgb from './parseRgb';
 import { HslColor } from './types';
 
 export default function rgb2Hsl (rgb) {
   if (!rgb) {
     return new HslColor();
   }
+
+  rgb = parseRgb(rgb);
 
   // Convert the RGB values to the range 0-1
   const [red, green, blue, alpha] = [rgb.red / 255, rgb.green / 255, rgb.blue / 255, rgb.alpha];

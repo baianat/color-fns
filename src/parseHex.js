@@ -2,6 +2,10 @@ import expandHexShorthand from './expandHexShorthand';
 import { HexColor } from './types';
 
 export default function parseHex (hex) {
+  if (typeof hex === 'object') {
+    return hex;
+  }
+
   const expanded = expandHexShorthand(hex);
   const match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
   if (!match || match.length < 4) {

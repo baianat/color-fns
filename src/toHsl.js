@@ -2,7 +2,7 @@ import getColorModel from './getColorModel';
 import parseHsl from './parseHsl';
 import hexToHsl from './hexToHsl';
 import rgbToHsl from './rgbToHsl';
-import { Color } from './types';
+import { HslColor } from './types';
 
 /**
  * Parses the given color string into a HSL color object.
@@ -28,5 +28,5 @@ export default function toHsl (color) {
     return color;
   }
 
-  return new Color();
+  return new HslColor();
 }

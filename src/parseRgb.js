@@ -1,6 +1,10 @@
 import { RgbColor } from './types';
 
 export default function parseRgb (rgb) {
+  if (typeof rgb === 'object') {
+    return rgb;
+  }
+
   // will consider rgb/rgba color prefix as a valid input color
   // while the output will be a valid web colors
   // valid input colors examples 'rgb(100, 0, 0, 0.5)', 'rgba(0, 0, 0)'

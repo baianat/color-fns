@@ -1,8 +1,12 @@
 import hexNumToDec from './hexNumToDec';
+import parseHex from './parseHex';
 import { RgbColor } from './types';
 
 export default function hexToRgb (hex) {
-  const { red, green, blue, alpha } = hex;
+  if (!hex) {
+    return new RgbColor();
+  }
+  const { red, green, blue, alpha } = parseHex(hex);
 
   return new RgbColor({
     red: hexNumToDec(red),

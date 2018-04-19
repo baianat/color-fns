@@ -1,6 +1,10 @@
 import { HslColor } from './types';
 
 export default function parseHsl (hsl) {
+  if (typeof hsl === 'object') {
+    return hsl;
+  }
+
   // will consider hsl/hsla color prefix as a valid input color
   // while the output will be a valid web colors
   // valid input colors examples 'hsl(255, 100%, 50%, 0.5)', 'hsla(100, 100%, 50%)'

@@ -1,20 +1,24 @@
 import hexToHsl from '../src/hexToHsl';
+import { HexColor } from '../src/types';
 
-test('converts hex color objects to hsl objects', () => {
-  const hex = {
-    red: 'a1',
-    green: '16',
-    blue: '12',
-    alpha: '7f'
-  };
+const hex = new HexColor({
+  red: 'a1',
+  green: '16',
+  blue: '12',
+  alpha: '7f'
+});
 
-  // hue should be 2 not 1
-  expect(hexToHsl(hex)).toMatchObject({
-    invalid: false,
-    hue: 1,
-    sat: 79,
-    lum: 35,
-    alpha: 0.5,
-    model: 'hsl'
-  });
+const hsl = {
+  invalid: false,
+  hue: 1, // hue should be 2 not 1
+  sat: 79,
+  lum: 35,
+  alpha: 0.5,
+  model: 'hsl'
+}
+
+test('converts hex color to hsl color', () => {
+  expect(hexToHsl(hex)).toMatchObject(hsl);
+  expect(hexToHsl(hex.toString())).toMatchObject(hsl);
+  expect(hexToHsl()).toHaveProperty('invalid', true);
 });

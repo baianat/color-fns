@@ -1,19 +1,24 @@
 import rgbToHex from '../src/rgbToHex';
+import { RgbColor } from '../src/types';
 
-test('converts rgb color objects to hex objects', () => {
-  const rgb = {
-    red: 13,
-    green: 200,
-    blue: 230,
-    alpha: 0.5
-  };
+const rgb = new RgbColor({
+  red: 13,
+  green: 200,
+  blue: 230,
+  alpha: 0.5
+});
 
-  expect(rgbToHex(rgb)).toMatchObject({
-    invalid: false,
-    red: '0d',
-    green: 'c8',
-    blue: 'e6',
-    alpha: '7f',
-    model: 'hex'
-  });
+const hex = {
+  invalid: false,
+  red: '0d',
+  green: 'c8',
+  blue: 'e6',
+  alpha: '7f',
+  model: 'hex'
+}
+
+test('converts rgb color to hex color', () => {
+  expect(rgbToHex(rgb)).toMatchObject(hex);
+  expect(rgbToHex(rgb.toString())).toMatchObject(hex);
+  expect(rgbToHex()).toHaveProperty('invalid', true);
 });

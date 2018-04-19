@@ -6,6 +6,7 @@ test('construct RGB color instances', () => {
   expect(validColor.red).toBe(0);
   expect(validColor.green).toBe(0);
   expect(validColor.blue).toBe(0);
+  expect(validColor.alpha).toBe(1);
 
   const invalidColor = new types.RgbColor({ red: 256, blue: -1, green: 100 });
   expect(invalidColor.invalid).toBe(true);
@@ -21,6 +22,7 @@ test('construct HSL color instances', () => {
   expect(validColor.hue).toBe(0);
   expect(validColor.lum).toBe(0);
   expect(validColor.sat).toBe(0);
+  expect(validColor.alpha).toBe(1);
 
   const invalidColor = new types.HslColor({ hue: 361, sat: -1, lum: 100 });
   expect(invalidColor.invalid).toBe(true);
@@ -36,7 +38,8 @@ test('construct Hex color instances', () => {
   expect(validColor.red).toBe('ff');
   expect(validColor.blue).toBe('ff');
   expect(validColor.green).toBe('ff');
-
+  expect(validColor.alpha).toBe('ff');
+  
   const invalidColor = new types.HexColor({ red: 0, green: 'z1', blue: 0 });
   expect(invalidColor.invalid).toBe(true);
   expect(String(invalidColor)).toBe('Invalid Color');

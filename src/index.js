@@ -1,5 +1,6 @@
 import getColorModel from './getColorModel';
 import isValidColor from './isValidColor';
+import isHexShorthand from './isHexShorthand';
 import hexNumToDec from './hexNumToDec';
 import decNumToHex from './decNumToHex';
 import rgbToHex from './rgbToHex';
@@ -23,6 +24,7 @@ import mixColors from './mixColors';
 export default {
   getColorModel,
   isValidColor,
+  isHexShorthand,
   hexNumToDec,
   decNumToHex,
   rgbToHex,

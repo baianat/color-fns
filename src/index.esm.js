@@ -1,5 +1,5 @@
 import getColorModel from './getColorModel';
-import isAColor from './isAColor';
+import isValidColor from './isValidColor';
 import hexNumToDec from './hexNumToDec';
 import decNumToHex from './decNumToHex';
 import rgbToHex from './rgbToHex';
@@ -24,7 +24,7 @@ const version = '__VERSION__';
 
 export {
   getColorModel,
-  isAColor,
+  isValidColor,
   hexNumToDec,
   decNumToHex,
   rgbToHex,
@@ -49,7 +49,7 @@ export {
 
 export default {
   getColorModel,
-  isAColor,
+  isValidColor,
   hexNumToDec,
   decNumToHex,
   rgbToHex,
@@ -68,5 +68,6 @@ export default {
   normalizeDecNum,
   expandHexShorthand,
   alpha,
+  mixColors,
   version
 };

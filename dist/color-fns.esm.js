@@ -119,7 +119,7 @@ function getColorModel(color) {
  *
  * @param {String} color The color string to be checked.
  */
-function isAColor(color) {
+function isValidColor(color) {
   return !!getColorModel(color);
 }
 
@@ -668,7 +668,7 @@ var version = '0.0.3';
 
 var index_esm = {
   getColorModel: getColorModel,
-  isAColor: isAColor,
+  isValidColor: isValidColor,
   hexNumToDec: hexNumToDec,
   decNumToHex: decNumToHex,
   rgbToHex: rgbToHex,
@@ -691,4 +691,4 @@ var index_esm = {
 };
 
 export default index_esm;
-export { getColorModel, isAColor, hexNumToDec, decNumToHex, rgbToHex, rgb2Hsl as rgbToHsl, hexToRgb, hslToRgb, hexToHsl, hslToHex, toRgb, toHex, toHsl, parseRgb, parseHsl, parseHex, getRandomColor, normalizeDecNum, expandHexShorthand, alpha, mixColors, version };
+export { getColorModel, isValidColor, hexNumToDec, decNumToHex, rgbToHex, rgb2Hsl as rgbToHsl, hexToRgb, hslToRgb, hexToHsl, hslToHex, toRgb, toHex, toHsl, parseRgb, parseHsl, parseHex, getRandomColor, normalizeDecNum, expandHexShorthand, alpha, mixColors, version };

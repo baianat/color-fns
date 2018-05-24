@@ -125,7 +125,7 @@ function getColorModel(color) {
  *
  * @param {String} color The color string to be checked.
  */
-function isAColor(color) {
+function isValidColor(color) {
   return !!getColorModel(color);
 }
 
@@ -672,7 +672,7 @@ function mixColors(color1, color2, ratio) {
 
 var index = {
   getColorModel: getColorModel,
-  isAColor: isAColor,
+  isValidColor: isValidColor,
   hexNumToDec: hexNumToDec,
   decNumToHex: decNumToHex,
   rgbToHex: rgbToHex,

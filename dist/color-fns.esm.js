@@ -1,5 +1,5 @@
 /**
-  * color-fns v0.0.3
+  * color-fns v0.0.5
   * (c) 2018 Baianat
   * @license MIT
   */
@@ -114,30 +114,12 @@ function getColorModel(color) {
   return false;
 }
 
-/**
- * Checks if the given color string is valid (parsable).
- *
- * @param {String} color The color string to be checked.
- */
-function isValidColor(color) {
-  return !!getColorModel(color);
-}
-
 function hexNumToDec(hexNum) {
   if (isNaN(parseInt(hexNum, 16))) {
     return 0;
   }
 
   return parseInt(hexNum, 16);
-}
-
-function decNumToHex(decNum) {
-  decNum = Math.floor(decNum);
-  if (isNaN(decNum)) {
-    return '00';
-  }
-
-  return ('0' + decNum.toString(16)).slice(-2);
 }
 
 function isBetween(lb, ub) {
@@ -322,6 +304,97 @@ function parseRgb(rgb) {
   });
 }
 
+function expandHexShorthand(hex) {
+  var regex = /^#([a-f\d])([a-f\d])([a-f\d])([a-f\d])*$/i;
+  if ((hex.length === 5 || hex.length === 4) && regex.test(hex)) {
+    hex = hex.replace(regex, function (m, r, g, b, a) {
+      return '#' + r + r + g + g + b + b + (a ? '' + a + a : '');
+    });
+  }
+
+  return hex;
+}
+
+function parseHex(hex) {
+  if ((typeof hex === 'undefined' ? 'undefined' : _typeof(hex)) === 'object') {
+    return hex;
+  }
+
+  var expanded = expandHexShorthand(hex);
+  var match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
+  if (!match || match.length < 4) {
+    return new HexColor();
+  }
+
+  return new HexColor({
+    hex: expanded,
+    red: match[1],
+    green: match[2],
+    blue: match[3],
+    alpha: match[4]
+  });
+}
+
+function parseHsl(hsl) {
+  if ((typeof hsl === 'undefined' ? 'undefined' : _typeof(hsl)) === 'object') {
+    return hsl;
+  }
+
+  // will consider hsl/hsla color prefix as a valid input color
+  // while the output will be a valid web colors
+  // valid input colors examples 'hsl(255, 100%, 50%, 0.5)', 'hsla(100, 100%, 50%)'
+  // the output for the inputted examples 'hsla(255, 100%, 50%, 0.5)', 'hsl(100, 100%, 50%)'
+  var match = hsl.match(/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
+  if (!match || match.length < 4) {
+    return new HslColor();
+  }
+
+  return new HslColor({
+    hue: Number(match[1]),
+    sat: Number(match[2]),
+    lum: Number(match[3]),
+    alpha: Number(match[4])
+  });
+}
+
+/**
+ * Checks if the given color string is valid (parsable).
+ *
+ * @param {String} color The color string to be checked.
+ */
+function isValidColor(color) {
+  var model = getColorModel(color);
+
+  if (model === 'rgb') {
+    return !parseRgb(color).invalid;
+  }
+  if (model === 'hex') {
+    return !parseHex(color).invalid;
+  }
+  if (model === 'hsl') {
+    return !parseHsl(color).invalid;
+  }
+  return false;
+}
+
+function isHexShorthand(hex) {
+  var regex = /^#([a-f\d])([a-f\d])([a-f\d])([a-f\d])*$/i;
+  if ((hex.length === 5 || hex.length === 4) && regex.test(hex)) {
+    return true;
+  }
+
+  return false;
+}
+
+function decNumToHex(decNum) {
+  decNum = Math.floor(decNum);
+  if (isNaN(decNum)) {
+    return '00';
+  }
+
+  return ('0' + decNum.toString(16)).slice(-2);
+}
+
 function rgbToHex(rgb) {
   if (!rgb) {
     return new HexColor();
@@ -396,37 +469,6 @@ function rgb2Hsl(rgb) {
   });
 }
 
-function expandHexShorthand(hex) {
-  var regex = /^#([a-f\d])([a-f\d])([a-f\d])([a-f\d])*$/i;
-  if ((hex.length === 5 || hex.length === 4) && regex.test(hex)) {
-    hex = hex.replace(regex, function (m, r, g, b, a) {
-      return '#' + r + r + g + g + b + b + (a ? '' + a + a : '');
-    });
-  }
-
-  return hex;
-}
-
-function parseHex(hex) {
-  if ((typeof hex === 'undefined' ? 'undefined' : _typeof(hex)) === 'object') {
-    return hex;
-  }
-
-  var expanded = expandHexShorthand(hex);
-  var match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
-  if (!match || match.length < 4) {
-    return new HexColor();
-  }
-
-  return new HexColor({
-    hex: expanded,
-    red: match[1],
-    green: match[2],
-    blue: match[3],
-    alpha: match[4]
-  });
-}
-
 function hexToRgb(hex) {
   if (!hex) {
     return new RgbColor();
@@ -448,28 +490,6 @@ function hexToRgb(hex) {
 
 function normalizeDecNum(value) {
   return Math.min(Math.max(parseInt(value), 0), 255);
-}
-
-function parseHsl(hsl) {
-  if ((typeof hsl === 'undefined' ? 'undefined' : _typeof(hsl)) === 'object') {
-    return hsl;
-  }
-
-  // will consider hsl/hsla color prefix as a valid input color
-  // while the output will be a valid web colors
-  // valid input colors examples 'hsl(255, 100%, 50%, 0.5)', 'hsla(100, 100%, 50%)'
-  // the output for the inputted examples 'hsla(255, 100%, 50%, 0.5)', 'hsl(100, 100%, 50%)'
-  var match = hsl.match(/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
-  if (!match || match.length < 4) {
-    return new HslColor();
-  }
-
-  return new HslColor({
-    hue: Number(match[1]),
-    sat: Number(match[2]),
-    lum: Number(match[3]),
-    alpha: Number(match[4])
-  });
 }
 
 function hslToRgb(hsl) {
@@ -664,11 +684,12 @@ function mixColors(color1, color2, ratio) {
   });
 }
 
-var version = '0.0.3';
+var version = '0.0.5';
 
 var index_esm = {
   getColorModel: getColorModel,
   isValidColor: isValidColor,
+  isHexShorthand: isHexShorthand,
   hexNumToDec: hexNumToDec,
   decNumToHex: decNumToHex,
   rgbToHex: rgbToHex,
@@ -687,8 +708,9 @@ var index_esm = {
   normalizeDecNum: normalizeDecNum,
   expandHexShorthand: expandHexShorthand,
   alpha: alpha,
+  mixColors: mixColors,
   version: version
 };
 
 export default index_esm;
-export { getColorModel, isValidColor, hexNumToDec, decNumToHex, rgbToHex, rgb2Hsl as rgbToHsl, hexToRgb, hslToRgb, hexToHsl, hslToHex, toRgb, toHex, toHsl, parseRgb, parseHsl, parseHex, getRandomColor, normalizeDecNum, expandHexShorthand, alpha, mixColors, version };
+export { getColorModel, isValidColor, isHexShorthand, hexNumToDec, decNumToHex, rgbToHex, rgb2Hsl as rgbToHsl, hexToRgb, hslToRgb, hexToHsl, hslToHex, toRgb, toHex, toHsl, parseRgb, parseHsl, parseHex, getRandomColor, normalizeDecNum, expandHexShorthand, alpha, mixColors, version };

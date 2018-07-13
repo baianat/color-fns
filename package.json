@@ -17,8 +17,8 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "eslint ./src --fix",
-    "build:esm": "node build/esm",
-    "build:umd": "node build/umd",
+    "build:esm": "node scripts/esm",
+    "build:umd": "node scripts/umd",
     "build": "npm run lint && npm run build:esm && npm run build:umd"
   },
   "maintainers": [
@@ -53,9 +53,10 @@
     "eslint-plugin-standard": "^3.0.1",
     "filesize": "^3.6.0",
     "gzip-size": "^5.0.0",
-    "husky": "^0.14.3",
+    "husky": "^1.0.0-rc.13",
     "jest": "^23.4.0",
     "lint-staged": "^7.2.0",
+    "mkdirp": "^0.5.1",
     "rollup": "^0.62.0",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-browsersync": "^0.2.6",

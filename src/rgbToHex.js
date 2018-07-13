@@ -14,5 +14,5 @@ export default function rgbToHex (rgb) {
     green: gg,
     blue: bb,
     alpha: aa || 'ff'
-  }); 
+  });
 }

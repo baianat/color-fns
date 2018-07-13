@@ -13,6 +13,6 @@ export default function rgbToHex (rgb) {
     red: rr,
     green: gg,
     blue: bb,
-    alpha: aa || 1
-  });
+    alpha: aa || decNumToHex(255)
+  }); 
 }

@@ -1,6 +1,6 @@
 /**
-  * color-fns v0.0.5
-  * (c) 2018 Baianat
+  * color-fns v0.0.7
+  * (c) 2019 Baianat
   * @license MIT
   */
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
@@ -282,6 +282,13 @@ var HexColor = function (_Color3) {
   }]);
   return HexColor;
 }(Color);
+
+var Colors = Object.freeze({
+	Color: Color,
+	RgbColor: RgbColor,
+	HslColor: HslColor,
+	HexColor: HexColor
+});
 
 function parseRgb(rgb) {
   if ((typeof rgb === 'undefined' ? 'undefined' : _typeof(rgb)) === 'object') {
@@ -684,7 +691,7 @@ function mixColors(color1, color2, ratio) {
   });
 }
 
-var version = '0.0.5';
+var version = '0.0.7';
 
 var index_esm = {
   getColorModel: getColorModel,
@@ -709,8 +716,9 @@ var index_esm = {
   expandHexShorthand: expandHexShorthand,
   alpha: alpha,
   mixColors: mixColors,
+  Colors: Colors,
   version: version
 };
 
 export default index_esm;
-export { getColorModel, isValidColor, isHexShorthand, hexNumToDec, decNumToHex, rgbToHex, rgb2Hsl as rgbToHsl, hexToRgb, hslToRgb, hexToHsl, hslToHex, toRgb, toHex, toHsl, parseRgb, parseHsl, parseHex, getRandomColor, normalizeDecNum, expandHexShorthand, alpha, mixColors, version };
+export { getColorModel, isValidColor, isHexShorthand, hexNumToDec, decNumToHex, rgbToHex, rgb2Hsl as rgbToHsl, hexToRgb, hslToRgb, hexToHsl, hslToHex, toRgb, toHex, toHsl, parseRgb, parseHsl, parseHex, getRandomColor, normalizeDecNum, expandHexShorthand, alpha, mixColors, Colors, version };

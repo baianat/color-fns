@@ -1,6 +1,6 @@
 /**
-  * color-fns v0.0.5
-  * (c) 2018 Baianat
+  * color-fns v0.0.7
+  * (c) 2019 Baianat
   * @license MIT
   */
 (function (global, factory) {
@@ -288,6 +288,13 @@ var HexColor = function (_Color3) {
   }]);
   return HexColor;
 }(Color);
+
+var Colors = Object.freeze({
+	Color: Color,
+	RgbColor: RgbColor,
+	HslColor: HslColor,
+	HexColor: HexColor
+});
 
 function parseRgb(rgb) {
   if ((typeof rgb === 'undefined' ? 'undefined' : _typeof(rgb)) === 'object') {
@@ -713,7 +720,8 @@ var index = {
   expandHexShorthand: expandHexShorthand,
   alpha: alpha,
   mixColors: mixColors,
-  version: '0.0.5'
+  Colors: Colors,
+  version: '0.0.7'
 };
 
 return index;

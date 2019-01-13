@@ -20,7 +20,7 @@ import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
 import alpha from './alpha';
 import mixColors from './mixColors';
-
+import * as Colors from './types';
 const version = '__VERSION__';
 
 export {
@@ -46,6 +46,7 @@ export {
   expandHexShorthand,
   alpha,
   mixColors,
+  Colors,
   version
 };
 
@@ -72,5 +73,6 @@ export default {
   expandHexShorthand,
   alpha,
   mixColors,
+  Colors,
   version
 };

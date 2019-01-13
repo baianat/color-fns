@@ -20,6 +20,7 @@ import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
 import alpha from './alpha';
 import mixColors from './mixColors';
+import * as Colors from './types';
 
 export default {
   getColorModel,
@@ -44,5 +45,6 @@ export default {
   expandHexShorthand,
   alpha,
   mixColors,
+  Colors,
   version: '__VERSION__'
 };

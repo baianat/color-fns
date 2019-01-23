@@ -12,7 +12,7 @@ export default function alpha (color, alpha) {
 
   if (model === 'rgb') {
     const { red, green, blue } = color;
-    return new RgbColor({red, green, blue, alpha});
+    return new RgbColor({ red, green, blue, alpha });
   }
   if (model === 'hex') {
     const { red, green, blue } = color;

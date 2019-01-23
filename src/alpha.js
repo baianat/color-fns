@@ -1,10 +1,11 @@
 import getColorModel from './getColorModel';
 import decNumToHex from './decNumToHex';
 import { RgbColor, HexColor, HslColor } from './types';
+import { isValidAlpha } from './utils';
 
 export default function alpha (color, alpha) {
   alpha = Number(alpha);
-  if (isNaN(alpha) || alpha > 1 || alpha < 0) {
+  if (!isValidAlpha(alpha)) {
     return 'Invalid alpha';
   }
 
@@ -12,7 +13,7 @@ export default function alpha (color, alpha) {
 
   if (model === 'rgb') {
     const { red, green, blue } = color;
-    return new RgbColor({red, green, blue, alpha});
+    return new RgbColor({ red, green, blue, alpha });
   }
   if (model === 'hex') {
     const { red, green, blue } = color;

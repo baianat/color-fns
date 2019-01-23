@@ -1,5 +1,5 @@
 import hexNumToDec from './hexNumToDec';
-import { isBetween } from './utils';
+import { isBetween, isValidAlpha } from './utils';
 
 export class Color {
   constructor (components) {
@@ -32,7 +32,7 @@ export class RgbColor extends Color {
 
   init () {
     this.model = 'rgb';
-    this.alpha = this.alpha === undefined ? 1 : this.alpha;
+    this.alpha = isValidAlpha(this.alpha) ? this.alpha : 1;
   }
 
   toString () {
@@ -59,7 +59,7 @@ export class HslColor extends Color {
 
   init () {
     this.model = 'hsl';
-    this.alpha = this.alpha || 1;
+    this.alpha = isValidAlpha(this.alpha) ? this.alpha : 1;
   }
 
   toString () {
@@ -84,7 +84,7 @@ export class HexColor extends Color {
 
   init () {
     this.model = 'hex';
-    this.alpha = this.alpha || 'ff';
+    this.alpha = this.alpha !== undefined ? this.alpha : 'ff';
   }
 
   toString () {

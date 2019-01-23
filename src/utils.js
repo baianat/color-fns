@@ -18,3 +18,7 @@ export function getRandomInt (min, max) {
 export function mixValue (val1, val2, ratio = 0.5) {
   return Number((val1 * (1 - ratio) + val2 * ratio).toFixed(2));
 }
+
+export function isValidAlpha (alpha) {
+  return !(alpha === undefined || isNaN(alpha) || alpha < 0 || alpha > 1);
+}

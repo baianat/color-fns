@@ -17,12 +17,12 @@ test('construct RGB color instances', () => {
 });
 
 test('construct HSL color instances', () => {
-  const validColor = new types.HslColor({ hue: 0, sat: 0, lum: 0 });
+  const validColor = new types.HslColor({ hue: 0, sat: 0, lum: 0, alpha: 0 });
   expect(validColor.invalid).toBe(false);
   expect(validColor.hue).toBe(0);
   expect(validColor.lum).toBe(0);
   expect(validColor.sat).toBe(0);
-  expect(validColor.alpha).toBe(1);
+  expect(validColor.alpha).toBe(0);
 
   const invalidColor = new types.HslColor({ hue: 361, sat: -1, lum: 100 });
   expect(invalidColor.invalid).toBe(true);

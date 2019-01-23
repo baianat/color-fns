@@ -18,9 +18,7 @@ const inputOptions = {
   plugins: [
     replace({ __VERSION__: version }),
     resolve(),
-    babel({
-      plugins: ['external-helpers']
-    })
+    babel()
   ]
 };
 
@@ -38,7 +36,7 @@ async function build () {
   const bundle = await rollup(inputOptions);
 
   // pass the desired output config
-  const { code } = await bundle.generate(outputOptions);
+  const { output: [{ code }] } = await bundle.generate(outputOptions);
 
   let filePath = path.join(config.paths.dist, 'color-fns.js');
 

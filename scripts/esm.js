@@ -17,9 +17,7 @@ const inputOptions = {
   plugins: [
     replace({ __VERSION__: version }),
     resolve(),
-    babel({
-      plugins: ['external-helpers']
-    })
+    babel()
   ]
 };
 
@@ -36,13 +34,13 @@ async function build () {
   const bundle = await rollup(inputOptions);
 
   // pass the desired output config
-  const { code } = await bundle.generate(outputOptions);
+  const { output } = await bundle.generate(outputOptions);
 
   const filePath = path.join(config.paths.dist, 'color-fns.esm.js');
 
-  fs.writeFileSync(filePath, code);
+  fs.writeFileSync(filePath, output[0].code);
 
-  const stats = config.utils.stats({ path: filePath, code });
+  const stats = config.utils.stats({ path: filePath, code: output[0].code });
   console.log(`${chalk.green('Output File:')} color-fns.esm.js ${stats}`);
 }
 

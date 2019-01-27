@@ -27,5 +27,13 @@ export default function getColorModel (color) {
     return 'hsl';
   }
 
+  if (color.slice(0, 4).toUpperCase() === 'HSVA') {
+    return 'hsv';
+  }
+
+  if (color.slice(0, 3).toUpperCase() === 'HSV') {
+    return 'hsv';
+  }
+
   return false;
 }

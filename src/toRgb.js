@@ -2,6 +2,7 @@ import getColorModel from './getColorModel';
 import parseRgb from './parseRgb';
 import hexToRgb from './hexToRgb';
 import hslToRgb from './hslToRgb';
+import hsvToRgb from './hsvToRgb';
 import { RgbColor } from './types';
 
 /**
@@ -18,6 +19,10 @@ export default function toRgb (color) {
 
   if (model === 'hsl') {
     return hslToRgb(color);
+  }
+
+  if (model === 'hsv') {
+    return hsvToRgb(color);
   }
 
   if (model === 'rgb' && typeof color === 'string') {

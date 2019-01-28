@@ -14,6 +14,13 @@ const hsl = {
   model: 'hsl'
 };
 
+const hsv = {
+  hue: 200,
+  sat: 100,
+  val: 50,
+  model: 'hsv'
+};
+
 const rgb = {
   red: 13,
   green: 200,
@@ -24,11 +31,14 @@ const rgb = {
 test('get color model', () => {
   expect(getColorModel(hex)).toMatch(/hex/);
   expect(getColorModel(hsl)).toMatch(/hsl/);
+  expect(getColorModel(hsv)).toMatch(/hsv/);
   expect(getColorModel(rgb)).toMatch(/rgb/);
   expect(getColorModel('#a11612')).toMatch(/hex/);
   expect(getColorModel('#a11612ff')).toMatch(/hex/);
   expect(getColorModel('hsl(200, 100%, 50%)')).toMatch(/hsl/);
   expect(getColorModel('hsla(200, 100%, 50%, 1)')).toMatch(/hsl/);
+  expect(getColorModel('hsv(200, 100%, 50%)')).toMatch(/hsv/);
+  expect(getColorModel('hsva(200, 100%, 50%, 1)')).toMatch(/hsv/);
   expect(getColorModel('rgb(13, 200, 230)')).toMatch(/rgb/);
   expect(getColorModel('rgba(13, 200, 230, 1)')).toMatch(/rgb/);
 });

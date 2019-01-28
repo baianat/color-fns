@@ -97,3 +97,30 @@ export class HexColor extends Color {
     return `#${this.red}${this.green}${this.blue}`;
   }
 };
+
+export class HsvColor extends Color {
+  validate (components) {
+    if (!super.validate(components)) {
+      return false;
+    }
+
+    const isPercentage = isBetween(0, 100);
+
+    return isBetween(0, 360)(components.hue) && isPercentage(components.val) && isPercentage(components.sat);
+  }
+
+  init () {
+    this.model = 'hsv';
+    this.alpha = isValidAlpha(this.alpha) ? this.alpha : 1;
+  }
+
+  toString () {
+    if (this.invalid) {
+      return 'Invalid Color';
+    }
+    if (isBetween(0, 0.999)(this.alpha)) {
+      return `hsva(${this.hue},${this.sat}%,${this.val}%,${this.alpha})`;
+    }
+    return `hsv(${this.hue},${this.sat}%,${this.val}%)`;
+  }
+}

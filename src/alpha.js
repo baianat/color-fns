@@ -1,6 +1,6 @@
 import getColorModel from './getColorModel';
 import decNumToHex from './decNumToHex';
-import { RgbColor, HexColor, HslColor } from './types';
+import { RgbColor, HexColor, HslColor, HsvColor } from './types';
 import { isValidAlpha } from './utils';
 
 export default function alpha (color, alpha) {
@@ -22,6 +22,10 @@ export default function alpha (color, alpha) {
   if (model === 'hsl') {
     const { hue, sat, lum } = color;
     return new HslColor({ hue, sat, lum, alpha });
+  }
+  if (model === 'hsv') {
+    const { hue, sat, val } = color;
+    return new HsvColor({ hue, sat, val, alpha });
   }
   return 'Invalid color';
 }

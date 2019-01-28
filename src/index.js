@@ -23,6 +23,7 @@ import parseRgb from './parseRgb';
 import parseHsl from './parseHsl';
 import parseHex from './parseHex';
 import parseHsv from './parseHsv';
+import parseCmyk from './parseCmyk';
 import getRandomColor from './getRandomColor';
 import normalizeDecNum from './normalizeDecNum';
 import expandHexShorthand from './expandHexShorthand';
@@ -56,6 +57,7 @@ export default {
   parseHex,
   parseHsl,
   parseHsv,
+  parseCmyk,
   getRandomColor,
   normalizeDecNum,
   expandHexShorthand,

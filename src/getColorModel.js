@@ -34,6 +34,14 @@ export default function getColorModel (color) {
   if (color.slice(0, 3).toUpperCase() === 'HSV') {
     return 'hsv';
   }
+  
+  if (color.slice(0, 5).toUpperCase() === 'CMYKA') {
+    return 'cmyk';
+  }
+
+  if (color.slice(0, 4).toUpperCase() === 'CMYK') {
+    return 'cmyk';
+  }
 
   return false;
 }

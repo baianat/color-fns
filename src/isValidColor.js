@@ -3,6 +3,7 @@ import parseRgb from './parseRgb';
 import parseHex from './parseHex';
 import parseHsl from './parseHsl';
 import parseHsv from './parseHsv';
+import parseCmyk from './parseCmyk';
 
 /**
  * Checks if the given color string is valid (parsable).
@@ -23,6 +24,9 @@ export default function isValidColor (color) {
   }
   if (model === 'hsv') {
     return !parseHsv(color).invalid;
+  }
+  if (model === 'cmyk') {
+    return !parseCmyk(color).invalid;
   }
   return false;
 }

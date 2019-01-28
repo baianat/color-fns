@@ -14,6 +14,13 @@ const hsl = {
   model: 'hsl'
 };
 
+const hsv = {
+  hue: 200,
+  sat: 100,
+  val: 50,
+  model: 'hsv'
+};
+
 const rgb = {
   red: 13,
   green: 200,
@@ -24,6 +31,7 @@ const rgb = {
 test('adds alpha value to color object', () => {
   expect(alpha(hex, 0.5)).toHaveProperty('alpha', '7f');
   expect(alpha(hsl, 0.5)).toHaveProperty('alpha', 0.5);
+  expect(alpha(hsv, 0.5)).toHaveProperty('alpha', 0.5);
   expect(alpha(rgb, 0.6)).toHaveProperty('alpha', 0.6);
   expect(alpha(rgb, 0)).toHaveProperty('alpha', 0);
   expect(alpha(hex, 1.1)).toMatch(/Invalid alpha/);

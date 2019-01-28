@@ -32,6 +32,22 @@ test('construct HSL color instances', () => {
   expect(invalidColor.sat).toBe(undefined);
 });
 
+test('construct HSV color instances', () => {
+  const validColor = new types.HsvColor({ hue: 0, sat: 0, val: 0, alpha: 0 });
+  expect(validColor.invalid).toBe(false);
+  expect(validColor.hue).toBe(0);
+  expect(validColor.val).toBe(0);
+  expect(validColor.sat).toBe(0);
+  expect(validColor.alpha).toBe(0);
+
+  const invalidColor = new types.HsvColor({ hue: 361, sat: -1, val: 101 });
+  expect(invalidColor.invalid).toBe(true);
+  expect(String(invalidColor)).toBe('Invalid Color');
+  expect(invalidColor.hue).toBe(undefined);
+  expect(invalidColor.val).toBe(undefined);
+  expect(invalidColor.sat).toBe(undefined);
+});
+
 test('construct Hex color instances', () => {
   const validColor = new types.HexColor({ red: 'ff', green: 'ff', blue: 'ff' });
   expect(validColor.invalid).toBe(false);

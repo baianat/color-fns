@@ -3,6 +3,7 @@ import parseRgb from './parseRgb';
 import hexToRgb from './hexToRgb';
 import hslToRgb from './hslToRgb';
 import hsvToRgb from './hsvToRgb';
+import cmykToRgb from './cmykToRgb';
 import { RgbColor } from './types';
 
 /**
@@ -23,6 +24,10 @@ export default function toRgb (color) {
 
   if (model === 'hsv') {
     return hsvToRgb(color);
+  }
+
+  if (model === 'cmyk') {
+    return cmykToRgb(color);
   }
 
   if (model === 'rgb' && typeof color === 'string') {

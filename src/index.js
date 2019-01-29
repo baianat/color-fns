@@ -19,6 +19,13 @@ import toRgb from './toRgb';
 import toHsl from './toHsl';
 import toHex from './toHex';
 import toHsv from './toHsv';
+import cmykToHex from './cmykToHex';
+import cmykToHsl from './cmykToHsl';
+import cmykToRgb from './cmykToRgb';
+import hexToCmyk from './hexToCmyk';
+import rgbToCmyk from './rgbToCmyk';
+import hslToCmyk from './hslToCmyk';
+import toCmyk from './toCmyk';
 import parseRgb from './parseRgb';
 import parseHsl from './parseHsl';
 import parseHex from './parseHex';
@@ -53,6 +60,13 @@ export default {
   toHex,
   toHsl,
   toHsv,
+  cmykToHex,
+  cmykToHsl,
+  cmykToRgb,
+  hexToCmyk,
+  rgbToCmyk,
+  hslToCmyk,
+  toCmyk,
   parseRgb,
   parseHex,
   parseHsl,

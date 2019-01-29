@@ -3,6 +3,7 @@ import parseHex from './parseHex';
 import rgbToHex from './rgbToHex';
 import hslToHex from './hslToHex';
 import hsvToHex from './hsvToHex';
+import cmykToHex from './cmykToHex';
 import { HexColor } from './types';
 
 /**
@@ -23,6 +24,10 @@ export default function toHex (color) {
 
   if (model === 'hsv') {
     return hsvToHex(color);
+  }
+
+  if (model === 'cmyk') {
+    return cmykToHex(color);
   }
 
   if (model === 'hex' && typeof color === 'string') {

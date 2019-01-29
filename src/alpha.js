@@ -26,7 +26,7 @@ export default function alpha (color, alpha) {
   if (model === 'hsv') {
     const { hue, sat, val } = color;
     return new HsvColor({ hue, sat, val, alpha });
-  }  
+  }
   if (model === 'cmyk') {
     const { cyan, magenta, yellow, key } = color;
     return new CmykColor({ cyan, magenta, yellow, key, alpha });

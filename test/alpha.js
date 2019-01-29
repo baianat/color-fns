@@ -28,10 +28,19 @@ const rgb = {
   model: 'rgb'
 };
 
+const cmyk = {
+  cyan: 13,
+  magenta: 100,
+  yellow: 95,
+  key: 12,
+  model: 'cmyk'
+};
+
 test('adds alpha value to color object', () => {
   expect(alpha(hex, 0.5)).toHaveProperty('alpha', '7f');
   expect(alpha(hsl, 0.5)).toHaveProperty('alpha', 0.5);
   expect(alpha(hsv, 0.5)).toHaveProperty('alpha', 0.5);
+  expect(alpha(cmyk, 0.2)).toHaveProperty('alpha', 0.2);
   expect(alpha(rgb, 0.6)).toHaveProperty('alpha', 0.6);
   expect(alpha(rgb, 0)).toHaveProperty('alpha', 0);
   expect(alpha(hex, 1.1)).toMatch(/Invalid alpha/);

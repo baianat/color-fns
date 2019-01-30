@@ -35,5 +35,13 @@ export default function getColorModel (color) {
     return 'hsv';
   }
 
+  if (color.slice(0, 5).toUpperCase() === 'CMYKA') {
+    return 'cmyk';
+  }
+
+  if (color.slice(0, 4).toUpperCase() === 'CMYK') {
+    return 'cmyk';
+  }
+
   return false;
 }

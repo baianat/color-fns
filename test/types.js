@@ -16,6 +16,25 @@ test('construct RGB color instances', () => {
   expect(invalidColor.blue).toBe(undefined);
 });
 
+test('construct CMYK color instances', () => {
+  const validColor = new types.CmykColor({ cyan: 0, magenta: 0, yellow: 0, key: 0 });
+  expect(validColor.invalid).toBe(false);
+  expect(validColor.cyan).toBe(0);
+  expect(validColor.yellow).toBe(0);
+  expect(validColor.magenta).toBe(0);
+  expect(validColor.cyan).toBe(0);
+  expect(validColor.yellow).toBe(0);
+  expect(validColor.key).toBe(0);
+  expect(validColor.alpha).toBe(1);
+
+  const invalidColor = new types.CmykColor({ cyan: 100, magenta: -1, yellow: 50, key: 100});
+  expect(invalidColor.invalid).toBe(true);
+  expect(String(invalidColor)).toBe('Invalid Color');
+  expect(invalidColor.cyan).toBe(undefined);
+  expect(invalidColor.yellow).toBe(undefined);
+  expect(invalidColor.magenta).toBe(undefined);
+});
+
 test('construct HSL color instances', () => {
   const validColor = new types.HslColor({ hue: 0, sat: 0, lum: 0, alpha: 0 });
   expect(validColor.invalid).toBe(false);

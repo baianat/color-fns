@@ -124,3 +124,30 @@ export class HsvColor extends Color {
     return `hsv(${this.hue},${this.sat}%,${this.val}%)`;
   }
 }
+
+export class CmykColor extends Color {
+  validate (components) {
+    if (!super.validate(components)) {
+      return false;
+    }
+
+    const isPercentage = isBetween(0, 100);
+
+    return isPercentage(components.cyan) && isPercentage(components.magenta) && isPercentage(components.yellow) && isPercentage(components.key);
+  }
+
+  init () {
+    this.model = 'cmyk';
+    this.alpha = isValidAlpha(this.alpha) ? this.alpha : 1;
+  }
+
+  toString () {
+    if (this.invalid) {
+      return 'Invalid Color';
+    }
+    if (isBetween(0, 0.999)(this.alpha)) {
+      return `cmyka(${this.cyan},${this.magenta},${this.yellow},${this.key},${this.alpha})`;
+    }
+    return `cmyk(${this.cyan},${this.magenta},${this.yellow},${this.key})`;
+  }
+}

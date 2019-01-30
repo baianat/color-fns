@@ -3,6 +3,7 @@ import hexToHsv from './hexToHsv';
 import parseHsv from './parseHsv';
 import rgbToHsv from './rgbToHsv';
 import hslToHsv from './hslToHsv';
+import cmykToHsv from './cmykToHsv';
 import { HsvColor } from './types';
 
 /**
@@ -19,6 +20,10 @@ export default function toHsl (color) {
 
   if (model === 'rgb') {
     return rgbToHsv(color);
+  }
+
+  if (model === 'cmyk') {
+    return cmykToHsv(color);
   }
 
   if (model === 'hsl') {

@@ -7,12 +7,11 @@ export class HexColor extends Color {
   public red: string;
   public green: string;
   public blue: string;
-  public hex: string;
 
   constructor (value: { red: string, green: string, blue: string, alpha?: string } | null) {
     super(value);
     this.model = 'hex';
-    if (!this.validate(value)) {
+    if (!value || !this.validate(value)) {
       this.invalid = true;
       this.red = '00';
       this.green = '00';

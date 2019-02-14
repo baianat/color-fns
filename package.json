@@ -6,6 +6,7 @@
   "main": "dist/color-fns.js",
   "module": "dist/color-fns.esm.js",
   "unpkg": "dist/color-fns.js",
+  "typings": "types/index.d.ts",
   "license": "MIT",
   "keywords": [
     "color",
@@ -19,7 +20,8 @@
     "lint": "tslint './src/**/*.ts' --fix",
     "build:esm": "node scripts/esm",
     "build:umd": "node scripts/umd",
-    "build": "npm run lint && npm run build:esm && npm run build:umd"
+    "build": "npm run lint && npm run build:esm && npm run build:umd && npm run types",
+    "types": "tsc --declaration --declarationDir ./types --emitDeclarationOnly ./src/index.ts"
   },
   "maintainers": [
     {
@@ -28,7 +30,8 @@
     }
   ],
   "files": [
-    "dist/*.js"
+    "dist/*.js",
+    "types/*.d.ts"
   ],
   "devDependencies": {
     "@babel/core": "^7.2.2",

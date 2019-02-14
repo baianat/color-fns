@@ -10,7 +10,7 @@ export class HsvColor extends Color {
   constructor (value: { hue: number, val: number, sat: number, alpha?: number } | null) {
     super(value);
     this.model = 'hsv';
-    if (!this.validate(value)) {
+    if (!value || !this.validate(value)) {
       this.hue = 0;
       this.val = 0;
       this.sat = 0;
@@ -23,7 +23,7 @@ export class HsvColor extends Color {
     this.val = value.val;
     this.sat = value.sat;
     this.model = 'hsv';
-    this.alpha = isValidAlpha(value.alpha) ? value.alpha : 1;
+    this.alpha = value.alpha !== undefined && isValidAlpha(value.alpha) ? value.alpha : 1;
   }
 
   public validate (value: any): boolean {

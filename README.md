@@ -6,7 +6,7 @@
 
 Modern and Modular JavaScript color utility library.
 
-### Installation
+## Installation
 
 ```bash
 # npm

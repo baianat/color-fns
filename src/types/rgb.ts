@@ -10,7 +10,7 @@ export class RgbColor extends Color {
   constructor (value: { red: number, green: number, blue: number, alpha?: number } | null) {
     super(value);
     this.model = 'rgb';
-    if (!this.validate(value)) {
+    if (!value || !this.validate(value)) {
       this.invalid = true;
       this.red = 0;
       this.green = 0;
@@ -22,7 +22,7 @@ export class RgbColor extends Color {
     this.red = value.red;
     this.green = value.green;
     this.blue = value.blue;
-    this.alpha = isValidAlpha(value.alpha) ? value.alpha : 1;
+    this.alpha = value.alpha !== undefined && isValidAlpha(value.alpha) ? value.alpha : 1;
   }
 
   public validate (value: any): boolean {

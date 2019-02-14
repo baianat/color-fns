@@ -11,7 +11,7 @@ export class CmykColor extends Color {
   constructor (value: { cyan: number, magenta: number, yellow: number, key: number, alpha?: number } | null) {
     super(value);
     this.model = 'cmyk';
-    if (!this.validate(value)) {
+    if (!value || !this.validate(value)) {
       this.invalid = true;
       this.cyan = 0;
       this.magenta = 0;
@@ -25,7 +25,7 @@ export class CmykColor extends Color {
     this.magenta = value.magenta;
     this.yellow = value.yellow;
     this.key = value.key;
-    this.alpha = isValidAlpha(value.alpha) ? value.alpha : 1;
+    this.alpha = value.alpha !== undefined && isValidAlpha(value.alpha) ? value.alpha : 1;
   }
 
   public validate (value: any): boolean {

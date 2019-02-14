@@ -1,6 +1,6 @@
 import { Color } from './types/base';
 
-export function getColorModel (color: Color | string | null): string {
+export function whichModel (color: Color | string | null): string {
   if (!color) {
     return '__none__';
   }

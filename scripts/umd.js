@@ -13,12 +13,21 @@ const { version } = require('../package.json');
 
 const mkdirp = promisify(mkdirpNode);
 
+const extensions = [
+  '.js', '.jsx', '.ts', '.tsx',
+];
+
 const inputOptions = {
   input: config.paths.umd,
   plugins: [
     replace({ __VERSION__: version }),
-    resolve(),
-    babel()
+    resolve({
+      extensions
+    }),
+    babel({
+      extensions,
+      exclude: 'node_modules/**'
+    })
   ]
 };
 

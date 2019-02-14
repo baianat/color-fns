@@ -13,8 +13,8 @@ module.exports = {
   * @license MIT
   */`,
   paths: {
-    umd: path.join(__dirname, '../src/index.js'),
-    esm: path.join(__dirname, '../src/index.esm.js'),
+    umd: path.join(__dirname, '../src/index.ts'),
+    esm: path.join(__dirname, '../src/index.esm.ts'),
     dist: path.join(__dirname, '../dist')
   },
   uglifyOptions: {

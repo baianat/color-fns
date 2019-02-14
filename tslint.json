@@ -4,6 +4,6 @@
     "tslint-config-prettier"
   ],
   "linterOptions": {
-    "exclude": ["./test/**/*.js", "jest.config.js"]
+    "exclude": ["./test/**/*.js", "jest.config.js", "./scripts/**/*.js"]
   }
 }

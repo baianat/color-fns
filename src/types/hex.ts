@@ -1,5 +1,4 @@
-import { hexNumToDec } from '../hexNumToDec';
-import { isBetween } from '../utils';
+import { hexNumToDec, isBetween } from '../utils';
 import { Color } from './base';
 
 export class HexColor extends Color {

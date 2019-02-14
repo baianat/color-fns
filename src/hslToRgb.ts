@@ -1,6 +1,6 @@
-import { normalizeDecNum } from './normalizeDecNum';
 import { parseHsl } from './parseHsl';
 import { HslColor, RgbColor } from './types';
+import { normalizeDecNum } from './utils';
 
 export function hslToRgb (hsl: HslColor | string | null): RgbColor {
   if (!hsl) {

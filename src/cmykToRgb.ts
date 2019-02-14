@@ -1,6 +1,6 @@
-import { normalizeDecNum } from './normalizeDecNum';
 import { parseCmyk } from './parseCmyk';
 import { CmykColor, RgbColor } from './types';
+import { normalizeDecNum } from './utils';
 
 export function cmykToRgb (cmyk: CmykColor | string | null) {
   if (!cmyk) {

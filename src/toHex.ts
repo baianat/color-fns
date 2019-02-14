@@ -1,13 +1,13 @@
 import { cmykToHex } from './cmykToHex';
-import { getColorModel } from './getColorModel';
 import { hslToHex } from './hslToHex';
 import { hsvToHex } from './hsvToHex';
 import { parseHex } from './parseHex';
 import { rgbToHex } from './rgbToHex';
 import { CmykColor, Color, HexColor, HslColor, HsvColor, RgbColor } from './types';
+import { whichModel } from './whichModel';
 
 export function toHex (color: Color | string | null): HexColor {
-  const model = getColorModel(color);
+  const model = whichModel(color);
 
   if (model === 'rgb') {
     return rgbToHex(color as RgbColor);

@@ -38,3 +38,26 @@ export function truncateNum (num: number): number {
 
   return (num - num % 1) || (num < 0 ? -0 : num === 0 ? num : 0);
 }
+
+export function decNumToHex (decNum: number): string {
+  decNum = Math.floor(decNum);
+  if (isNaN(decNum)) {
+    return '00';
+  }
+
+  return ('0' + decNum.toString(16)).slice(-2);
+}
+
+export function hexNumToDec (hexNum: string): number {
+  if (isNaN(parseInt(hexNum, 16))) {
+    return 0;
+  }
+
+  return parseInt(hexNum, 16);
+}
+
+export function normalizeDecNum (value: number) {
+  return Math.min(
+    Math.max(truncateNum(value), 0), 255
+  );
+}

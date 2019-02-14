@@ -1,13 +1,13 @@
 import { cmykToHsv } from './cmykToHsv';
-import { getColorModel} from './getColorModel';
 import { hexToHsv } from './hexToHsv';
 import { hslToHsv } from './hslToHsv';
 import { parseHsv } from './parseHsv';
 import { rgbToHsv } from './rgbToHsv';
 import { CmykColor, Color, HexColor, HslColor, HsvColor, RgbColor } from './types';
+import { whichModel} from './whichModel';
 
 export function toHsv (color: Color | string | null): HsvColor {
-  const model = getColorModel(color);
+  const model = whichModel(color);
 
   if (model === 'hex') {
     return hexToHsv(color as HexColor);

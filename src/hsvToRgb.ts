@@ -1,6 +1,6 @@
-import { normalizeDecNum } from './normalizeDecNum';
 import { parseHsv } from './parseHsv';
 import { HsvColor, RgbColor } from './types';
+import { normalizeDecNum } from './utils';
 
 export function hsvToRgb (hsv: HsvColor | string | null) {
   if (!hsv) {

@@ -1,6 +1,6 @@
-import { decNumToHex } from './decNumToHex';
 import { parseRgb } from './parseRgb';
 import { HexColor, RgbColor } from './types';
+import { decNumToHex } from './utils';
 
 export function rgbToHex (rgb: RgbColor | string | null): HexColor {
   if (!rgb) {

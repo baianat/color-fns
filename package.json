@@ -65,9 +65,10 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "{src,test}/**/*.ts": [
       "tslint --fix",
-      "git add"
+      "git add",
+      "jest --maxWorkers=1 --bail --findRelatedTests"
     ]
   }
 }

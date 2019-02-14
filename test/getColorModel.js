@@ -1,4 +1,4 @@
-import getColorModel from '../src/getColorModel';
+import { getColorModel } from '@/getColorModel';
 
 const hex = {
   red: 'a1',

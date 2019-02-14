@@ -1,5 +1,5 @@
-import hslToCmyk from '../src/hslToCmyk';
-import { HslColor } from '../src/types';
+import { hslToCmyk } from '@/hslToCmyk';
+import { HslColor } from '@/types';
 
 const hsl = new HslColor({
   hue:45,

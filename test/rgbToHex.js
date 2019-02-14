@@ -1,5 +1,5 @@
-import rgbToHex from '../src/rgbToHex';
-import { RgbColor } from '../src/types';
+import { rgbToHex } from '@/rgbToHex';
+import { RgbColor } from '@/types';
 
 const rgb = new RgbColor({
   red: 13,

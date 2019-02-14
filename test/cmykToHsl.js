@@ -1,5 +1,5 @@
-import cmykToHsl from '../src/cmykToHsl';
-import { CmykColor } from '../src/types';
+import { cmykToHsl } from '@/cmykToHsl';
+import { CmykColor } from '@/types';
 
 const cmyk = new CmykColor({
   cyan: 0,

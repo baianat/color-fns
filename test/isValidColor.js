@@ -1,4 +1,4 @@
-import isValidColor from '../src/isValidColor';
+import { isValidColor } from '@/isValidColor';
 
 test('validating colors', () => {
   expect(isValidColor('#c97f6a')).toBe(true);

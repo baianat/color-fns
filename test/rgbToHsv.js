@@ -1,5 +1,5 @@
-import rgbToHsv from '../src/rgbToHsv';
-import { RgbColor } from '../src/types';
+import { rgbToHsv } from '@/rgbToHsv';
+import { RgbColor } from '@/types';
 
 const rgb = new RgbColor({
   red: 13,

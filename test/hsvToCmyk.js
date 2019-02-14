@@ -1,5 +1,5 @@
-import hsvToCmyk from '../src/hsvToCmyk';
-import { HsvColor } from '../src/types';
+import { hsvToCmyk } from '@/hsvToCmyk';
+import { HsvColor } from '@/types';
 
 const hsv = new HsvColor({
   hue:45,
@@ -9,10 +9,10 @@ const hsv = new HsvColor({
 
 const cmyk = {
   invalid: false,
-  cyan: 0, 
-  magenta: 17, 
-  yellow: 68, 
-  key: 77, 
+  cyan: 0,
+  magenta: 17,
+  yellow: 68,
+  key: 77,
   alpha: 1,
   model: 'cmyk'
 }

@@ -1,5 +1,5 @@
-import hexToCmyk from '../src/hexToCmyk';
-import { HexColor } from '../src/types';
+import { hexToCmyk } from '@/hexToCmyk';
+import { HexColor } from '@/types';
 
 const hex = new HexColor({
   red: '43',

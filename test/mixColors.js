@@ -1,5 +1,5 @@
-import mixColors from '../src/mixColors';
-import { HexColor } from '../src/types';
+import { mixColors } from '@/mixColors';
+import { HexColor } from '@/types';
 
 const color1 = new HexColor({
   red: 'ff',

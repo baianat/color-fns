@@ -1,5 +1,5 @@
-import rgbToCmyk from '../src/rgbToCmyk';
-import { RgbColor } from '../src/types';
+import { rgbToCmyk } from '@/rgbToCmyk';
+import { RgbColor } from '@/types';
 
 const rgb = new RgbColor({
   red: '200',

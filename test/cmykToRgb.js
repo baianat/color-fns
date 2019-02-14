@@ -1,5 +1,5 @@
-import cmykToRgb from '../src/cmykToRgb';
-import { CmykColor } from '../src/types';
+import { cmykToRgb } from '@/cmykToRgb';
+import { CmykColor } from '@/types';
 
 const cmyk = new CmykColor({
   cyan: 0,

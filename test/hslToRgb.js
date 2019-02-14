@@ -1,5 +1,5 @@
-import hslToRgb from '../src/hslToRgb';
-import { HslColor } from '../src/types';
+import { hslToRgb } from '@/hslToRgb';
+import { HslColor } from '@/types';
 
 const hsl = new HslColor({
   hue: 2,

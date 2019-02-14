@@ -1,5 +1,5 @@
-import hexToHsv from '../src/hexToHsv';
-import { HexColor } from '../src/types';
+import { hexToHsv } from '@/hexToHsv';
+import { HexColor } from '@/types';
 
 const hex = new HexColor({
   red: 'a1',

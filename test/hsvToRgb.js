@@ -1,5 +1,5 @@
-import hsvToRgb from '../src/hsvToRgb';
-import { HsvColor } from '../src/types';
+import { hsvToRgb } from '@/hsvToRgb';
+import { HsvColor } from '@/types';
 
 const hsv = new HsvColor({
     hue: 188,

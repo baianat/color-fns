@@ -1,5 +1,5 @@
-import hslToHsv from '../src/hslToHsv';
-import { HslColor } from '../src/types';
+import { hslToHsv } from '@/hslToHsv';
+import { HslColor } from '@/types';
 
 const hsl = new HslColor({
   hue: 200,

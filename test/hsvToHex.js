@@ -1,5 +1,5 @@
-import hsvToHex from '../src/hsvToHex';
-import { HsvColor } from '../src/types';
+import { hsvToHex } from '@/hsvToHex';
+import { HsvColor } from '@/types';
 
 const hsv = new HsvColor({
   hue: 1,

@@ -1,5 +1,5 @@
-import { hexToRgb } from '@/hexToRgb';
-import { HexColor } from '@/types';
+import { hexToRgb } from '../src/hexToRgb';
+import { HexColor } from '../src/types';
 
 const hex = new HexColor({
   red: 'a1',
@@ -19,5 +19,5 @@ const rgb = {
 test('converts hex color to rgb color', () => {
   expect(hexToRgb(hex)).toMatchObject(rgb);
   expect(hexToRgb(hex.toString())).toMatchObject(rgb);
-  expect(hexToRgb()).toHaveProperty('invalid', true);
+  expect(hexToRgb(null)).toHaveProperty('invalid', true);
 });

@@ -1,10 +1,10 @@
-import { rgbToCmyk } from '@/rgbToCmyk';
-import { RgbColor } from '@/types';
+import { rgbToCmyk } from '../src/rgbToCmyk';
+import { RgbColor } from '../src/types';
 
 const rgb = new RgbColor({
-  red: '200',
-  green: '155',
-  blue: '199'
+  blue: 199,
+  green: 155,
+  red: 200
 });
 
 const cmyk = {
@@ -20,5 +20,5 @@ const cmyk = {
 test('converts rgb color to cmyk color', () => {
   expect(rgbToCmyk(rgb)).toMatchObject(cmyk);
   expect(rgbToCmyk(rgb.toString())).toMatchObject(cmyk);
-  expect(rgbToCmyk()).toHaveProperty('invalid', true);
+  expect(rgbToCmyk(null)).toHaveProperty('invalid', true);
 });

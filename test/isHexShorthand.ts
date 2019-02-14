@@ -1,4 +1,4 @@
-import { isHexShorthand } from '@/isHexShorthand';
+import { isHexShorthand } from '../src/isHexShorthand';
 
 test('check if color(s) in hex shorthand form', () => {
   expect(isHexShorthand('#c97f6a')).toBe(false);

@@ -1,5 +1,5 @@
-import { hslToCmyk } from '@/hslToCmyk';
-import { HslColor } from '@/types';
+import { hslToCmyk } from '../src/hslToCmyk';
+import { HslColor } from '../src/types';
 
 const hsl = new HslColor({
   hue:45,
@@ -20,5 +20,5 @@ const cmyk = {
 test('converts hsl color to cmyk color', () => {
   expect(hslToCmyk(hsl)).toMatchObject(cmyk);
   expect(hslToCmyk(hsl.toString())).toMatchObject(cmyk);
-  expect(hslToCmyk()).toHaveProperty('invalid', true);
+  expect(hslToCmyk(null)).toHaveProperty('invalid', true);
 });

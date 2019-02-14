@@ -1,4 +1,4 @@
-import { parseCmyk } from '@/parseCmyk';
+import { parseCmyk } from '../src/parseCmyk';
 
 test('parses CMYK strings', () => {
   const parsed = parseCmyk('cmyk(31, 20, 12, 19)');

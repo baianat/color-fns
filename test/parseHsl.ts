@@ -1,4 +1,4 @@
-import { parseHsl } from '@/parseHsl';
+import { parseHsl } from '../src/parseHsl';
 
 test('parses HSL strings', () => {
   const parsed = parseHsl('hsl(31, 30%, 14%)');

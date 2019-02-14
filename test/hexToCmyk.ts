@@ -1,24 +1,24 @@
-import { hexToCmyk } from '@/hexToCmyk';
-import { HexColor } from '@/types';
+import { hexToCmyk } from '../src/hexToCmyk';
+import { HexColor } from '../src/types';
 
 const hex = new HexColor({
-  red: '43',
+  blue: '61',
   green: '2c',
-  blue: '61'
+  red: '43',
 });
 
 const cmyk = {
-  invalid: false,
-  cyan: 30, // should be 31
-  magenta: 54, // should be 55
-  yellow: 0,
-  key: 61, // should be 62
   alpha: 1,
-  model: 'cmyk'
+  cyan: 30, // should be 31
+  invalid: false,
+  key: 61, // should be 62
+  magenta: 54, // should be 55
+  model: 'cmyk',
+  yellow: 0,
 }
 
 test('converts hex color to cmyk color', () => {
   expect(hexToCmyk(hex)).toMatchObject(cmyk);
   expect(hexToCmyk(hex.toString())).toMatchObject(cmyk);
-  expect(hexToCmyk()).toHaveProperty('invalid', true);
+  expect(hexToCmyk(null)).toHaveProperty('invalid', true);
 });

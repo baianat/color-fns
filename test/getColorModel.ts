@@ -1,39 +1,39 @@
-import { whichModel } from '@/whichModel';
+import { whichModel } from '../src/whichModel';
 
 const hex = {
-  red: 'a1',
-  green: '16',
   blue: '12',
-  model: 'hex'
+  green: '16',
+  model: 'hex',
+  red: 'a1',
 };
 
 const hsl = {
   hue: 200,
-  sat: 100,
   lum: 50,
-  model: 'hsl'
+  model: 'hsl',
+  sat: 100,
 };
 
 const hsv = {
   hue: 200,
+  model: 'hsv',
   sat: 100,
-  val: 50,
-  model: 'hsv'
+  val: 50
 };
 
 const rgb = {
-  red: 13,
-  green: 200,
   blue: 230,
-  model: 'rgb'
+  green: 200,
+  model: 'rgb',
+  red: 13,
 };
 
 const cmyk = {
   cyan: 65,
-  magenta: 100,
-  yellow: 12,
   key: 56,
-  model: 'cmyk'
+  magenta: 100,
+  model: 'cmyk',
+  yellow: 12
 };
 
 test('get color model', () => {

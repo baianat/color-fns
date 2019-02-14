@@ -1,12 +1,12 @@
 import { Color } from './types/base';
 
-export function whichModel (color: Color | string | null): string {
+export function whichModel (color: object | Color | string | null): string {
   if (!color) {
     return '__none__';
   }
 
   if (typeof color === 'object') {
-    return color.model;
+    return (color as Color).model;
   }
 
   if (color.slice(0, 1) === '#' && (color.length === 4 || color.length === 7)) {

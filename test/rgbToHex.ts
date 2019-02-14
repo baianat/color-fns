@@ -1,5 +1,5 @@
-import { rgbToHex } from '@/rgbToHex';
-import { RgbColor } from '@/types';
+import { rgbToHex } from '../src/rgbToHex';
+import { RgbColor } from '../src/types';
 
 const rgb = new RgbColor({
   red: 13,
@@ -20,5 +20,5 @@ const hex = {
 test('converts rgb color to hex color', () => {
   expect(rgbToHex(rgb)).toMatchObject(hex);
   expect(rgbToHex(rgb.toString())).toMatchObject(hex);
-  expect(rgbToHex()).toHaveProperty('invalid', true);
+  expect(rgbToHex(null)).toHaveProperty('invalid', true);
 });

@@ -1,5 +1,5 @@
-import { rgbToHsv } from '@/rgbToHsv';
-import { RgbColor } from '@/types';
+import { rgbToHsv } from '../src/rgbToHsv';
+import { RgbColor } from '../src/types';
 
 const rgb = new RgbColor({
   red: 13,
@@ -20,12 +20,12 @@ test('converts rgb color to hsv color', () => {
   expect(rgbToHsv(rgb.toString())).toMatchObject(hsv);
 
   // test edge case when green is max
-  expect(rgbToHsv({ ...rgb, green: 255 })).toMatchObject({
+  expect(rgbToHsv({ ...rgb, green: 255, validate: undefined })).toMatchObject({
     invalid: false,
     hue: 173,
     sat: 94, // should be 94.9
     val: 100
   });
 
-  expect(rgbToHsv()).toHaveProperty('invalid', true);
+  expect(rgbToHsv(null)).toHaveProperty('invalid', true);
 });

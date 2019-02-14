@@ -1,5 +1,5 @@
-import { hsvToCmyk } from '@/hsvToCmyk';
-import { HsvColor } from '@/types';
+import { hsvToCmyk } from '../src/hsvToCmyk';
+import { HsvColor } from '../src/types';
 
 const hsv = new HsvColor({
   hue:45,
@@ -20,5 +20,5 @@ const cmyk = {
 test('converts hsv color to cmyk color', () => {
   expect(hsvToCmyk(hsv)).toMatchObject(cmyk);
   expect(hsvToCmyk(hsv.toString())).toMatchObject(cmyk);
-  expect(hsvToCmyk()).toHaveProperty('invalid', true);
+  expect(hsvToCmyk(null)).toHaveProperty('invalid', true);
 });

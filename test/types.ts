@@ -1,4 +1,4 @@
-import * as types from '@/types';
+import * as types from '../src/types';
 
 test('construct RGB color instances', () => {
   const validColor = new types.RgbColor({ red: 0, blue: 0, green: 0 });
@@ -75,7 +75,7 @@ test('construct Hex color instances', () => {
   expect(validColor.green).toBe('ff');
   expect(validColor.alpha).toBe('ff');
 
-  const invalidColor = new types.HexColor({ red: 0, green: 'z1', blue: 0 });
+  const invalidColor = new types.HexColor({ red: 'zz', green: 'z1', blue: 'yx' });
   expect(invalidColor.invalid).toBe(true);
   expect(String(invalidColor)).toBe('Invalid Color');
   expect(invalidColor.red).toBe('00');

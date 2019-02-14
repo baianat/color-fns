@@ -1,4 +1,4 @@
-import { parseHex } from '@/parseHex';
+import { parseHex } from '../src/parseHex';
 
 test('parses HEX strings', () => {
   const parsed = parseHex('#c97f6a');

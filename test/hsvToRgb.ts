@@ -1,5 +1,5 @@
-import { hsvToRgb } from '@/hsvToRgb';
-import { HsvColor } from '@/types';
+import { hsvToRgb } from '../src/hsvToRgb';
+import { HsvColor } from '../src/types';
 
 const hsv = new HsvColor({
     hue: 188,
@@ -18,5 +18,5 @@ test('converts hsv color to rgb color', () => {
 
   expect(hsvToRgb(hsv)).toMatchObject(rgb);
   expect(hsvToRgb(hsv.toString())).toMatchObject(rgb);
-  expect(hsvToRgb()).toHaveProperty('invalid', true);
+  expect(hsvToRgb(null)).toHaveProperty('invalid', true);
 });

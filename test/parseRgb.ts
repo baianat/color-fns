@@ -1,4 +1,4 @@
-import { parseRgb } from '@/parseRgb';
+import { parseRgb } from '../src/parseRgb';
 
 test('parses RGB strings', () => {
   const parsed = parseRgb('rgb(31, 234, 12)');

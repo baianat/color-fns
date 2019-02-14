@@ -1,5 +1,5 @@
-import { hslToRgb } from '@/hslToRgb';
-import { HslColor } from '@/types';
+import { hslToRgb } from '../src/hslToRgb';
+import { HslColor } from '../src/types';
 
 const hsl = new HslColor({
   hue: 2,
@@ -20,5 +20,5 @@ const rgb = {
 test('converts hsl color to rgb color', () => {
   expect(hslToRgb(hsl)).toMatchObject(rgb);
   expect(hslToRgb(hsl.toString())).toMatchObject(rgb);
-  expect(hslToRgb()).toHaveProperty('invalid', true);
+  expect(hslToRgb(null)).toHaveProperty('invalid', true);
 });

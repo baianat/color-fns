@@ -1,5 +1,5 @@
-import { hexToHsv } from '@/hexToHsv';
-import { HexColor } from '@/types';
+import { hexToHsv } from '../src/hexToHsv';
+import { HexColor } from '../src/types';
 
 const hex = new HexColor({
   red: 'a1',
@@ -20,5 +20,5 @@ const hsv = {
 test('converts hex color to hsv color', () => {
   expect(hexToHsv(hex)).toMatchObject(hsv);
   expect(hexToHsv(hex.toString())).toMatchObject(hsv);
-  expect(hexToHsv()).toHaveProperty('invalid', true);
+  expect(hexToHsv(null)).toHaveProperty('invalid', true);
 });

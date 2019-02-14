@@ -1,5 +1,5 @@
-import { rgbToHsl } from '@/rgbToHsl';
-import { RgbColor } from '@/types';
+import { rgbToHsl } from '../src/rgbToHsl';
+import { RgbColor } from '../src/types';
 
 const rgb = new RgbColor({
   red: 13,
@@ -20,12 +20,12 @@ test('converts rgb color to hsl color', () => {
   expect(rgbToHsl(rgb.toString())).toMatchObject(hsl);
 
   // test edge case when green is max
-  expect(rgbToHsl({ ...rgb, green: 255 })).toMatchObject({
+  expect(rgbToHsl({ ...rgb, green: 255, validate: undefined })).toMatchObject({
     invalid: false,
     hue: 173,
     sat: 100,
     lum: 52
   });
 
-  expect(rgbToHsl()).toHaveProperty('invalid', true);
+  expect(rgbToHsl(null)).toHaveProperty('invalid', true);
 });

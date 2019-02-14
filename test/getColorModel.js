@@ -1,4 +1,4 @@
-import { getColorModel } from '@/getColorModel';
+import { whichModel } from '@/whichModel';
 
 const hex = {
   red: 'a1',
@@ -37,19 +37,19 @@ const cmyk = {
 };
 
 test('get color model', () => {
-  expect(getColorModel(hex)).toMatch(/hex/);
-  expect(getColorModel(hsl)).toMatch(/hsl/);
-  expect(getColorModel(hsv)).toMatch(/hsv/);
-  expect(getColorModel(cmyk)).toMatch(/cmyk/);
-  expect(getColorModel(rgb)).toMatch(/rgb/);
-  expect(getColorModel('#a11612')).toMatch(/hex/);
-  expect(getColorModel('#a11612ff')).toMatch(/hex/);
-  expect(getColorModel('hsl(200, 100%, 50%)')).toMatch(/hsl/);
-  expect(getColorModel('hsla(200, 100%, 50%, 1)')).toMatch(/hsl/);
-  expect(getColorModel('hsv(200, 100%, 50%)')).toMatch(/hsv/);
-  expect(getColorModel('hsva(200, 100%, 50%, 1)')).toMatch(/hsv/);
-  expect(getColorModel('cmyk(13, 100, 64)')).toMatch(/cmyk/);
-  expect(getColorModel('cmyka(13, 100, 32, 1)')).toMatch(/cmyk/);
-  expect(getColorModel('rgb(13, 200, 230)')).toMatch(/rgb/);
-  expect(getColorModel('rgba(13, 200, 230, 1)')).toMatch(/rgb/);
+  expect(whichModel(hex)).toMatch(/hex/);
+  expect(whichModel(hsl)).toMatch(/hsl/);
+  expect(whichModel(hsv)).toMatch(/hsv/);
+  expect(whichModel(cmyk)).toMatch(/cmyk/);
+  expect(whichModel(rgb)).toMatch(/rgb/);
+  expect(whichModel('#a11612')).toMatch(/hex/);
+  expect(whichModel('#a11612ff')).toMatch(/hex/);
+  expect(whichModel('hsl(200, 100%, 50%)')).toMatch(/hsl/);
+  expect(whichModel('hsla(200, 100%, 50%, 1)')).toMatch(/hsl/);
+  expect(whichModel('hsv(200, 100%, 50%)')).toMatch(/hsv/);
+  expect(whichModel('hsva(200, 100%, 50%, 1)')).toMatch(/hsv/);
+  expect(whichModel('cmyk(13, 100, 64)')).toMatch(/cmyk/);
+  expect(whichModel('cmyka(13, 100, 32, 1)')).toMatch(/cmyk/);
+  expect(whichModel('rgb(13, 200, 230)')).toMatch(/rgb/);
+  expect(whichModel('rgba(13, 200, 230, 1)')).toMatch(/rgb/);
 });

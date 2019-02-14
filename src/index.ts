@@ -31,6 +31,11 @@ export { toHex } from './toHex';
 export { toHsl } from './toHsl';
 export { toHsv } from './toHsv';
 export { toRgb } from './toRgb';
+export { randomCmyk } from './randomCmyk';
+export { randomHsl } from './randomHsl';
+export { randomHsv } from './randomHsv';
+export { randomRgb } from './randomRgb';
+export { randomHex } from './randomHex';
 export * from './types';
 
 export const version = '__VERSION__';

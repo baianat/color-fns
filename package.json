@@ -2,11 +2,11 @@
   "name": "color-fns",
   "version": "0.0.10",
   "description": "Modern JavaScript color utility library.",
-  "author": "",
   "main": "dist/color-fns.js",
   "module": "dist/color-fns.esm.js",
   "unpkg": "dist/color-fns.js",
   "typings": "dist/types/index.d.ts",
+  "repository": "https://github.com/baianat/color-fns",
   "license": "MIT",
   "keywords": [
     "color",

@@ -20,7 +20,7 @@ test('converts rgb color to hsv color', () => {
   expect(rgbToHsv(rgb.toString())).toMatchObject(hsv);
 
   // test edge case when green is max
-  expect(rgbToHsv({ ...rgb, green: 255, validate: undefined })).toMatchObject({
+  expect(rgbToHsv(new RgbColor({ ...rgb, green: 255 }))).toMatchObject({
     invalid: false,
     hue: 173,
     sat: 94, // should be 94.9

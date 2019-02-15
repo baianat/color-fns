@@ -20,7 +20,7 @@ test('converts rgb color to hsl color', () => {
   expect(rgbToHsl(rgb.toString())).toMatchObject(hsl);
 
   // test edge case when green is max
-  expect(rgbToHsl({ ...rgb, green: 255, validate: undefined })).toMatchObject({
+  expect(rgbToHsl(new RgbColor({ ...rgb, green: 255 }))).toMatchObject({
     invalid: false,
     hue: 173,
     sat: 100,

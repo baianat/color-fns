@@ -1,6 +1,5 @@
 import { parseRgb } from './parseRgb';
 import { RgbColor } from './types/rgb';
-import { isBetween, isValidAlpha } from './utils';
 
 export function isValidRgb (value: string | null) {
   // Handle null values.
@@ -9,15 +8,6 @@ export function isValidRgb (value: string | null) {
   }
 
   const rgb: RgbColor = parseRgb(value);
-  if (rgb.invalid) {
-    return false;
-  }
 
-  const isInRange = isBetween(0, 255);
-  const { red, green, blue } = rgb;
-  if ('alpha' in rgb && !isValidAlpha(rgb.alpha)) {
-    return false;
-  }
-
-  return isInRange(red) && isInRange(green) && isInRange(blue);
+  return !rgb.invalid;
 }

@@ -37,6 +37,8 @@ export { randomHsv } from './randomHsv';
 export { randomRgb } from './randomRgb';
 export { randomHex } from './randomHex';
 export { isValidRgb } from './isValidRgb';
+export { isValidHex } from './isValidHex';
+
 export * from './types';
 
 export const version = '__VERSION__';

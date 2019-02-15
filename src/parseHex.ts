@@ -7,7 +7,7 @@ export function parseHex (hex: string | null) {
   }
 
   const expanded = expandHexShorthand(hex);
-  const match = expanded.match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
+  const match = expanded.match(/^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
   if (!match || match.length < 4) {
     return new HexColor(null);
   }

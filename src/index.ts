@@ -35,5 +35,6 @@ export { formatHex } from './formatHex';
 export { formatHsl } from './formatHsl';
 export { formatHsv } from './formatHsv';
 export { formatCmyk } from './formatCmyk';
+export { contrastInfo } from './contrastInfo';
 
 export const version = '__VERSION__';

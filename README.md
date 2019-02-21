@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="200" src="https://github.com/baianat/color-fns/blob/master/logo.png">
+  <img width="200" src="https://github.com/baianat/color-fns/blob/master/logo.svg">
 </p>
 
 # 🎨 Color-fns 🎨

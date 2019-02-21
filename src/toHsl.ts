@@ -1,37 +1,33 @@
-import { cmykToHsl } from './cmykToHsl';
-import { hexToHsl } from './hexToHsl';
-import { hsvToHsl } from './hsvToHsl';
+import { cmykToRgb } from './cmykToRgb';
+import { hexToRgb } from './hexToRgb';
+import { hsvToRgb } from './hsvToRgb';
 import { parseHsl } from './parseHsl';
 import { rgbToHsl } from './rgbToHsl';
-import { CmykColor, Color, HexColor, HslColor, HsvColor, RgbColor } from './types';
+import { IHslColor } from './types/hsl';
 import { whichModel } from './whichModel';
 
-export function toHsl (color: Color | string | null): HslColor {
+export function toHsl (color: string | null): IHslColor | null {
   const model = whichModel(color);
 
   if (model === 'hex') {
-    return hexToHsl(color as HexColor);
+    return rgbToHsl(hexToRgb(color));
   }
 
   if (model === 'rgb') {
-    return rgbToHsl(color as RgbColor);
+    return rgbToHsl(color);
   }
 
   if (model === 'hsv') {
-    return hsvToHsl(color as HsvColor);
+    return rgbToHsl(hsvToRgb(color));
   }
 
   if (model === 'cmyk') {
-    return cmykToHsl(color as CmykColor);
+    return rgbToHsl(cmykToRgb(color));
   }
 
   if (model === 'hsl' && typeof color === 'string') {
     return parseHsl(color);
   }
 
-  if (model === 'hsl' && typeof color === 'object') {
-    return color as HslColor;
-  }
-
-  return new HslColor(null);
+  return null;
 }

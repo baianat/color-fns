@@ -1,17 +1,15 @@
 import { parseRgb } from './parseRgb';
-import { HsvColor, RgbColor } from './types';
+import { IHsvColor } from './types/hsv';
+import { IRgbColor } from './types/rgb';
 
-export function rgbToHsv (rgb: RgbColor | string | null): HsvColor {
-  if (!rgb) {
-    return new HsvColor(null);
-  }
-
-  if (typeof rgb === 'string') {
-    rgb = parseRgb(rgb);
+export function rgbToHsv (rgb: IRgbColor | string | null): IHsvColor | null {
+  const value = typeof rgb === 'string' ? parseRgb(rgb) : rgb;
+  if (!value) {
+    return null;
   }
 
   // Convert the RGB values to the range 0-1
-  const [red, green, blue, alpha] = [rgb.red / 255, rgb.green / 255, rgb.blue / 255, rgb.alpha];
+  const [red, green, blue, alpha] = [value.red / 255, value.green / 255, value.blue / 255, value.alpha];
   let [hue, sat, val] = [0, 0, 0];
 
   // Find the minimum and maximum values of R, G and B.
@@ -42,10 +40,10 @@ export function rgbToHsv (rgb: RgbColor | string | null): HsvColor {
   sat = Math.floor(sat * 100);
   val = Math.floor(val * 100);
 
-  return new HsvColor({
-    alpha,
+  return {
+    alpha: alpha || 1,
     hue,
     sat,
     val
-  });
+  };
 }

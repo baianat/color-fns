@@ -1,8 +1,8 @@
-import { RgbColor } from './types';
+import { IRgbColor } from './types/rgb';
 
-export function parseRgb (value: string | null): RgbColor {
+export function parseRgb(value: string | null): IRgbColor | null {
   if (typeof value !== 'string') {
-    return new RgbColor(null);
+    return null;
   }
 
   // will consider rgb/rgba color prefix as a valid input color
@@ -11,13 +11,13 @@ export function parseRgb (value: string | null): RgbColor {
   // the output for the inputted examples 'rgba(100, 0, 0, 0.5)', 'rgb(0, 0, 0)'
   const match = value.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
   if (!match || match.length < 4) {
-    return new RgbColor(null);
+    return null;
   }
 
-  return new RgbColor({
-    alpha: Number(match[4]),
+  return {
+    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : 1,
     blue: Number(match[3]),
     green: Number(match[2]),
     red: Number(match[1])
-  });
+  };
 }

@@ -1,7 +1,9 @@
 import { randomRgb } from '../src/randomRgb';
-import { RgbColor } from '../src/types';
 
-test('generates random rgbs', () => {
-  expect(randomRgb()).toBeInstanceOf(RgbColor);
-  expect(randomRgb().invalid).toBe(false);
+test('generates random hex', () => {
+  expect(randomRgb()).toMatchObject({
+    red: expect.any(Number),
+    green: expect.any(Number),
+    blue: expect.any(Number)
+  });
 });

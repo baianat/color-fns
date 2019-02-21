@@ -1,8 +1,8 @@
-import { HslColor } from './types';
+import { IHslColor } from './types/hsl';
 
-export function parseHsl (value: string | null): HslColor {
+export function parseHsl (value: string | null): IHslColor | null {
   if (typeof value !== 'string') {
-    return new HslColor(null)
+    return null;
   }
 
   // will consider hsl/hsla color prefix as a valid input color
@@ -11,13 +11,13 @@ export function parseHsl (value: string | null): HslColor {
   // the output for the inputted examples 'hsla(255, 100%, 50%, 0.5)', 'hsl(100, 100%, 50%)'
   const match = value.match(/^hsla?\(\s*(\d+)\s*,\s*(\d+)%\s*,\s*(\d+)%\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
   if (!match || match.length < 4) {
-    return new HslColor(null)
+    return null;
   }
 
-  return new HslColor({
+  return {
     alpha: Number(match[4]),
     hue: Number(match[1]),
     lum: Number(match[3]),
     sat: Number(match[2]),
-  });
+  };
 }

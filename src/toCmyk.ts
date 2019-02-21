@@ -1,37 +1,33 @@
-import { hexToCmyk } from './hexToCmyk';
-import { hslToCmyk } from './hslToCmyk';
-import { hsvToCmyk } from './hsvToCmyk';
+import { hexToRgb } from './hexToRgb';
+import { hslToRgb } from './hslToRgb';
+import { hsvToRgb } from './hsvToRgb';
 import { parseCmyk } from './parseCmyk';
 import { rgbToCmyk } from './rgbToCmyk';
-import { CmykColor, Color, HexColor, HslColor, HsvColor, RgbColor } from './types';
+import { ICmykColor } from './types/cmyk';
 import { whichModel } from './whichModel';
 
-export function toCmyk (color: Color | string | null): CmykColor {
+export function toCmyk (color: string | null): ICmykColor | null {
   const model = whichModel(color);
 
   if (model === 'hex') {
-    return hexToCmyk(color as HexColor);
+    return rgbToCmyk(hexToRgb(color));
   }
 
   if (model === 'hsl') {
-    return hslToCmyk(color as HslColor);
+    return rgbToCmyk(hslToRgb(color));
   }
 
   if (model === 'hsv') {
-    return hsvToCmyk(color as HsvColor);
+    return rgbToCmyk(hsvToRgb(color));
   }
 
   if (model === 'rgb') {
-    return rgbToCmyk(color as RgbColor);
+    return rgbToCmyk(color);
   }
 
   if (model === 'cmyk' && typeof color === 'string') {
     return parseCmyk(color);
   }
 
-  if (model === 'cmyk') {
-    return color as CmykColor;
-  }
-
-  return new CmykColor(null);
+  return null;
 }

@@ -1,17 +1,15 @@
 import { parseHsl } from './parseHsl';
-import { HslColor, RgbColor } from './types';
+import { IHslColor } from './types/hsl';
+import { IRgbColor } from './types/rgb';
 import { normalizeDecNum } from './utils';
 
-export function hslToRgb (hsl: HslColor | string | null): RgbColor {
-  if (!hsl) {
-    return new RgbColor(null);
+export function hslToRgb (hsl: IHslColor | string | null): IRgbColor | null {
+  const value = typeof hsl === 'string' ? parseHsl(hsl) : hsl;
+  if (!value) {
+    return null;
   };
 
-  if (typeof hsl === 'string') {
-    hsl = parseHsl(hsl);
-  }
-
-  const [hue, sat, lgh, alpha] = [hsl.hue / 360, hsl.sat / 100, hsl.lum / 100, hsl.alpha];
+  const [hue, sat, lgh, alpha] = [value.hue / 360, value.sat / 100, value.lum / 100, value.alpha];
   let [red, green, blue] = [0, 0, 0];
 
   if (sat === 0) {
@@ -48,10 +46,10 @@ export function hslToRgb (hsl: HslColor | string | null): RgbColor {
     blue = normalizeDecNum(255 * testHue(hue - 1 / 3));
   }
 
-  return new RgbColor({
+  return {
     alpha,
     blue,
     green,
     red
-  });
+  };
 }

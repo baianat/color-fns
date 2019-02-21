@@ -1,6 +1,6 @@
 import { isValidHex } from '../src/isValidHex';
 
-test('validates hex color strings', () => {
+test('validates Hex color strings', () => {
   expect(isValidHex('#c97f6a')).toBe(true);
   expect(isValidHex('#ffa')).toBe(true);
   expect(isValidHex('c97f6a')).toBe(false);

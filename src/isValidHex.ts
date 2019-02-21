@@ -1,13 +1,13 @@
 import { parseHex } from './parseHex';
-import { HexColor } from './types/hex';
+import { IHexColor } from './types/hex';
 
-export function isValidHex (value: string | null) {
-  // Handle null values.
-  if (!value) {
+export function isValidHex (value: IHexColor | string | null) {
+  const normalizedVal = typeof value === 'string' ? parseHex(value) : value;
+  if (!normalizedVal) {
     return false;
   }
 
-  const hex: HexColor = parseHex(value);
+  const { red, green, blue } = normalizedVal;
 
-  return !hex.invalid;
+  return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(`#${red}${green}${blue}`);
 }

@@ -1,21 +1,10 @@
-export { cmykToHex } from './cmykToHex';
-export { cmykToHsl } from './cmykToHsl';
 export { cmykToRgb } from './cmykToRgb';
 export { expandHexShorthand } from './expandHexShorthand';
 export { whichModel } from './whichModel';
-export { hexToCmyk } from './hexToCmyk';
-export { hexToHsl } from './hexToHsl';
-export { hexToHsv } from './hexToHsv';
 export { hexToRgb } from './hexToRgb';
-export { hslToCmyk } from './hslToCmyk';
-export { hslToHex } from './hslToHex';
-export { hslToHsv } from './hslToHsv';
 export { hslToRgb } from './hslToRgb';
-export { hsvToHex } from './hsvToHex';
-export { hsvToHsl } from './hsvToHsl';
 export { hsvToRgb } from './hsvToRgb';
 export { isHexShorthand } from './isHexShorthand';
-export { isValidColor } from './isValidColor';
 export { mixColors } from './mixColors';
 export { parseCmyk } from './parseCmyk';
 export { parseHex } from './parseHex';
@@ -38,7 +27,13 @@ export { randomRgb } from './randomRgb';
 export { randomHex } from './randomHex';
 export { isValidRgb } from './isValidRgb';
 export { isValidHex } from './isValidHex';
-
-export * from './types';
+export { isValidHsl } from './isValidHsl';
+export { isValidHsv } from './isValidHsv';
+export { isValidCmyk } from './isValidCmyk';
+export { formatRgb } from './formatRgb';
+export { formatHex } from './formatHex';
+export { formatHsl } from './formatHsl';
+export { formatHsv } from './formatHsv';
+export { formatCmyk } from './formatCmyk';
 
 export const version = '__VERSION__';

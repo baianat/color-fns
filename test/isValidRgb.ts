@@ -1,6 +1,6 @@
 import { isValidRgb } from '../src/isValidRgb';
 
-test('validating colors', () => {
+test('validates RGB color strings', () => {
   expect(isValidRgb('rgb(255, 100, 200)')).toBe(true);
   expect(isValidRgb('rgba(255, 100, 200)')).toBe(true);
   expect(isValidRgb('rgb(256, 100, 200)')).toBe(false);

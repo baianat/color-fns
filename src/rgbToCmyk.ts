@@ -1,17 +1,15 @@
 import { parseRgb } from './parseRgb';
-import { CmykColor, RgbColor } from './types';
+import { ICmykColor } from './types/cmyk';
+import { IRgbColor } from './types/rgb';
 
-export function rgbToCmyk (rgb: RgbColor | string | null) {
-  if (!rgb) {
-    return new CmykColor(null);
-  }
-
-  if (typeof rgb === 'string') {
-    rgb = parseRgb(rgb);
+export function rgbToCmyk (rgb: IRgbColor | string | null): ICmykColor | null {
+  const value = typeof rgb === 'string' ? parseRgb(rgb) : rgb;
+  if (!value) {
+    return null;
   }
 
   // Convert the RGB values to the range 0-1
-  const [red, green, blue, alpha] = [rgb.red / 255, rgb.green / 255, rgb.blue / 255, rgb.alpha];
+  const [red, green, blue, alpha] = [value.red / 255, value.green / 255, value.blue / 255, value.alpha];
 
   // Find the maximum value of R, G and B.
   const max = Math.max(red, green, blue);
@@ -28,11 +26,11 @@ export function rgbToCmyk (rgb: RgbColor | string | null) {
   yellow = Math.floor(yellow * 100);
   key = Math.floor(key * 100);
 
-  return new CmykColor({
-    alpha,
+  return {
+    alpha: typeof alpha !== 'undefined' ? alpha : 1,
     cyan,
     key,
     magenta,
     yellow
-  });
+  };
 }

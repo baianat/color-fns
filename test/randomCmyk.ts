@@ -1,7 +1,10 @@
 import { randomCmyk } from '../src/randomCmyk';
-import { CmykColor } from '../src/types';
 
 test('generates random cmyk color', () => {
-  expect(randomCmyk()).toBeInstanceOf(CmykColor);
-  expect(randomCmyk().invalid).toBe(false);
+  expect(randomCmyk()).toMatchObject({
+    cyan: expect.any(Number),
+    magenta: expect.any(Number),
+    yellow: expect.any(Number),
+    key: expect.any(Number)
+  })
 });

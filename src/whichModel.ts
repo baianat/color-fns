@@ -1,53 +1,40 @@
-import { Color } from './types/base';
+enum ColorModel {
+  UNKNOWN = '',
+  RGB = 'rgb',
+  HEX = 'hex',
+  HSL = 'hsl',
+  HSV = 'hsv',
+  CMYK = 'cmyk'
+}
 
-export function whichModel (color: object | Color | string | null): string {
+export function whichModel (color: string | null): ColorModel {
   if (!color) {
-    return '__none__';
-  }
-
-  if (typeof color === 'object') {
-    return (color as Color).model;
+    return ColorModel.UNKNOWN;
   }
 
   if (color.slice(0, 1) === '#' && (color.length === 4 || color.length === 7)) {
-    return 'hex';
+    return ColorModel.HEX;
   }
 
   if (color.slice(0, 1) === '#' && (color.length === 6 || color.length === 9)) {
-    return 'hex';
-  }
-
-  if (color.slice(0, 4).toUpperCase() === 'RGBA') {
-    return 'rgb';
+    return ColorModel.HEX;
   }
 
   if (color.slice(0, 3).toUpperCase() === 'RGB') {
-    return 'rgb';
-  }
-
-  if (color.slice(0, 4).toUpperCase() === 'HSLA') {
-    return 'hsl';
+    return ColorModel.RGB;
   }
 
   if (color.slice(0, 3).toUpperCase() === 'HSL') {
-    return 'hsl';
-  }
-
-  if (color.slice(0, 4).toUpperCase() === 'HSVA') {
-    return 'hsv';
+    return ColorModel.HSL;
   }
 
   if (color.slice(0, 3).toUpperCase() === 'HSV') {
-    return 'hsv';
-  }
-
-  if (color.slice(0, 5).toUpperCase() === 'CMYKA') {
-    return 'cmyk';
+    return ColorModel.HSV;
   }
 
   if (color.slice(0, 4).toUpperCase() === 'CMYK') {
-    return 'cmyk';
+    return ColorModel.CMYK;
   }
 
-  return '__none__';
+  return ColorModel.UNKNOWN;
 }

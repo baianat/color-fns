@@ -1,14 +1,14 @@
-import { HexColor } from './types/hex';
+import { IHexColor } from './types/hex';
 import { decNumToHex, getRandomInt } from './utils';
 
-export function randomHex (): HexColor {
+export function randomHex (): IHexColor {
   const randHex = () => {
     return decNumToHex(getRandomInt(0, 255));
   };
 
-  return new HexColor({
+  return {
     blue: randHex(),
     green: randHex(),
     red: randHex()
-  });
+  };
 }

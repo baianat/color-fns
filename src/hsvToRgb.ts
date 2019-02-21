@@ -1,18 +1,15 @@
 import { parseHsv } from './parseHsv';
-import { HsvColor, RgbColor } from './types';
+import { IHsvColor } from './types/hsv';
+import { IRgbColor } from './types/rgb';
 import { normalizeDecNum } from './utils';
 
-export function hsvToRgb (hsv: HsvColor | string | null) {
-  if (!hsv) {
-    return new RgbColor(null);
+export function hsvToRgb (hsv: IHsvColor | string | null): IRgbColor | null {
+  const value = typeof hsv === 'string' ? parseHsv(hsv) : hsv;
+  if (!value) {
+    return null;
   };
 
-  if (typeof hsv === 'string') {
-    hsv = parseHsv(hsv);
-  }
-
-
-  const [hue, sat, val, alpha] = [hsv.hue / 360, hsv.sat / 100, hsv.val / 100, hsv.alpha];
+  const [hue, sat, val, alpha] = [value.hue / 360, value.sat / 100, value.val / 100, value.alpha];
   let [red, green, blue] = [0, 0, 0];
 
   if (sat === 0) {
@@ -50,10 +47,10 @@ export function hsvToRgb (hsv: HsvColor | string | null) {
     blue = normalizeDecNum(255 * (b + m));
   }
 
-  return new RgbColor({
+  return {
     alpha,
     blue,
     green,
     red
-  });
+  };
 }

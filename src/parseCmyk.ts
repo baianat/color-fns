@@ -1,8 +1,8 @@
-import { CmykColor } from './types';
+import { ICmykColor } from "./types/cmyk";
 
-export function parseCmyk (cmyk: string | null) {
-  if (typeof cmyk !== 'string') {
-    return new CmykColor(null)
+export function parseCmyk (cmyk: string | null): ICmykColor | null {
+  if (!cmyk) {
+    return null;
   }
 
   // will consider cmyk/cmyka color prefix as a valid input color
@@ -11,14 +11,14 @@ export function parseCmyk (cmyk: string | null) {
   // the output for the inputted examples 'cmyka(100, 0, 0, 0.5)', 'cmyk(0, 0, 0)'
   const match = cmyk.match(/^cmyka?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)\s*,*\s*(\d*(?:\.\d+)*)*\)/i);
   if (!match || match.length < 5) {
-    return new CmykColor(null)
+    return null;
   }
 
-  return new CmykColor({
-    alpha: Number(match[5]),
+  return {
+    alpha: typeof match[5] !== 'undefined' ? Number(match[5]) : 1,
     cyan: Number(match[1]),
     key: Number(match[4]),
     magenta: Number(match[2]),
     yellow: Number(match[3]),
-  });
+  };
 }

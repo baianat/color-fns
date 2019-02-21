@@ -1,7 +1,9 @@
 import { randomHex } from '../src/randomHex';
-import { HexColor } from '../src/types';
 
 test('generates random hex', () => {
-  expect(randomHex()).toBeInstanceOf(HexColor);
-  expect(randomHex().invalid).toBe(false);
+  expect(randomHex()).toMatchObject({
+    red: expect.stringMatching(/[0-9A-F]{2}/i),
+    green: expect.stringMatching(/[0-9A-F]{2}/i),
+    blue: expect.stringMatching(/[0-9A-F]{2}/i)
+  });
 });

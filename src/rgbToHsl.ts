@@ -1,13 +1,11 @@
 import { parseRgb } from './parseRgb';
-import { HslColor, RgbColor } from './types';
+import { IHslColor } from './types/hsl';
+import { IRgbColor } from './types/rgb';
 
-export function rgbToHsl (rgb: RgbColor | string | null): HslColor {
+export function rgbToHsl (rgb: IRgbColor | string | null): IHslColor | null {
+  rgb = typeof rgb === 'string' ? parseRgb(rgb) : rgb;
   if (!rgb) {
-    return new HslColor(null);
-  }
-
-  if (typeof rgb === 'string') {
-    rgb = parseRgb(rgb);
+    return null;
   }
 
   // Convert the RGB values to the range 0-1
@@ -42,10 +40,10 @@ export function rgbToHsl (rgb: RgbColor | string | null): HslColor {
   sat = Math.floor(sat * 100);
   lum = Math.floor(lum * 100);
 
-  return new HslColor({
+  return {
     alpha,
     hue,
     lum,
     sat
-  });
+  };
 }

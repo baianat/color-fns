@@ -1,21 +1,21 @@
 import { expandHexShorthand } from './expandHexShorthand';
-import { HexColor } from './types';
+import { IHexColor } from './types/hex';
 
-export function parseHex (hex: string | null) {
-  if (typeof hex !== 'string') {
-    return new HexColor(null);
+export function parseHex (hex: string | null): IHexColor | null {
+  if (!hex) {
+    return null;
   }
 
   const expanded = expandHexShorthand(hex);
   const match = expanded.match(/^#([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})*/i);
   if (!match || match.length < 4) {
-    return new HexColor(null);
+    return null;
   }
 
-  return new HexColor({
+  return {
     alpha: match[4],
     blue: match[3],
     green: match[2],
     red: match[1],
-  });
+  };
 }

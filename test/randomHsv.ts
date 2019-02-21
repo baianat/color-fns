@@ -1,7 +1,9 @@
 import { randomHsv } from '../src/randomHsv';
-import { HsvColor } from '../src/types';
 
-test('generates random hsv color', () => {
-  expect(randomHsv()).toBeInstanceOf(HsvColor);
-  expect(randomHsv().invalid).toBe(false);
+test('generates random hex', () => {
+  expect(randomHsv()).toMatchObject({
+    hue: expect.any(Number),
+    sat: expect.any(Number),
+    val: expect.any(Number)
+  });
 });

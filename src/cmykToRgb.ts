@@ -1,14 +1,12 @@
 import { parseCmyk } from './parseCmyk';
-import { CmykColor, RgbColor } from './types';
+import { ICmykColor } from './types/cmyk';
+import { IRgbColor } from './types/rgb';
 import { normalizeDecNum } from './utils';
 
-export function cmykToRgb (cmyk: CmykColor | string | null) {
+export function cmykToRgb (cmyk: ICmykColor | string | null): IRgbColor | null {
+  cmyk = typeof cmyk === 'string' ? parseCmyk(cmyk) : cmyk;
   if (!cmyk) {
-    return new RgbColor(null);
-  }
-
-  if (typeof cmyk === 'string') {
-    cmyk = parseCmyk(cmyk);
+    return null;
   }
 
   // Convert the CMYK values to the range 0-1
@@ -19,10 +17,10 @@ export function cmykToRgb (cmyk: CmykColor | string | null) {
   const green = normalizeDecNum(255 * (1 - magenta) * (1 - key));
   const blue = normalizeDecNum(255 * (1 - yellow) * (1 - key));
 
-  return new RgbColor({
-    alpha,
+  return {
+    alpha: typeof alpha === 'undefined' ? 1 : alpha,
     blue,
     green,
     red
-  });
+  };
 }

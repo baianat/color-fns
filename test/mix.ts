@@ -1,4 +1,4 @@
-import { mixColors } from '../src/mixColors';
+import { mix } from '../src/mix';
 
 const color1 = {
   red: 255,
@@ -22,5 +22,5 @@ const mixedColor = {
 }
 
 test('mix two colors object', () => {
-  expect(mixColors(color1, color2, 0.5)).toMatchObject(mixedColor);
+  expect(mix(color1, color2, 0.5)).toMatchObject(mixedColor);
 });

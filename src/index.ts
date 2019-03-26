@@ -5,7 +5,7 @@ export { hexToRgb } from './hexToRgb';
 export { hslToRgb } from './hslToRgb';
 export { hsvToRgb } from './hsvToRgb';
 export { isHexShorthand } from './isHexShorthand';
-export { mixColors } from './mixColors';
+export { mix } from './mix';
 export { parseCmyk } from './parseCmyk';
 export { parseHex } from './parseHex';
 export { parseHsl } from './parseHsl';

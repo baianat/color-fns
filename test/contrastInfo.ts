@@ -1,9 +1,8 @@
 import { contrastInfo } from '../src/contrastInfo';
-import { parseRgb } from '../src/parseRgb';
 
 test('it provides WCAG contrast info between two HSL colors', () => {
-  const c1 = parseRgb(`rgb(20, 210, 255)`);
-  const c2 = parseRgb('rgb(97, 26, 149)');
+  const c1 = { red: 20, green: 210, blue: 255 };
+  const c2 = { red: 97, green: 26, blue: 149 };
 
   expect(
     contrastInfo(c1, c2)

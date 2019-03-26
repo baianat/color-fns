@@ -5,8 +5,7 @@ test('converts any of the supported color models to cmyk', () => {
     cyan: 0,
     magenta: 58,
     yellow: 15,
-    key: 40,
-    alpha: 1
+    key: 40
   };
 
   expect(toCmyk('rgb(152, 63, 128)')).toMatchObject(purplish);

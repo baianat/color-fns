@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="200" src="https://github.com/baianat/color-fns/blob/master/logo.svg">
+</p>
+
 # 🎨 Color-fns 🎨
 
 [![Build Status](https://travis-ci.org/baianat/color-fns.svg?branch=master)](https://travis-ci.org/baianat/color-fns)
@@ -6,14 +10,22 @@
 
 Modern and Modular JavaScript color utility library.
 
-### Installation
+## Features
+
+- Written in TypeScript.
+- Lightweight.
+- Modular with Tree-shaking support.
+- Multi-Color Model Support.
+- CSS compatiable output.
+
+## Installation
 
 ```bash
-# npm
-npm i color-fns
-
 # yarn
 yarn add color-fns
+
+# npm
+npm i color-fns
 ```
 
 OR
@@ -38,6 +50,58 @@ console.log(toRgb('#fff'));
 // UMD (Script Tag)
 console.log(ColorFns.toRgb('#fff'));
 ```
+
+### Available Functions
+
+#### Parsing
+
+- parseCmyk
+- parseHex
+- parseHsl
+- parseHsv
+- parseRgb
+
+#### Conversion
+
+- cmykToRgb
+- hexToRgb
+- hslToRgb
+- hsvToRgb
+- rgbToCmyk
+- rgbToHex
+- rgbToHsl
+- rgbToHsv
+- toCmyk
+- toHex
+- toHsl
+- toHsv
+- toRgb
+
+#### Operations
+
+- mix
+
+#### Format and Display
+
+- expandHexShorthand
+- formatCmyk
+- formatHex
+- formatHsl
+- formatHsv
+- formatRgb
+
+#### Validation
+
+- isValidCmyk
+- isValidHex
+- isValidHsl
+- isValidHsv
+- isValidRgb
+
+#### Querying
+
+- whichModel
+- constrastInfo
 
 ### Contribution
 

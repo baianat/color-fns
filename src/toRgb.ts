@@ -3,7 +3,7 @@ import { hexToRgb } from './hexToRgb';
 import { hslToRgb } from './hslToRgb';
 import { hsvToRgb } from './hsvToRgb';
 import { parseRgb } from './parseRgb';
-import { IRgbColor } from './types';
+import { IRgbColor } from './types/rgb';
 import { whichModel } from './whichModel';
 
 export function toRgb (color: string | null): IRgbColor | null {

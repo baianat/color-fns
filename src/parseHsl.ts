@@ -15,7 +15,7 @@ export function parseHsl (value: string | null): IHslColor | null {
   }
 
   return {
-    alpha: Number(match[4]),
+    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : 1,
     hue: Number(match[1]),
     lum: Number(match[3]),
     sat: Number(match[2]),

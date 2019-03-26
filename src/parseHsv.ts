@@ -15,7 +15,7 @@ export function parseHsv (value: IHsvColor | string | any): IHsvColor | null {
   }
 
   return {
-    alpha: Number(match[4]),
+    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : 1,
     hue: Number(match[1]),
     sat: Number(match[2]),
     val: Number(match[3]),

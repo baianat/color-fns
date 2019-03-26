@@ -10,4 +10,5 @@ test('parses RGB strings', () => {
   });
 
   expect(parseRgb('welp')).toBeNull();
+  expect(parseRgb(null)).toBeNull();
 });

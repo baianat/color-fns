@@ -48,4 +48,5 @@ test('get color model', () => {
   expect(whichModel('cmyka(13, 100, 32, 1)')).toMatch(/cmyk/);
   expect(whichModel('rgb(13, 200, 230)')).toMatch(/rgb/);
   expect(whichModel('rgba(13, 200, 230, 1)')).toMatch(/rgb/);
+  expect(whichModel('')).toBe('');
 });

@@ -11,4 +11,5 @@ test('parses CMYK strings', () => {
   });
 
   expect(parseCmyk('welp')).toBeNull();
+  expect(parseCmyk(null)).toBeNull();
 });

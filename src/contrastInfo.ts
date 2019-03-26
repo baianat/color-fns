@@ -25,11 +25,7 @@ function calculateRelativeLuminance (value: IRgbColor): number {
   return 0.2126 * R + 0.7152 * G + 0.0722 * B;
 }
 
-export function contrastInfo(c1: IRgbColor | null, c2: IRgbColor | null): IWCAGInfo {
-  if (!c1 || !c2) {
-    throw new Error('You must provide two valid HSL colors.');
-  }
-
+export function contrastInfo(c1: IRgbColor, c2: IRgbColor): IWCAGInfo {
   const L1 = calculateRelativeLuminance(c1);
   const L2 = calculateRelativeLuminance(c2);
 

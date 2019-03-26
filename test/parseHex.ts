@@ -21,4 +21,5 @@ test('parses shorthand HEX strings', () => {
   });
 
   expect(parseHex('welp')).toBeNull();
+  expect(parseHex(null)).toBe(null);
 });

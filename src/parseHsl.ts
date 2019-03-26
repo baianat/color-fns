@@ -1,14 +1,14 @@
 import { IHslColor } from './types/hsl';
 
-export interface HslParsingOptions {
+export interface IHslParsingOptions {
   allowDecimal: boolean;
 }
 
-const defaultOpts: HslParsingOptions = {
+const defaultOpts: IHslParsingOptions = {
   allowDecimal: true
 };
 
-export function parseHsl (value: string | null, options: HslParsingOptions = defaultOpts): IHslColor | null {
+export function parseHsl (value: string | null, options: IHslParsingOptions = defaultOpts): IHslColor | null {
   if (typeof value !== 'string') {
     return null;
   }

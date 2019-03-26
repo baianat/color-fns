@@ -17,4 +17,5 @@ test('converts hex color to rgb color', () => {
   expect(hexToRgb(hex)).toMatchObject(rgb);
   expect(hexToRgb('#a11612')).toMatchObject(rgb);
   expect(hexToRgb(null)).toBeNull();
+  expect(hexToRgb({ ...hex, alpha: 'ff' })).toMatchObject(rgb);
 });

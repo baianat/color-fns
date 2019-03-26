@@ -28,7 +28,7 @@ export function parseHsv(value: IHsvColor | string, options: HsvParsingOptions =
   }
 
   return {
-    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : 1,
+    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : undefined,
     hue: Number(match[1]),
     sat: Number(match[2]),
     val: Number(match[3]),

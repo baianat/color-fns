@@ -15,7 +15,7 @@ export function parseRgb(value: string | null): IRgbColor | null {
   }
 
   return {
-    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : 1,
+    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : undefined,
     blue: Number(match[3]),
     green: Number(match[2]),
     red: Number(match[1])

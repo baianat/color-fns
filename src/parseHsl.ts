@@ -28,7 +28,7 @@ export function parseHsl (value: string | null, options: HslParsingOptions = def
   }
 
   return {
-    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : 1,
+    alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : undefined,
     hue: Number(match[1]),
     lum: Number(match[3]),
     sat: Number(match[2]),

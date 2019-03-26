@@ -15,7 +15,7 @@ export function parseCmyk (cmyk: string | null): ICmykColor | null {
   }
 
   return {
-    alpha: typeof match[5] !== 'undefined' ? Number(match[5]) : 1,
+    alpha: typeof match[5] !== 'undefined' ? Number(match[5]) : undefined,
     cyan: Number(match[1]),
     key: Number(match[4]),
     magenta: Number(match[2]),

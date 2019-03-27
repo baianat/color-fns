@@ -1,14 +1,17 @@
 <p align="center">
-  <img width="200" src="https://github.com/baianat/color-fns/blob/master/logo.svg">
+  <img width="400" src="https://github.com/baianat/color-fns/blob/master/logo.svg">
 </p>
 
-# 🎨 Color-fns 🎨
+<p align="center">
 
 [![Build Status](https://travis-ci.org/baianat/color-fns.svg?branch=master)](https://travis-ci.org/baianat/color-fns)
 [![codecov](https://codecov.io/gh/baianat/color-fns/branch/master/graph/badge.svg)](https://codecov.io/gh/baianat/color-fns)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a4d7bc3726514688b7186cce0852ebc4)](https://www.codacy.com/app/logaretm1/color-fns?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=baianat/color-fns&amp;utm_campaign=Badge_Grade)
 
-Modern and Modular JavaScript color utility library.
+</p>
+<br>
+
+Modern and Modular JavaScript color utility library. [inspired by date-fns](https://date-fns.org/).
 
 ## Features
 

@@ -1,6 +1,6 @@
 {
   "name": "color-fns",
-  "version": "0.0.10",
+  "version": "0.1.0",
   "description": "Modern JavaScript color utility library.",
   "main": "dist/color-fns.js",
   "module": "dist/color-fns.esm.js",
@@ -29,8 +29,8 @@
     }
   ],
   "files": [
-    "dist/*.js",
-    "types/*.d.ts"
+    "dist/**/*.js",
+    "dist/types/**/*.d.ts"
   ],
   "devDependencies": {
     "@babel/core": "^7.4.5",

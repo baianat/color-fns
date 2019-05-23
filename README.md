@@ -15,11 +15,11 @@ Modern and Modular JavaScript color utility library. [inspired by date-fns](http
 
 ## Features
 
-- Written in TypeScript.
-- Lightweight.
-- Modular with Tree-shaking support.
-- Multi-Color Model Support.
-- CSS compatiable output.
+- Written in TypeScript. 😎
+- Lightweight. 💸
+- Modular and Tree-shakable.🌳
+- Multi-Color Model Support. 🎨
+- CSS compatible output. 💨
 
 ## Installation
 
@@ -105,6 +105,11 @@ console.log(ColorFns.toRgb('#fff'));
 
 - whichModel
 - constrastInfo
+- isDark
+
+#### Calculations
+
+- relativeLuminance
 
 ### Contribution
 

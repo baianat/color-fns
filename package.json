@@ -44,7 +44,7 @@
     "jest": "24.8.0",
     "lint-staged": "^8.1.7",
     "mkdirp": "^0.5.1",
-    "rollup": "^1.12.3",
+    "rollup": "^1.12.5",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-json": "^4.0.0",
@@ -55,7 +55,7 @@
     "ts-jest": "^24.0.2",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.4.5",
+    "typescript": "^3.5.1",
     "uglify-js": "^3.5.15"
   },
   "husky": {

@@ -1,4 +1,4 @@
-import { IHexColor } from './types/hex';
+import { IHexColor } from './types';
 import { decNumToHex, getRandomInt } from './utils';
 
 export function randomHex (): IHexColor {

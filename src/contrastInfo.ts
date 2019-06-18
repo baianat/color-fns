@@ -1,5 +1,5 @@
 import { relativeLuminance } from "./relativeLuminance";
-import { IRgbColor } from "./types/rgb";
+import { IRgbColor } from "./types";
 
 interface IWCAGInfo {
   ratio: number;

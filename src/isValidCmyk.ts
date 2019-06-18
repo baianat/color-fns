@@ -1,5 +1,5 @@
 import { parseCmyk } from "./parseCmyk";
-import { ICmykColor } from "./types/cmyk";
+import { ICmykColor } from "./types";
 import { isBetween } from "./utils";
 
 export function isValidCmyk (value: ICmykColor | string | null): boolean {

@@ -3,7 +3,7 @@ import { hslToRgb } from './hslToRgb';
 import { hsvToRgb } from './hsvToRgb';
 import { parseCmyk } from './parseCmyk';
 import { rgbToCmyk } from './rgbToCmyk';
-import { ICmykColor } from './types/cmyk';
+import { ICmykColor } from './types';
 import { whichModel } from './whichModel';
 
 export function toCmyk (color: string | null): ICmykColor | null {

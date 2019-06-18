@@ -1,4 +1,4 @@
-import { IRgbColor } from "./types/rgb";
+import { IRgbColor } from "./types";
 
 /**
  * https://www.w3.org/TR/WCAG20/#relativeluminancedef

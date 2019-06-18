@@ -1,6 +1,5 @@
 import { parseRgb } from './parseRgb';
-import { ICmykColor } from './types/cmyk';
-import { IRgbColor } from './types/rgb';
+import { ICmykColor, IRgbColor } from './types';
 
 export function rgbToCmyk (rgb: IRgbColor | string | null): ICmykColor | null {
   const value = typeof rgb === 'string' ? parseRgb(rgb) : rgb;

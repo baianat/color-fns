@@ -1,4 +1,4 @@
-import { IRgbColor } from './types/rgb';
+import { IRgbColor } from './types';
 import { mixValue } from './utils';
 
 export function mix (c1: IRgbColor, c2: IRgbColor, ratio: number): IRgbColor {

@@ -1,4 +1,4 @@
-import { IHexColor } from './types/hex';
+import { IHexColor } from './types';
 import { hexNumToDec, isBetween } from './utils';
 
 export function formatHex(value: IHexColor | null): string {

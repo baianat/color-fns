@@ -1,4 +1,4 @@
-import { IHsvColor } from './types/hsv';
+import { IHsvColor } from './types';
 import { getRandomInt } from './utils';
 
 export function randomHsv (): IHsvColor {

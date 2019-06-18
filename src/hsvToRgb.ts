@@ -1,6 +1,5 @@
 import { parseHsv } from './parseHsv';
-import { IHsvColor } from './types/hsv';
-import { IRgbColor } from './types/rgb';
+import { IHsvColor, IRgbColor } from './types';
 import { normalizeDecNum } from './utils';
 
 export function hsvToRgb (hsv: IHsvColor | string | null): IRgbColor | null {

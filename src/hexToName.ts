@@ -1,10 +1,7 @@
-import { CSS_COLORS } from "./data";
 import { hexToRgb } from "./hexToRgb";
-import { IHexColor } from "./types/hex";
-import { IRgbColor } from "./types/rgb";
+import { IColorNameLookup, IHexColor, IRgbColor } from "./types";
 
-
-function dictionaryToArrayObj (obj: typeof CSS_COLORS) {
+function dictionaryToArrayObj (obj: IColorNameLookup) {
   const keys = Object.keys(obj);
   const length = keys.length;
   const arr: Array<{ name: string, value: IRgbColor }> = [];
@@ -29,7 +26,7 @@ function dictionaryToArrayObj (obj: typeof CSS_COLORS) {
  * https://en.wikipedia.org/wiki/Color_difference
  *
  */
-export function hexToName (hex: IHexColor | string, extendedColors?: typeof CSS_COLORS): string | null {
+export function hexToName (hex: IHexColor | string, colors: IColorNameLookup): string | null {
   const queriedColor = hexToRgb(hex);
   if (!queriedColor) {
     return null;
@@ -37,7 +34,7 @@ export function hexToName (hex: IHexColor | string, extendedColors?: typeof CSS_
 
   let minDistance = Infinity;
   let nearestColor!: string;
-  const colorsArr = dictionaryToArrayObj({ ...CSS_COLORS, ...(extendedColors || {}) });
+  const colorsArr = dictionaryToArrayObj(colors);
   const length = colorsArr.length;
 
   for (let i = 0; i < length; i++) {

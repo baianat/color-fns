@@ -1,8 +1,8 @@
 import { CSS_COLORS } from './data';
 import { parseHex } from "./parseHex";
-import { IHexColor } from "./types/hex";
+import { IColorNameLookup, IHexColor } from "./types";
 
-export function hexFromName (name: string, extendedColors?: typeof CSS_COLORS): IHexColor | null {
+export function hexFromName (name: string, extendedColors?: IColorNameLookup): IHexColor | null {
   if (name in CSS_COLORS) {
     return parseHex(CSS_COLORS[name]);
   }

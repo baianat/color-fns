@@ -1,6 +1,5 @@
 import { parseHex } from './parseHex';
-import { IHexColor } from './types/hex';
-import { IRgbColor } from './types/rgb';
+import { IHexColor, IRgbColor } from './types';
 import { hexNumToDec } from './utils';
 
 export function hexToRgb (hex: IHexColor | string | null): IRgbColor | null {

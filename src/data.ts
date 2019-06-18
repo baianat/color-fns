@@ -1,4 +1,6 @@
-export const CSS_COLORS: { [k: string]: string } = {
+import { IColorNameLookup } from "./types";
+
+export const CSS_COLORS: IColorNameLookup = {
   "aliceblue": "#f0f8ff",
   "antiquewhite": "#faebd7",
   "aqua": "#00ffff",

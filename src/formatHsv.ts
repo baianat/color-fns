@@ -1,4 +1,4 @@
-import { IHsvColor } from "./types/hsv";
+import { IHsvColor } from "./types";
 import { isBetween } from "./utils";
 
 export function formatHsv (value: IHsvColor | null): string {

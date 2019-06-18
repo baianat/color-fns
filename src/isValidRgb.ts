@@ -1,5 +1,5 @@
 import { parseRgb } from './parseRgb';
-import { IRgbColor } from './types/rgb';
+import { IRgbColor } from './types';
 import { isBetween } from './utils';
 
 export function isValidRgb (value: IRgbColor | string | null) {

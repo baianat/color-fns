@@ -1,4 +1,4 @@
-import { IRgbColor } from './types/rgb';
+import { IRgbColor } from './types';
 
 export function parseRgb(value: string | null): IRgbColor | null {
   if (typeof value !== 'string') {

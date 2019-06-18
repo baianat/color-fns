@@ -40,5 +40,6 @@ export { relativeLuminance} from './relativeLuminance';
 export { isDark } from './isDark';
 export { hexFromName } from './hexFromName';
 export { hexToName } from './hexToName';
+export { CSS_COLORS } from './data';
 
 export const version = '__VERSION__';

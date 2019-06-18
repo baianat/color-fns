@@ -1,4 +1,4 @@
-import { IHslColor } from './types/hsl';
+import { IHslColor } from './types';
 
 export interface IHslParsingOptions {
   allowDecimal: boolean;

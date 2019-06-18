@@ -1,5 +1,5 @@
 import { parseHsv } from "./parseHsv";
-import { IHsvColor } from "./types/hsv";
+import { IHsvColor } from "./types";
 import { isBetween } from "./utils";
 
 export function isValidHsv (value: IHsvColor | string | null): boolean {

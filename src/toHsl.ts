@@ -3,7 +3,7 @@ import { hexToRgb } from './hexToRgb';
 import { hsvToRgb } from './hsvToRgb';
 import { parseHsl } from './parseHsl';
 import { rgbToHsl } from './rgbToHsl';
-import { IHslColor } from './types/hsl';
+import { IHslColor } from './types';
 import { whichModel } from './whichModel';
 
 export function toHsl (color: string | null): IHslColor | null {

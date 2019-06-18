@@ -1,4 +1,4 @@
-import { ICmykColor } from "./types/cmyk";
+import { ICmykColor } from "./types";
 import { isBetween } from "./utils";
 
 export function formatCmyk (value: ICmykColor | null): string {

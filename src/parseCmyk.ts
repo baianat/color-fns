@@ -1,4 +1,4 @@
-import { ICmykColor } from "./types/cmyk";
+import { ICmykColor } from "./types";
 
 export function parseCmyk (cmyk: string | null): ICmykColor | null {
   if (!cmyk) {

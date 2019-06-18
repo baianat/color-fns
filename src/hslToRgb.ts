@@ -1,6 +1,5 @@
 import { parseHsl } from './parseHsl';
-import { IHslColor } from './types/hsl';
-import { IRgbColor } from './types/rgb';
+import { IHslColor, IRgbColor } from './types';
 import { normalizeDecNum } from './utils';
 
 export function hslToRgb (hsl: IHslColor | string | null): IRgbColor | null {

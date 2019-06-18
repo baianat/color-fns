@@ -1,5 +1,5 @@
 import { expandHexShorthand } from './expandHexShorthand';
-import { IHexColor } from './types/hex';
+import { IHexColor } from './types';
 
 export function parseHex (hex: string | null): IHexColor | null {
   if (!hex) {

@@ -38,5 +38,6 @@ export { formatCmyk } from './formatCmyk';
 export { contrastInfo } from './contrastInfo';
 export { relativeLuminance} from './relativeLuminance';
 export { isDark } from './isDark';
+export { hexFromName } from './hexFromName';
 
 export const version = '__VERSION__';

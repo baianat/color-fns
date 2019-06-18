@@ -107,6 +107,7 @@ console.log(ColorFns.toRgb('#fff'));
 - constrastInfo
 - isDark
 - hexFromName
+- hexToName
 
 #### Calculations
 

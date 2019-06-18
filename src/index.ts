@@ -39,5 +39,6 @@ export { contrastInfo } from './contrastInfo';
 export { relativeLuminance} from './relativeLuminance';
 export { isDark } from './isDark';
 export { hexFromName } from './hexFromName';
+export { hexToName } from './hexToName';
 
 export const version = '__VERSION__';

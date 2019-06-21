@@ -42,4 +42,7 @@ export { hexFromName } from './hexFromName';
 export { hexToName } from './hexToName';
 export { CSS_COLORS } from './data';
 
+// Simple composition util
+export const compose = (...fns: Function[]) => (x: any) => fns.reduceRight((y, f) => f(y), x);
+
 export const version = '__VERSION__';

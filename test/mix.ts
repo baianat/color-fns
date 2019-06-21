@@ -19,7 +19,7 @@ const mixedColor = {
   green: 127,
   blue: 63,
   alpha: 0.5
-}
+};
 
 test('mix two colors object', () => {
   expect(mix(color1, color2, 0.5)).toMatchObject(mixedColor);

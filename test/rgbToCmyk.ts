@@ -12,7 +12,7 @@ const cmyk = {
   yellow: 0,
   key: 21, // should be 22
   alpha: 1
-}
+};
 
 test('converts rgb color to cmyk color', () => {
   expect(rgbToCmyk(rgb)).toMatchObject(cmyk);

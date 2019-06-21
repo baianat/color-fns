@@ -1,7 +1,7 @@
-import { IRgbColor } from './types';
+import { RgbColor } from './types';
 import { isBetween } from './utils';
 
-export function formatRgb(value: IRgbColor | null): string {
+export function formatRgb(value: RgbColor | null): string {
   if (!value) {
     return 'Invalid Color';
   }

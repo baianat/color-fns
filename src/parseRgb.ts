@@ -1,6 +1,6 @@
-import { IRgbColor } from './types';
+import { RgbColor } from './types';
 
-export function parseRgb(value: string | null): IRgbColor | null {
+export function parseRgb(value: string | null): RgbColor | null {
   if (typeof value !== 'string') {
     return null;
   }

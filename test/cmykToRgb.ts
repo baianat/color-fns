@@ -4,7 +4,7 @@ const cmyk = {
   cyan: 0,
   key: 21,
   magenta: 22,
-  yellow: 0,
+  yellow: 0
 };
 
 const rgb = {
@@ -12,7 +12,7 @@ const rgb = {
   blue: 201,
   green: 157,
   red: 201
-}
+};
 
 test('converts rgb color to cmyk color', () => {
   expect(cmykToRgb(cmyk)).toMatchObject(rgb);

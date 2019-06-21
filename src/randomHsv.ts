@@ -1,7 +1,7 @@
-import { IHsvColor } from './types';
+import { HsvColor } from './types';
 import { getRandomInt } from './utils';
 
-export function randomHsv (): IHsvColor {
+export function randomHsv(): HsvColor {
   return {
     hue: getRandomInt(0, 360),
     sat: getRandomInt(0, 100),

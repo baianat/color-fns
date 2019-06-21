@@ -1,8 +1,8 @@
-import { parseCmyk } from "./parseCmyk";
-import { ICmykColor } from "./types";
-import { isBetween } from "./utils";
+import { parseCmyk } from './parseCmyk';
+import { CmykColor } from './types';
+import { isBetween } from './utils';
 
-export function isValidCmyk (value: ICmykColor | string | null): boolean {
+export function isValidCmyk(value: CmykColor | string | null): boolean {
   const cmyk = typeof value === 'string' ? parseCmyk(value) : value;
   if (!cmyk) {
     return false;

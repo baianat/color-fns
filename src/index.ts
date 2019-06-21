@@ -36,7 +36,7 @@ export { formatHsl } from './formatHsl';
 export { formatHsv } from './formatHsv';
 export { formatCmyk } from './formatCmyk';
 export { contrastInfo } from './contrastInfo';
-export { relativeLuminance} from './relativeLuminance';
+export { relativeLuminance } from './relativeLuminance';
 export { isDark } from './isDark';
 export { hexFromName } from './hexFromName';
 export { hexToName } from './hexToName';

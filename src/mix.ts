@@ -1,7 +1,7 @@
-import { IRgbColor } from './types';
+import { RgbColor } from './types';
 import { mixValue } from './utils';
 
-export function mix (c1: IRgbColor, c2: IRgbColor, ratio: number): IRgbColor {
+export function mix(c1: RgbColor, c2: RgbColor, ratio: number): RgbColor {
   const red = Math.floor(mixValue(c1.red, c2.red, ratio));
   const green = Math.floor(mixValue(c1.green, c2.green, ratio));
   const blue = Math.floor(mixValue(c1.blue, c2.blue, ratio));

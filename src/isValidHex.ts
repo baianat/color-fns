@@ -1,7 +1,7 @@
 import { parseHex } from './parseHex';
-import { IHexColor } from './types';
+import { HexColor } from './types';
 
-export function isValidHex (value: IHexColor | string | null) {
+export function isValidHex(value: HexColor | string | null) {
   const normalizedVal = typeof value === 'string' ? parseHex(value) : value;
   if (!normalizedVal) {
     return false;

@@ -1,14 +1,14 @@
-import { IHsvColor } from './types';
+import { HsvColor } from './types';
 
-export interface IHsvParsingOptions {
+export interface HsvParsingOptions {
   allowDecimal: boolean;
 }
 
-const defaultOpts: IHsvParsingOptions = {
+const defaultOpts: HsvParsingOptions = {
   allowDecimal: true
 };
 
-export function parseHsv(value: string | null, options: IHsvParsingOptions = defaultOpts): IHsvColor | null {
+export function parseHsv(value: string | null, options: HsvParsingOptions = defaultOpts): HsvColor | null {
   if (typeof value !== 'string') {
     return null;
   }
@@ -31,6 +31,6 @@ export function parseHsv(value: string | null, options: IHsvParsingOptions = def
     alpha: typeof match[4] !== 'undefined' ? Number(match[4]) : undefined,
     hue: Number(match[1]),
     sat: Number(match[2]),
-    val: Number(match[3]),
+    val: Number(match[3])
   };
 }

@@ -1,7 +1,7 @@
-import { IRgbColor } from './types';
+import { RgbColor } from './types';
 import { getRandomInt } from './utils';
 
-export function randomRgb (): IRgbColor {
+export function randomRgb(): RgbColor {
   return {
     blue: getRandomInt(0, 255),
     green: getRandomInt(0, 255),

@@ -1,7 +1,7 @@
-import { IHexColor } from './types';
+import { HexColor } from './types';
 import { hexNumToDec, isBetween } from './utils';
 
-export function formatHex(value: IHexColor | null): string {
+export function formatHex(value: HexColor | null): string {
   if (!value) {
     return 'Invalid Color';
   }

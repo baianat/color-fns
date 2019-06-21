@@ -1,7 +1,7 @@
 import { parseRgb } from './parseRgb';
-import { IHsvColor, IRgbColor } from './types';
+import { HsvColor, RgbColor } from './types';
 
-export function rgbToHsv (rgb: IRgbColor | string | null): IHsvColor | null {
+export function rgbToHsv(rgb: RgbColor | string | null): HsvColor | null {
   const value = typeof rgb === 'string' ? parseRgb(rgb) : rgb;
   if (!value) {
     return null;

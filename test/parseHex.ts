@@ -10,7 +10,6 @@ test('parses HEX strings', () => {
   });
 });
 
-
 test('parses shorthand HEX strings', () => {
   const parsed = parseHex('#0f0');
 

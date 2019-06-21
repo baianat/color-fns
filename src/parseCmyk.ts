@@ -1,6 +1,6 @@
-import { ICmykColor } from "./types";
+import { CmykColor } from './types';
 
-export function parseCmyk (cmyk: string | null): ICmykColor | null {
+export function parseCmyk(cmyk: string | null): CmykColor | null {
   if (!cmyk) {
     return null;
   }
@@ -19,6 +19,6 @@ export function parseCmyk (cmyk: string | null): ICmykColor | null {
     cyan: Number(match[1]),
     key: Number(match[4]),
     magenta: Number(match[2]),
-    yellow: Number(match[3]),
+    yellow: Number(match[3])
   };
 }

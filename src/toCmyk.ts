@@ -3,10 +3,10 @@ import { hslToRgb } from './hslToRgb';
 import { hsvToRgb } from './hsvToRgb';
 import { parseCmyk } from './parseCmyk';
 import { rgbToCmyk } from './rgbToCmyk';
-import { ICmykColor } from './types';
+import { CmykColor } from './types';
 import { whichModel } from './whichModel';
 
-export function toCmyk (color: string | null): ICmykColor | null {
+export function toCmyk(color: string | null): CmykColor | null {
   const model = whichModel(color);
 
   if (model === 'hex') {

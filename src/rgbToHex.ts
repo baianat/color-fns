@@ -1,14 +1,14 @@
 import { parseRgb } from './parseRgb';
-import { IHexColor, IRgbColor } from './types';
+import { HexColor, RgbColor } from './types';
 import { decNumToHex } from './utils';
 
-export function rgbToHex (rgb: IRgbColor | string | null): IHexColor | null {
+export function rgbToHex(rgb: RgbColor | string | null): HexColor | null {
   if (typeof rgb === 'string') {
     rgb = parseRgb(rgb);
   }
 
   if (!rgb) {
-    return null
+    return null;
   }
 
   const [rr, gg, bb, aa] = [
@@ -24,4 +24,4 @@ export function rgbToHex (rgb: IRgbColor | string | null): IHexColor | null {
     green: gg,
     red: rr
   };
-};
+}

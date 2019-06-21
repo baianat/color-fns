@@ -1,4 +1,4 @@
-export interface ICmykColor {
+export interface CmykColor {
   alpha?: number;
   cyan: number;
   magenta: number;
@@ -6,34 +6,34 @@ export interface ICmykColor {
   key: number;
 }
 
-export interface IHexColor {
+export interface HexColor {
   alpha?: string;
   red: string;
   green: string;
   blue: string;
 }
 
-export interface IHslColor {
+export interface HslColor {
   hue: number;
   lum: number;
   sat: number;
   alpha?: number;
 }
 
-export interface IHsvColor {
+export interface HsvColor {
   hue: number;
   val: number;
   sat: number;
   alpha?: number;
 }
 
-export interface IRgbColor {
+export interface RgbColor {
   alpha?: number;
   red: number;
   green: number;
   blue: number;
 }
 
-export interface IColorNameLookup {
-  [k: string]: string
+export interface ColorNameLookup {
+  [k: string]: string;
 }

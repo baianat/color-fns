@@ -1,12 +1,12 @@
 import { parseHsl } from './parseHsl';
-import { IHslColor, IRgbColor } from './types';
+import { HslColor, RgbColor } from './types';
 import { normalizeDecNum } from './utils';
 
-export function hslToRgb (hsl: IHslColor | string | null): IRgbColor | null {
+export function hslToRgb(hsl: HslColor | string | null): RgbColor | null {
   const value = typeof hsl === 'string' ? parseHsl(hsl) : hsl;
   if (!value) {
     return null;
-  };
+  }
 
   const [hue, sat, lgh, alpha] = [value.hue / 360, value.sat / 100, value.lum / 100, value.alpha];
   let [red, green, blue] = [0, 0, 0];

@@ -7,7 +7,7 @@ enum ColorModel {
   CMYK = 'cmyk'
 }
 
-export function whichModel (color: string | null): ColorModel {
+export function whichModel(color: string | null): ColorModel {
   if (!color) {
     return ColorModel.UNKNOWN;
   }

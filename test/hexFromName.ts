@@ -12,4 +12,3 @@ test('Gets color value from color names', () => {
 test('List of colors can be extended', () => {
   expect(formatHex(hexFromName('PANTONE 2350 C', { 'PANTONE 2350 C': '#af231c' }))).toBe('#af231c');
 });
-

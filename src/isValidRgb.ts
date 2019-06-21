@@ -1,14 +1,13 @@
 import { parseRgb } from './parseRgb';
-import { IRgbColor } from './types';
+import { RgbColor } from './types';
 import { isBetween } from './utils';
 
-export function isValidRgb (value: IRgbColor | string | null) {
+export function isValidRgb(value: RgbColor | string | null) {
   const rgb = typeof value === 'string' ? parseRgb(value) : value;
   // Handle null values.
   if (!rgb) {
     return false;
   }
-
 
   const isInAlphaRange = isBetween(0, 1);
   if (typeof rgb.alpha !== 'undefined' && !isInAlphaRange(rgb.alpha)) {

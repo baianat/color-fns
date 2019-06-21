@@ -11,7 +11,7 @@ const rgb = {
   green: 22,
   blue: 18,
   alpha: 1
-}
+};
 
 test('converts hex color to rgb color', () => {
   expect(hexToRgb(hex)).toMatchObject(rgb);

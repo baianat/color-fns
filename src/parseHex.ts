@@ -1,7 +1,7 @@
 import { expandHexShorthand } from './expandHexShorthand';
-import { IHexColor } from './types';
+import { HexColor } from './types';
 
-export function parseHex (hex: string | null): IHexColor | null {
+export function parseHex(hex: string | null): HexColor | null {
   if (!hex) {
     return null;
   }
@@ -16,6 +16,6 @@ export function parseHex (hex: string | null): IHexColor | null {
     alpha: match[4],
     blue: match[3],
     green: match[2],
-    red: match[1],
+    red: match[1]
   };
 }

@@ -3,10 +3,10 @@ import { hexToRgb } from './hexToRgb';
 import { hsvToRgb } from './hsvToRgb';
 import { parseHsl } from './parseHsl';
 import { rgbToHsl } from './rgbToHsl';
-import { IHslColor } from './types';
+import { HslColor } from './types';
 import { whichModel } from './whichModel';
 
-export function toHsl (color: string | null): IHslColor | null {
+export function toHsl(color: string | null): HslColor | null {
   const model = whichModel(color);
 
   if (model === 'hex') {

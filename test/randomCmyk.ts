@@ -6,5 +6,5 @@ test('generates random cmyk color', () => {
     magenta: expect.any(Number),
     yellow: expect.any(Number),
     key: expect.any(Number)
-  })
+  });
 });

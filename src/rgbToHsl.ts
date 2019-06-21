@@ -1,7 +1,7 @@
 import { parseRgb } from './parseRgb';
-import { IHslColor, IRgbColor } from './types';
+import { HslColor, RgbColor } from './types';
 
-export function rgbToHsl (rgb: IRgbColor | string | null): IHslColor | null {
+export function rgbToHsl(rgb: RgbColor | string | null): HslColor | null {
   rgb = typeof rgb === 'string' ? parseRgb(rgb) : rgb;
   if (!rgb) {
     return null;

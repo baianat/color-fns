@@ -1,7 +1,7 @@
-import { ICmykColor } from './types';
+import { CmykColor } from './types';
 import { getRandomInt } from './utils';
 
-export function randomCmyk (): ICmykColor {
+export function randomCmyk(): CmykColor {
   return {
     cyan: getRandomInt(0, 100),
     key: getRandomInt(0, 100),

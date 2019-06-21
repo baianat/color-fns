@@ -1,7 +1,7 @@
-import { relativeLuminance } from "./relativeLuminance";
-import { IRgbColor } from "./types";
+import { relativeLuminance } from './relativeLuminance';
+import { RgbColor } from './types';
 
-interface IWCAGInfo {
+interface WCAGInfo {
   ratio: number;
   isAA: boolean;
   isAALarge: boolean;
@@ -10,7 +10,7 @@ interface IWCAGInfo {
   isUIAA: boolean;
 }
 
-export function contrastInfo(c1: IRgbColor, c2: IRgbColor): IWCAGInfo {
+export function contrastInfo(c1: RgbColor, c2: RgbColor): WCAGInfo {
   const L1 = relativeLuminance(c1);
   const L2 = relativeLuminance(c2);
 
@@ -23,5 +23,5 @@ export function contrastInfo(c1: IRgbColor, c2: IRgbColor): IWCAGInfo {
     isAAA: ratio >= 7,
     isAAALarge: ratio >= 4.5,
     isUIAA: ratio >= 3
-  }
-};
+  };
+}

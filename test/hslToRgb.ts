@@ -12,7 +12,7 @@ const rgb = {
   green: 22,
   blue: 17,
   alpha: 1
-}
+};
 
 test('converts hsl color to rgb color', () => {
   expect(hslToRgb(hsl)).toMatchObject(rgb);

@@ -1,7 +1,7 @@
-import { ICmykColor } from "./types";
-import { isBetween } from "./utils";
+import { CmykColor } from './types';
+import { isBetween } from './utils';
 
-export function formatCmyk (value: ICmykColor | null): string {
+export function formatCmyk(value: CmykColor | null): string {
   if (!value) {
     return 'Invalid Color';
   }

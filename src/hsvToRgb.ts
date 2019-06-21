@@ -1,12 +1,12 @@
 import { parseHsv } from './parseHsv';
-import { IHsvColor, IRgbColor } from './types';
+import { HsvColor, RgbColor } from './types';
 import { normalizeDecNum } from './utils';
 
-export function hsvToRgb (hsv: IHsvColor | string | null): IRgbColor | null {
+export function hsvToRgb(hsv: HsvColor | string | null): RgbColor | null {
   const value = typeof hsv === 'string' ? parseHsv(hsv) : hsv;
   if (!value) {
     return null;
-  };
+  }
 
   const [hue, sat, val, alpha] = [value.hue / 360, value.sat / 100, value.val / 100, value.alpha];
   let [red, green, blue] = [0, 0, 0];
@@ -17,7 +17,7 @@ export function hsvToRgb (hsv: IHsvColor | string | null): IRgbColor | null {
 
   if (sat !== 0) {
     const c = val * sat;
-    const x = c * (1 - Math.abs((hue * 6) % 2 - 1));
+    const x = c * (1 - Math.abs(((hue * 6) % 2) - 1));
     const m = val - c;
 
     const testHue = (test: number): [number, number, number] => {

@@ -1,7 +1,7 @@
-import { IHsvColor } from "./types";
-import { isBetween } from "./utils";
+import { HsvColor } from './types';
+import { isBetween } from './utils';
 
-export function formatHsv (value: IHsvColor | null): string {
+export function formatHsv(value: HsvColor | null): string {
   if (!value) {
     return 'Invalid Color';
   }

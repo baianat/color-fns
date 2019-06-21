@@ -12,7 +12,7 @@ const hex = {
   green: 'c8',
   blue: 'e6',
   alpha: '7f'
-}
+};
 
 test('converts rgb color to hex color', () => {
   expect(rgbToHex(rgb)).toMatchObject(hex);
